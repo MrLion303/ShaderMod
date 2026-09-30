@@ -8,42 +8,65 @@ uniform float Progress;
 in vec2 texCoord;
 in vec2 oneTexel;
 
-float luminance(vec3 c){return dot(c,vec3(0.299,0.587,0.114));}
-vec3 sample(vec2 uv){return texture(DiffuseSampler,clamp(uv,0.0,1.0)).rgb;}
+vec3 sampleColor(vec2 uv){
+    return texture(DiffuseSampler, clamp(uv, 0.0, 1.0)).rgb;
+}
 
 void main(){
-    vec2 uv=texCoord;
-    vec3 c=sample(uv);
-    int m=int(Mode+0.5);
+    vec2 uv = texCoord;
+    vec3 original = sampleColor(uv);
+    int m = int(Mode + 0.5);
 
-    if(m==10){
-        float t=clamp(Progress,0.0,1.0);
-        vec2 center=vec2(0.5);
-        vec2 p=uv-center;
-        float r=length(p);
+    if(m == 10){
+        float t = clamp(Progress, 0.0, 1.0);
+        vec2 center = vec2(0.5);
+        vec2 p = uv - center;
 
-        float collapse=1.0/(1.0-0.86*t);
-        float swirl=2.4*t*(1.0-smoothstep(0.0,0.9,r));
-        float cs=cos(swirl);
-        float sn=sin(swirl);
-        vec2 q=vec2(p.x*cs-p.y*sn,p.x*sn+p.y*cs);
-        vec2 sourceUv=center+q*collapse;
+        float aspect = max(InSize.x / max(InSize.y, 1.0), 1.0);
+        p.x *= aspect;
 
-        float outside=step(1.0,abs(sourceUv.x)*2.0-0.0)+step(1.0,abs(sourceUv.y)*2.0-0.0);
-        vec3 sucked=sample(sourceUv);
+        float r = length(p);
+        float edge = smoothstep(0.02, 0.95, r);
+        float eased = t * t * (3.0 - 2.0 * t);
 
-        float coreRadius=mix(0.015,0.42,t);
-        float core=1.0-smoothstep(coreRadius,coreRadius+0.025,r);
-        sucked*=1.0-core;
+        float twist = eased * 7.5 * (1.0 - smoothstep(0.05, 1.15, r));
+        twist += eased * 2.0 * smoothstep(0.35, 1.15, r);
 
-        float edge=1.0-smoothstep(0.45,0.92,r);
-        float dark=smoothstep(0.58,0.92,t)*edge;
-        sucked*=1.0-dark*0.75;
+        float cs = cos(twist);
+        float sn = sin(twist);
+        vec2 rotated = vec2(
+            p.x * cs - p.y * sn,
+            p.x * sn + p.y * cs
+        );
 
-        float blackout=smoothstep(0.88,1.0,t);
-        fragColor=vec4(mix(sucked,vec3(0.0),blackout),1.0);
+        float pull = eased * 0.42 * smoothstep(0.08, 1.0, r);
+        float sourceRadius = r * (1.0 + pull);
+        sourceRadius += eased * 0.12 * sin(r * 13.0 - eased * 10.0) * edge;
+
+        vec2 source = rotated;
+        float rotatedRadius = length(source);
+        source *= sourceRadius / max(rotatedRadius, 0.0001);
+
+        source.x /= aspect;
+        vec2 sourceUv = center + source;
+        vec3 color = sampleColor(sourceUv);
+
+        float coreRadius = mix(0.015, 0.30, eased);
+        float core = smoothstep(coreRadius + 0.08, coreRadius, r);
+        color *= 1.0 - core;
+
+        float vignette = smoothstep(0.35, 1.05, r);
+        float darkness = eased * 0.72 * vignette;
+
+        float fade = smoothstep(0.68, 1.0, t);
+        fade = fade * fade;
+
+        color *= 1.0 - darkness;
+        color = mix(color, vec3(0.0), fade);
+
+        fragColor = vec4(color, 1.0);
         return;
     }
 
-    fragColor=vec4(c,1.0);
+    fragColor = vec4(original, 1.0);
 }
