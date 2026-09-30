@@ -8,8 +8,6 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.client.renderer.PostChain;
 import net.minecraft.client.renderer.PostPass;
 
-import java.lang.reflect.Field;
-
 import java.util.List;
 import java.util.Map;
 
@@ -17,7 +15,6 @@ public final class ShaderController {
     private static ResourceLocation activeShader;
     private static MobEffect activeEffect;
     private static final int ABSORPTION_TICKS = 160;
-    private static Field postPassesField;
 
     /*
      * Minecraft 1.20.1 still ships the original Super Secret Settings
@@ -109,25 +106,8 @@ public final class ShaderController {
         PostChain chain = mc.gameRenderer.currentEffect();
         if (chain == null) return;
 
-        try {
-            if (postPassesField == null) {
-                try {
-                    postPassesField = PostChain.class.getDeclaredField("passes");
-                } catch (NoSuchFieldException ignored) {
-                    postPassesField = PostChain.class.getDeclaredField("f_110009_");
-                }
-                postPassesField.setAccessible(true);
-            }
-
-            @SuppressWarnings("unchecked")
-            List<PostPass> passes = (List<PostPass>) postPassesField.get(chain);
-            for (PostPass pass : passes) {
-                if (pass.getEffect().safeGetUniform("Progress") != null) {
-                    pass.getEffect().safeGetUniform("Progress").set(progress);
-                }
-            }
-        } catch (ReflectiveOperationException | RuntimeException ex) {
-            System.err.println("[ShaderMod] Failed to update absorption progress: " + ex);
+        for (PostPass pass : chain.passes) {
+            pass.getEffect().safeGetUniform("Progress").set(progress);
         }
     }
 
