@@ -23,5 +23,6 @@
   "effect.shaders.bits": "Bits",
   "effect.shaders.green": "Green",
   "effect.shaders.blobs": "Blobs",
-  "effect.shaders.antialias": "Antialias"
+  "effect.shaders.antialias": "Antialias",
+  "effect.shaders.absorcion": "Absorción"
 }
