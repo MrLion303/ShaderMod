@@ -67,7 +67,7 @@ public final class ShadersModMobEffects {
                                                    EffectRenderingInventoryScreen<?> screen,
                                                    GuiGraphics guiGraphics,
                                                    int x, int y, int blitOffset) {
-                    guiGraphics.blit(ICON, x + 1, y + 8, 0, 0, 16, 16, 1080, 1080);
+                    guiGraphics.blit(ICON, x, y + 7, 0, 0, 18, 18, 1080, 1080);
                     return true;
                 }
 
@@ -77,7 +77,7 @@ public final class ShadersModMobEffects {
                                              GuiGraphics guiGraphics,
                                              int x, int y, float z, float alpha) {
                     guiGraphics.setColor(1.0F, 1.0F, 1.0F, alpha);
-                    guiGraphics.blit(ICON, x + 1, y + 1, 0, 0, 16, 16, 1080, 1080);
+                    guiGraphics.blit(ICON, x, y, 0, 0, 18, 18, 1080, 1080);
                     guiGraphics.setColor(1.0F, 1.0F, 1.0F, 1.0F);
                     return true;
                 }
