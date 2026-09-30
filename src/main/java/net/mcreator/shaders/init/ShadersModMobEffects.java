@@ -11,6 +11,20 @@ public final class ShadersModMobEffects {
     public static final DeferredRegister<MobEffect> REGISTRY =
         DeferredRegister.create(ForgeRegistries.MOB_EFFECTS, ShadersMod.MODID);
 
+    public static final RegistryObject<MobEffect> FXAA = register("fxaa", ShaderEffect::new);
+    public static final RegistryObject<MobEffect> ART = register("art", ShaderEffect::new);
+    public static final RegistryObject<MobEffect> BUMPY = register("bumpy", ShaderEffect::new);
+    public static final RegistryObject<MobEffect> BLOBS2 = register("blobs2", ShaderEffect::new);
+    public static final RegistryObject<MobEffect> COLOR_CONVOLVE = register("color_convolve", ShaderEffect::new);
+    public static final RegistryObject<MobEffect> DECONVERGE = register("deconverge", ShaderEffect::new);
+    public static final RegistryObject<MobEffect> NTSC = register("ntsc", ShaderEffect::new);
+    public static final RegistryObject<MobEffect> OUTLINE = register("outline", ShaderEffect::new);
+    public static final RegistryObject<MobEffect> PHOSPHOR = register("phosphor", ShaderEffect::new);
+    public static final RegistryObject<MobEffect> BITS = register("bits", ShaderEffect::new);
+    public static final RegistryObject<MobEffect> GREEN = register("green", ShaderEffect::new);
+    public static final RegistryObject<MobEffect> BLOBS = register("blobs", ShaderEffect::new);
+    public static final RegistryObject<MobEffect> ANTIALIAS = register("antialias", ShaderEffect::new);
+
     public static final RegistryObject<MobEffect> FLIP = register("flip", FlipMobEffect::new);
     public static final RegistryObject<MobEffect> PENCIL = register("pencil", PencilMobEffect::new);
     public static final RegistryObject<MobEffect> ENDER_MAN_VISION = register("enderman_vision", EndermanVisionMobEffect::new);
