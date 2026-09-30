@@ -67,7 +67,7 @@ public final class ShadersModMobEffects {
                                                    EffectRenderingInventoryScreen<?> screen,
                                                    GuiGraphics guiGraphics,
                                                    int x, int y, int blitOffset) {
-                    guiGraphics.blit(ICON, x, y + 7, 0, 0, 20, 20, 1080, 1080);
+                    guiGraphics.blit(ICON, x, y + 7, 0, 0, 25, 25, 1080, 1080);
                     return true;
                 }
 
