@@ -53,7 +53,7 @@ publishing {
 // The source PNGs remain in the repository root so they are easy to replace.
 tasks.named('processResources') {
     doLast {
-        def mobEffectDir = file("$" + "buildDir/resources/main/assets/shaders/textures/mob_effect")
+        def mobEffectDir = file("${buildDir}/resources/main/assets/shaders/textures/mob_effect")
         mobEffectDir.mkdirs()
 
         copy {
