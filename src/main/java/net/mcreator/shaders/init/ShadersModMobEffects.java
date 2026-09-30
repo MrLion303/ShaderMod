@@ -3,6 +3,14 @@ package net.mcreator.shaders.init;
 import net.mcreator.shaders.ShadersMod;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.client.extensions.common.IClientMobEffectExtensions;
+import net.minecraft.client.gui.Gui;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.screens.inventory.EffectRenderingInventoryScreen;
+import net.minecraft.world.effect.MobEffectInstance;
+
+import java.util.function.Consumer;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -43,8 +51,36 @@ public final class ShadersModMobEffects {
     }
 
     private static class ShaderEffect extends MobEffect {
+        private static final ResourceLocation ICON =
+            new ResourceLocation(ShadersMod.MODID, "textures/mob_effect/Shader.png");
+
         protected ShaderEffect() {
             super(MobEffectCategory.NEUTRAL, 0xFFFFFF);
+        }
+
+        @Override
+        public void initializeClient(Consumer<IClientMobEffectExtensions> consumer) {
+            consumer.accept(new IClientMobEffectExtensions() {
+                @Override
+                public boolean renderInventoryIcon(MobEffectInstance instance,
+                                                   EffectRenderingInventoryScreen<?> screen,
+                                                   GuiGraphics guiGraphics,
+                                                   int x, int y, int blitOffset) {
+                    guiGraphics.blit(ICON, x, y + 7, blitOffset, 0, 0, 18, 18, 18, 18);
+                    return true;
+                }
+
+                @Override
+                public boolean renderGuiIcon(MobEffectInstance instance,
+                                             Gui gui,
+                                             GuiGraphics guiGraphics,
+                                             int x, int y, float z, float alpha) {
+                    guiGraphics.setColor(1.0F, 1.0F, 1.0F, alpha);
+                    guiGraphics.blit(ICON, x, y, z, 0, 0, 18, 18, 18, 18);
+                    guiGraphics.setColor(1.0F, 1.0F, 1.0F, 1.0F);
+                    return true;
+                }
+            });
         }
     }
 
