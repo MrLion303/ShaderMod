@@ -2,9 +2,8 @@ package net.mcreator.shaders;
 
 import net.mcreator.shaders.init.ShadersModMobEffects;
 import net.minecraft.client.Minecraft;
-import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.effect.MobEffect;
 
 import java.util.List;
 import java.util.Map;
@@ -30,7 +29,7 @@ public final class ShaderController {
     private ShaderController() {}
 
     private static ResourceLocation id(String path) {
-        return ResourceLocation.fromNamespaceAndPath(ShadersMod.MODID, "shader/post/" + path + ".json");
+        return new ResourceLocation(ShadersMod.MODID, "shader/post/" + path + ".json");
     }
 
     public static void tick() {
@@ -65,7 +64,7 @@ public final class ShaderController {
             } catch (RuntimeException ex) {
                 activeShader = null;
                 activeEffect = null;
-                System.err.println("[ShaderMod] Failed to load shader " + shader + ": " + ex.getMessage());
+                System.err.println("[ShaderMod] Failed to load shader " + shader + ": " + ex);
             }
         }
     }
@@ -75,12 +74,6 @@ public final class ShaderController {
             mc.gameRenderer.shutdownEffect();
             activeShader = null;
             activeEffect = null;
-        }
-    }
-
-    public static void shutdownForEntity(LivingEntity entity) {
-        if (entity == Minecraft.getInstance().player) {
-            shutdown(Minecraft.getInstance());
         }
     }
 }
