@@ -111,7 +111,12 @@ public final class ShaderController {
 
         try {
             if (postPassesField == null) {
-                postPassesField = PostChain.class.getDeclaredField("passes");
+                try {
+                    postPassesField = PostChain.class.getDeclaredField("passes");
+                } catch (NoSuchFieldException ignored) {
+                    // In the reobfuscated 1.20.1 runtime the same field is SRG-named.
+                    postPassesField = PostChain.class.getDeclaredField("f_110009_");
+                }
                 postPassesField.setAccessible(true);
             }
 
