@@ -16,6 +16,7 @@ public final class ShaderController {
     private static ResourceLocation activeShader;
     private static MobEffect activeEffect;
     private static final int ABSORPTION_ANIMATION_TICKS = 160; // 8 seconds
+    private static int absorptionTotalTicks = 1;
 
     /*
      * Minecraft 1.20.1 still ships the original Super Secret Settings
@@ -47,7 +48,9 @@ public final class ShaderController {
         Map.entry(ShadersModMobEffects.CREEPER_VISION.get(), vanilla("creeper")),
         Map.entry(ShadersModMobEffects.SPIDER_VISION.get(), vanilla("spider")),
         Map.entry(ShadersModMobEffects.SCAN_PINCUSHION.get(), vanilla("scan_pincushion")),
-        Map.entry(ShadersModMobEffects.ABSORCION.get(), new ResourceLocation(ShadersMod.MODID, "shaders/post/absorcion.json"))
+        Map.entry(ShadersModMobEffects.ABSORCION.get(), new ResourceLocation(ShadersMod.MODID, "shaders/post/absorcion.json")),
+        Map.entry(ShadersModMobEffects.GREEN_GLOW.get(), new ResourceLocation(ShadersMod.MODID, "shaders/post/green_glow.json")),
+        Map.entry(ShadersModMobEffects.RED_GLOW.get(), new ResourceLocation(ShadersMod.MODID, "shaders/post/red_glow.json"))
     );
 
     private ShaderController() {}
@@ -82,6 +85,11 @@ public final class ShaderController {
         if (!shader.equals(activeShader) || requested != activeEffect) {
             shutdown(mc);
             try {
+                if (requested == ShadersModMobEffects.ABSORCION.get()) {
+                    MobEffectInstance absorption = mc.player.getEffect(ShadersModMobEffects.ABSORCION.get());
+                    absorptionTotalTicks = absorption != null ? Math.max(1, absorption.getDuration()) : 1;
+                }
+
                 mc.gameRenderer.loadEffect(shader);
                 activeShader = shader;
                 activeEffect = requested;
@@ -93,17 +101,33 @@ public final class ShaderController {
         }
         if (requested == ShadersModMobEffects.ABSORCION.get()) {
             updateAbsorptionProgress(mc);
+        } else if (requested == ShadersModMobEffects.GREEN_GLOW.get()) {
+            updateMode(mc, 11.0F, 1.0F);
+        } else if (requested == ShadersModMobEffects.RED_GLOW.get()) {
+            updateMode(mc, 12.0F, 1.0F);
         }
     }
 
+
+    private static void updateMode(Minecraft mc, float modeValue, float progressValue) {
+        PostChain chain = mc.gameRenderer.currentEffect();
+        if (chain == null) return;
+
+        for (PostPass pass : chain.passes) {
+            Uniform mode = pass.getEffect().getUniform("Mode");
+            Uniform progress = pass.getEffect().getUniform("Progress");
+            if (mode != null) mode.set(modeValue);
+            if (progress != null) progress.set(progressValue);
+        }
+    }
 
     private static void updateAbsorptionProgress(Minecraft mc) {
         MobEffectInstance instance = mc.player.getEffect(ShadersModMobEffects.ABSORCION.get());
         if (instance == null) return;
 
-        // The visual animation always takes 8 seconds (160 ticks).
-        // Any remaining effect duration stays at the completed black screen.
-        float elapsed = Math.max(0.0F, ABSORPTION_ANIMATION_TICKS - instance.getDuration());
+        // Capture the effect's duration when it starts. The animation then
+        // runs during the FIRST 8 seconds, regardless of total duration.
+        float elapsed = Math.max(0.0F, absorptionTotalTicks - instance.getDuration());
         float progress = elapsed / (float) ABSORPTION_ANIMATION_TICKS;
         progress = Math.max(0.0F, Math.min(1.0F, progress));
 
@@ -128,6 +152,7 @@ public final class ShaderController {
             mc.gameRenderer.shutdownEffect();
             activeShader = null;
             activeEffect = null;
+            absorptionTotalTicks = 1;
         }
     }
 }
