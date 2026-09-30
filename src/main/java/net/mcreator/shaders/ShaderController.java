@@ -15,7 +15,7 @@ import java.util.Map;
 public final class ShaderController {
     private static ResourceLocation activeShader;
     private static MobEffect activeEffect;
-    private static int absorptionTotalTicks = 1;
+    private static final int ABSORPTION_ANIMATION_TICKS = 160; // 8 seconds
 
     /*
      * Minecraft 1.20.1 still ships the original Super Secret Settings
@@ -82,11 +82,6 @@ public final class ShaderController {
         if (!shader.equals(activeShader) || requested != activeEffect) {
             shutdown(mc);
             try {
-                if (requested == ShadersModMobEffects.ABSORCION.get()) {
-                    MobEffectInstance absorption = mc.player.getEffect(ShadersModMobEffects.ABSORCION.get());
-                    absorptionTotalTicks = absorption != null ? Math.max(1, absorption.getDuration()) : 1;
-                }
-
                 mc.gameRenderer.loadEffect(shader);
                 activeShader = shader;
                 activeEffect = requested;
@@ -106,10 +101,10 @@ public final class ShaderController {
         MobEffectInstance instance = mc.player.getEffect(ShadersModMobEffects.ABSORCION.get());
         if (instance == null) return;
 
-        // The animation lasts exactly as long as the active Absorción effect.
-        // Minecraft counts effect duration in ticks (20 ticks = 1 second).
-        float remaining = Math.max(0.0F, instance.getDuration() - 1.0F);
-        float progress = 1.0F - (remaining / (float) Math.max(1, absorptionTotalTicks));
+        // The visual animation always takes 8 seconds (160 ticks).
+        // Any remaining effect duration stays at the completed black screen.
+        float elapsed = Math.max(0.0F, ABSORPTION_ANIMATION_TICKS - instance.getDuration());
+        float progress = elapsed / (float) ABSORPTION_ANIMATION_TICKS;
         progress = Math.max(0.0F, Math.min(1.0F, progress));
 
         PostChain chain = mc.gameRenderer.currentEffect();
@@ -133,7 +128,6 @@ public final class ShaderController {
             mc.gameRenderer.shutdownEffect();
             activeShader = null;
             activeEffect = null;
-            absorptionTotalTicks = 1;
         }
     }
 }
