@@ -4,6 +4,11 @@ import net.mcreator.shaders.init.ShadersModMobEffects;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.client.renderer.PostChain;
+import net.minecraft.client.renderer.PostPass;
+
+import java.lang.reflect.Field;
 
 import java.util.List;
 import java.util.Map;
@@ -11,6 +16,8 @@ import java.util.Map;
 public final class ShaderController {
     private static ResourceLocation activeShader;
     private static MobEffect activeEffect;
+    private static final int ABSORPTION_TICKS = 160;
+    private static Field postPassesField;
 
     /*
      * Minecraft 1.20.1 still ships the original Super Secret Settings
@@ -85,6 +92,36 @@ public final class ShaderController {
                 activeEffect = null;
                 System.err.println("[ShaderMod] Failed to load vanilla shader " + shader + ": " + ex);
             }
+        }
+        if (requested == ShadersModMobEffects.ABSORCION.get()) {
+            updateAbsorptionProgress(mc);
+        }
+    }
+
+
+    private static void updateAbsorptionProgress(Minecraft mc) {
+        MobEffectInstance instance = mc.player.getEffect(ShadersModMobEffects.ABSORCION.get());
+        if (instance == null) return;
+
+        float progress = 1.0F - (instance.getDuration() / (float) ABSORPTION_TICKS);
+        progress = Math.max(0.0F, Math.min(1.0F, progress));
+
+        PostChain chain = mc.gameRenderer.currentEffect();
+        if (chain == null) return;
+
+        try {
+            if (postPassesField == null) {
+                postPassesField = PostChain.class.getDeclaredField("passes");
+                postPassesField.setAccessible(true);
+            }
+
+            @SuppressWarnings("unchecked")
+            List<PostPass> passes = (List<PostPass>) postPassesField.get(chain);
+            for (PostPass pass : passes) {
+                pass.getEffect().safeGetUniform("Progress").set(progress);
+            }
+        } catch (ReflectiveOperationException ex) {
+            System.err.println("[ShaderMod] Failed to update absorption progress: " + ex);
         }
     }
 
