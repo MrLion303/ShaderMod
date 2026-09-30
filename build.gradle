@@ -63,7 +63,7 @@ tasks.named('processResources') {
         }
 
         copy {
-            from file('shaderlogo.png')
+            from file('logo.png')
             into mobEffectDir
             rename { 'shaderlogo.png' }
         }
