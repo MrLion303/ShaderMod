@@ -77,7 +77,7 @@ public final class ShadersModMobEffects {
                                              GuiGraphics guiGraphics,
                                              int x, int y, float z, float alpha) {
                     guiGraphics.setColor(1.0F, 1.0F, 1.0F, alpha);
-                    guiGraphics.blit(ICON, x, y, 0, 0, 20, 20, 1080, 1080);
+                    guiGraphics.blit(ICON, x, y, 0, 0, 25, 25, 1080, 1080);
                     guiGraphics.setColor(1.0F, 1.0F, 1.0F, 1.0F);
                     return true;
                 }
