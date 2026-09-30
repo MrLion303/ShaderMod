@@ -1,1 +1,1 @@
-{"targets":["swap"],"passes":[{"name":"negativestudios_effects","intarget":"minecraft:main","outtarget":"swap","uniforms":[{"name":"Mode","values":[10]}]},{"name":"minecraft:blit","intarget":"swap","outtarget":"minecraft:main"}]}
+{"targets":["swap"],"passes":[{"name":"negativestudios_effects","intarget":"minecraft:main","outtarget":"swap","uniforms":[{"name":"Mode","values":[10]},{"name":"Progress","values":[0]}]},{"name":"minecraft:blit","intarget":"swap","outtarget":"minecraft:main"}]}
