@@ -4,6 +4,7 @@ out vec4 fragColor;
 uniform vec2 InSize;
 uniform float Time;
 uniform float Mode;
+uniform float Progress;
 in vec2 texCoord;
 in vec2 oneTexel;
 
@@ -94,31 +95,30 @@ void main(){
     }
 
     if(m==10){ // Absorcion / Season X black hole
-        // Time advances with the post-processing chain. The effect is intentionally
-        // one-shot: it pulls the world toward the center, then fades completely to black.
-        float t = clamp(Time / 8.0, 0.0, 1.0);
+        // Progress is supplied by Java and runs once from 0 to 1.
+        float t = clamp(Progress, 0.0, 1.0);
         vec2 center = vec2(0.5);
         vec2 p = uv - center;
         float r = length(p);
 
-        // Nonlinear radial pull: distant pixels travel toward the singularity faster.
-        float pull = 1.0 + 5.5 * t * t + 2.0 * t * t * t;
-        float angle = 0.42 * t * (1.0 - smoothstep(0.0, 0.85, r));
+        // Strong radial collapse, with a progressively faster pull near the end.
+        float pull = 1.0 + 0.85 * t + 4.5 * t * t + 3.0 * t * t * t;
+        float angle = 1.35 * t * (1.0 - smoothstep(0.0, 0.95, r));
         float ca = cos(angle);
         float sa = sin(angle);
         vec2 rotated = vec2(p.x * ca - p.y * sa, p.x * sa + p.y * ca);
         vec2 sourceUv = center + rotated * pull;
 
-        // Outside the source image becomes the void.
         float inside = step(0.0, sourceUv.x) * step(sourceUv.x, 1.0)
                      * step(0.0, sourceUv.y) * step(sourceUv.y, 1.0);
         vec3 sucked = sample(sourceUv) * inside;
 
-        // A subtle darkening around the singularity makes the center feel denser.
-        float core = smoothstep(0.18, 0.0, r) * t;
-        sucked *= 1.0 - 0.45 * core;
+        // Dense dark core: the center disappears first into the singularity.
+        float core = 1.0 - smoothstep(0.015, 0.24, r);
+        float coreStrength = smoothstep(0.10, 0.58, t);
+        sucked *= 1.0 - core * coreStrength * 0.92;
 
-        // Final blackout: the last part of the animation becomes pure black.
+        // Last stage is a clean blackout.
         float blackout = smoothstep(0.72, 1.0, t);
         fragColor = vec4(mix(sucked, vec3(0.0), blackout), 1.0);
         return;
