@@ -10,5 +10,18 @@
   "effect.shaders.flip": "Flip",
   "effect.shaders.enderman_vision": "Enderman Vision",
   "effect.shaders.nada": "Default",
-  "effect.shaders.wobble": "Wobble"
+  "effect.shaders.wobble": "Wobble",
+  "effect.shaders.fxaa": "FXAA",
+  "effect.shaders.art": "Art",
+  "effect.shaders.bumpy": "Bumpy",
+  "effect.shaders.blobs2": "Blobs2",
+  "effect.shaders.color_convolve": "Color Convolve",
+  "effect.shaders.deconverge": "Deconverge",
+  "effect.shaders.ntsc": "NTSC",
+  "effect.shaders.outline": "Outline",
+  "effect.shaders.phosphor": "Phosphor",
+  "effect.shaders.bits": "Bits",
+  "effect.shaders.green": "Green",
+  "effect.shaders.blobs": "Blobs",
+  "effect.shaders.antialias": "Antialias"
 }
