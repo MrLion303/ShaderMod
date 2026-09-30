@@ -7,6 +7,7 @@ import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.client.renderer.PostChain;
 import net.minecraft.client.renderer.PostPass;
+import com.mojang.blaze3d.shaders.Uniform;
 
 import java.util.List;
 import java.util.Map;
@@ -14,7 +15,7 @@ import java.util.Map;
 public final class ShaderController {
     private static ResourceLocation activeShader;
     private static MobEffect activeEffect;
-    private static final int ABSORPTION_TICKS = 160;
+    private static final int ABSORPTION_TICKS = 200;
 
     /*
      * Minecraft 1.20.1 still ships the original Super Secret Settings
@@ -107,7 +108,15 @@ public final class ShaderController {
         if (chain == null) return;
 
         for (PostPass pass : chain.passes) {
-            pass.getEffect().safeGetUniform("Progress").set(progress);
+            Uniform mode = pass.getEffect().getUniform("Mode");
+            Uniform progressUniform = pass.getEffect().getUniform("Progress");
+
+            if (mode != null) {
+                mode.set(10.0F);
+            }
+            if (progressUniform != null) {
+                progressUniform.set(progress);
+            }
         }
     }
 
