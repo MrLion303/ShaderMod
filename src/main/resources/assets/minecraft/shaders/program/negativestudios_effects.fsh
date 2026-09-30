@@ -93,6 +93,37 @@ void main(){
         return;
     }
 
+    if(m==10){ // Absorcion / Season X black hole
+        // Time advances with the post-processing chain. The effect is intentionally
+        // one-shot: it pulls the world toward the center, then fades completely to black.
+        float t = clamp(Time / 8.0, 0.0, 1.0);
+        vec2 center = vec2(0.5);
+        vec2 p = uv - center;
+        float r = length(p);
+
+        // Nonlinear radial pull: distant pixels travel toward the singularity faster.
+        float pull = 1.0 + 5.5 * t * t + 2.0 * t * t * t;
+        float angle = 0.42 * t * (1.0 - smoothstep(0.0, 0.85, r));
+        float ca = cos(angle);
+        float sa = sin(angle);
+        vec2 rotated = vec2(p.x * ca - p.y * sa, p.x * sa + p.y * ca);
+        vec2 sourceUv = center + rotated * pull;
+
+        // Outside the source image becomes the void.
+        float inside = step(0.0, sourceUv.x) * step(sourceUv.x, 1.0)
+                     * step(0.0, sourceUv.y) * step(sourceUv.y, 1.0);
+        vec3 sucked = sample(sourceUv) * inside;
+
+        // A subtle darkening around the singularity makes the center feel denser.
+        float core = smoothstep(0.18, 0.0, r) * t;
+        sucked *= 1.0 - 0.45 * core;
+
+        // Final blackout: the last part of the animation becomes pure black.
+        float blackout = smoothstep(0.72, 1.0, t);
+        fragColor = vec4(mix(sucked, vec3(0.0), blackout), 1.0);
+        return;
+    }
+
     if(m==9){ // Enderman vision
         vec3 e=vec3(c.b*0.35,c.r*0.08,c.r*0.85+c.b*0.15);
         float glow=0.90+0.10*sin(Time*6.2831);
