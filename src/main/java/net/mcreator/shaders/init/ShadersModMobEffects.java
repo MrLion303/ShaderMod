@@ -45,6 +45,7 @@ public final class ShadersModMobEffects {
     public static final RegistryObject<MobEffect> SCAN_PINCUSHION = register("scan_pincushion", ScanPincushionMobEffect::new);
     public static final RegistryObject<MobEffect> NOTCH = register("notch", NotchMobEffect::new);
     public static final RegistryObject<MobEffect> NADA = register("nada", NadaMobEffect::new);
+    public static final RegistryObject<MobEffect> ABSORCION = register("absorcion", AbsorcionMobEffect::new);
 
     private static RegistryObject<MobEffect> register(String name, java.util.function.Supplier<MobEffect> supplier) {
         return REGISTRY.register(name, supplier);
@@ -96,4 +97,5 @@ public final class ShadersModMobEffects {
     public static final class ScanPincushionMobEffect extends ShaderEffect {}
     public static final class NotchMobEffect extends ShaderEffect {}
     public static final class NadaMobEffect extends ShaderEffect {}
+    public static final class AbsorcionMobEffect extends ShaderEffect {}
 }
