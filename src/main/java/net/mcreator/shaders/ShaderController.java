@@ -15,7 +15,7 @@ import java.util.Map;
 public final class ShaderController {
     private static ResourceLocation activeShader;
     private static MobEffect activeEffect;
-    private static final int ABSORPTION_TICKS = 200;
+    private static int absorptionTotalTicks = 1;
 
     /*
      * Minecraft 1.20.1 still ships the original Super Secret Settings
@@ -82,6 +82,11 @@ public final class ShaderController {
         if (!shader.equals(activeShader) || requested != activeEffect) {
             shutdown(mc);
             try {
+                if (requested == ShadersModMobEffects.ABSORCION.get()) {
+                    MobEffectInstance absorption = mc.player.getEffect(ShadersModMobEffects.ABSORCION.get());
+                    absorptionTotalTicks = absorption != null ? Math.max(1, absorption.getDuration()) : 1;
+                }
+
                 mc.gameRenderer.loadEffect(shader);
                 activeShader = shader;
                 activeEffect = requested;
@@ -101,7 +106,10 @@ public final class ShaderController {
         MobEffectInstance instance = mc.player.getEffect(ShadersModMobEffects.ABSORCION.get());
         if (instance == null) return;
 
-        float progress = 1.0F - (instance.getDuration() / (float) ABSORPTION_TICKS);
+        // The animation lasts exactly as long as the active Absorción effect.
+        // Minecraft counts effect duration in ticks (20 ticks = 1 second).
+        float remaining = Math.max(0.0F, instance.getDuration() - 1.0F);
+        float progress = 1.0F - (remaining / (float) Math.max(1, absorptionTotalTicks));
         progress = Math.max(0.0F, Math.min(1.0F, progress));
 
         PostChain chain = mc.gameRenderer.currentEffect();
@@ -125,6 +133,7 @@ public final class ShaderController {
             mc.gameRenderer.shutdownEffect();
             activeShader = null;
             activeEffect = null;
+            absorptionTotalTicks = 1;
         }
     }
 }
