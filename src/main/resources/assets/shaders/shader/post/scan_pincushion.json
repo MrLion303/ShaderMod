@@ -1,0 +1,1 @@
+{"targets":["swap"],"passes":[{"name":"scan_pincushion","intarget":"minecraft:main","outtarget":"swap"},{"name":"copy","intarget":"swap","outtarget":"minecraft:main"}]}
