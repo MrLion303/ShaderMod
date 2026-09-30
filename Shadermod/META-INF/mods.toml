@@ -1,0 +1,24 @@
+modLoader="javafml"
+loaderVersion="[47,)"
+license="All Rights Reserved"
+
+[[mods]]
+modId="shaders"
+version="1.0.0"
+displayName="Shaders NegativeStudios"
+displayURL="https://sites.google.com/view/negativemc/inicio"
+logoFile="logo.png"
+credits="Created using mod maker MCreator - https://mcreator.net/about"
+authors="NegativeStudios, MrLion303"
+description="\u00a76Shaders Mod 1.20.1\u00a7r\n\u00a7fHecho por\u00a7b\u00a7o @NegativeStudios"
+
+[[dependencies.shaders]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.20.1]"
+    ordering="NONE"
+    side="BOTH"
+
+
+
+

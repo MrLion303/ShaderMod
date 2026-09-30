@@ -1,0 +1,14 @@
+{
+  "effect.shaders.blur": "Blur",
+  "effect.shaders.spider_vision": "Spider Vision",
+  "effect.shaders.desaturate": "Desaturate",
+  "effect.shaders.pencil": "Pencil",
+  "effect.shaders.scan_pincushion": "Scan Pincushion",
+  "effect.shaders.creeper_vision": "Creeper Vision",
+  "effect.shaders.notch": "Notch",
+  "effect.shaders.sobel": "Sobel",
+  "effect.shaders.flip": "Flip",
+  "effect.shaders.enderman_vision": "Enderman Vision",
+  "effect.shaders.nada": "Default",
+  "effect.shaders.wobble": "Wobble"
+}
