@@ -12,24 +12,29 @@ public final class ShaderController {
     private static ResourceLocation activeShader;
     private static MobEffect activeEffect;
 
+    /*
+     * Minecraft 1.20.1 still ships the original Super Secret Settings
+     * post-processing chains. Use those vanilla chains directly so their
+     * original multi-pass behavior is preserved.
+     */
     private static final List<Map.Entry<MobEffect, ResourceLocation>> SHADERS = List.of(
-        Map.entry(ShadersModMobEffects.FLIP.get(), id("flip")),
-        Map.entry(ShadersModMobEffects.PENCIL.get(), id("pencil")),
-        Map.entry(ShadersModMobEffects.ENDER_MAN_VISION.get(), id("enderman_vision")),
-        Map.entry(ShadersModMobEffects.SOBEL.get(), id("sobel")),
-        Map.entry(ShadersModMobEffects.DESATURATE.get(), id("desaturate")),
-        Map.entry(ShadersModMobEffects.BLUR.get(), id("blur")),
-        Map.entry(ShadersModMobEffects.WOBBLE.get(), id("wobble")),
-        Map.entry(ShadersModMobEffects.CREEPER_VISION.get(), id("creeper_vision")),
-        Map.entry(ShadersModMobEffects.SPIDER_VISION.get(), id("spider_vision")),
-        Map.entry(ShadersModMobEffects.SCAN_PINCUSHION.get(), id("scan_pincushion")),
-        Map.entry(ShadersModMobEffects.NOTCH.get(), id("notch"))
+        Map.entry(ShadersModMobEffects.FLIP.get(), vanilla("flip")),
+        Map.entry(ShadersModMobEffects.PENCIL.get(), vanilla("pencil")),
+        Map.entry(ShadersModMobEffects.ENDER_MAN_VISION.get(), vanilla("invert")),
+        Map.entry(ShadersModMobEffects.SOBEL.get(), vanilla("sobel")),
+        Map.entry(ShadersModMobEffects.DESATURATE.get(), vanilla("desaturate")),
+        Map.entry(ShadersModMobEffects.BLUR.get(), vanilla("blur")),
+        Map.entry(ShadersModMobEffects.WOBBLE.get(), vanilla("wobble")),
+        Map.entry(ShadersModMobEffects.CREEPER_VISION.get(), vanilla("creeper")),
+        Map.entry(ShadersModMobEffects.SPIDER_VISION.get(), vanilla("spider")),
+        Map.entry(ShadersModMobEffects.SCAN_PINCUSHION.get(), vanilla("scan_pincushion")),
+        Map.entry(ShadersModMobEffects.NOTCH.get(), vanilla("notch"))
     );
 
     private ShaderController() {}
 
-    private static ResourceLocation id(String path) {
-        return new ResourceLocation(ShadersMod.MODID, "shader/post/" + path + ".json");
+    private static ResourceLocation vanilla(String path) {
+        return new ResourceLocation("minecraft", "shaders/post/" + path + ".json");
     }
 
     public static void tick() {
@@ -64,7 +69,7 @@ public final class ShaderController {
             } catch (RuntimeException ex) {
                 activeShader = null;
                 activeEffect = null;
-                System.err.println("[ShaderMod] Failed to load shader " + shader + ": " + ex);
+                System.err.println("[ShaderMod] Failed to load vanilla shader " + shader + ": " + ex);
             }
         }
     }
