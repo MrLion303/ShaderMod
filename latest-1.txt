@@ -1,0 +1,1000 @@
+﻿[15:23:37] [main/INFO]: ModLauncher running: args [--username, LAYONv, --version, 1.20.1, --gameDir, C:\Users\rodri\AppData\Roaming\ModrinthApp\profiles\D (2), --assetsDir, C:\Users\rodri\AppData\Roaming\ModrinthApp\meta\assets, --assetIndex, 5, --uuid, bef90cd7ba6d491b8900ccdbfcc79b3e, --accessToken, ????????, --clientId, c4502edb-87c6-40cb-b595-64a280cf8906, --xuid, 0, --userType, msa, --versionType, release, --width, 854, --height, 480, --launchTarget, forgeclient, --fml.forgeVersion, 47.4.12, --fml.mcVersion, 1.20.1, --fml.forgeGroup, net.minecraftforge, --fml.mcpVersion, 20230612.114412]
+[15:23:37] [main/INFO]: ModLauncher 10.0.9+10.0.9+main.dcd20f30 starting: java version 17.0.13 by Azul Systems, Inc.; OS Windows 10 arch amd64 version 10.0
+[15:23:39] [main/INFO]: Loading ImmediateWindowProvider fmlearlywindow
+[15:23:40] [main/INFO]: Trying GL version 4.6
+[15:23:40] [main/INFO]: Trying GL version 4.5
+[15:23:40] [main/INFO]: Trying GL version 4.4
+[15:23:40] [main/INFO]: Requested GL version 4.4 got version 4.4
+[15:23:41] [main/INFO]: Mixin Transmogrifier is definitely up to no good...
+[15:23:41] [main/INFO]: crimes against java were committed
+[15:23:41] [main/INFO]: Original mixin transformation service successfully crobbed by mixin-transmogrifier!
+[15:23:41] [pool-2-thread-1/INFO]: GL info: Intel(R) HD Graphics 5500 GL version 4.4.0 - Build 20.19.15.5144, Intel
+[15:23:41] [main/INFO]: SpongePowered MIXIN Subsystem Version=0.8.5 Source=union:/C:/Users/rodri/AppData/Roaming/ModrinthApp/profiles/D%20(2)/mods/Connector-1.0.0-beta.49+1.20.1.jar%23191%23194!/ Service=ModLauncher Env=CLIENT
+[15:23:41] [main/INFO]: Found mod file Connector-1.0.0-beta.49+1.20.1-mod.jar of type MOD with provider org.sinytra.connector.locator.ConnectorEarlyLocator@5c089b2f
+[15:23:42] [main/INFO]: Found mod file almanac-1.20.x-forge-1.0.2.jar of type MOD with provider {mods folder locator at C:\Users\rodri\AppData\Roaming\ModrinthApp\profiles\D (2)\mods}
+[15:23:42] [main/INFO]: Found mod file architectury-9.2.14-forge.jar of type MOD with provider {mods folder locator at C:\Users\rodri\AppData\Roaming\ModrinthApp\profiles\D (2)\mods}
+[15:23:42] [main/INFO]: Found mod file BadOptimizations-2.4.0-1.20.1.jar of type MOD with provider {mods folder locator at C:\Users\rodri\AppData\Roaming\ModrinthApp\profiles\D (2)\mods}
+[15:23:42] [main/INFO]: Found mod file Chunky-1.3.146.jar of type MOD with provider {mods folder locator at C:\Users\rodri\AppData\Roaming\ModrinthApp\profiles\D (2)\mods}
+[15:23:42] [main/INFO]: Found mod file cloth-config-11.1.136-forge.jar of type MOD with provider {mods folder locator at C:\Users\rodri\AppData\Roaming\ModrinthApp\profiles\D (2)\mods}
+[15:23:42] [main/INFO]: Found mod file customskyboxes-forge-mc1.20.1-1.0.2.jar of type MOD with provider {mods folder locator at C:\Users\rodri\AppData\Roaming\ModrinthApp\profiles\D (2)\mods}
+[15:23:42] [main/INFO]: Found mod file EBE-1.20-1.20.1-0.9.1B.jar of type MOD with provider {mods folder locator at C:\Users\rodri\AppData\Roaming\ModrinthApp\profiles\D (2)\mods}
+[15:23:42] [main/INFO]: Found mod file embeddium-0.3.31+mc1.20.1.jar of type MOD with provider {mods folder locator at C:\Users\rodri\AppData\Roaming\ModrinthApp\profiles\D (2)\mods}
+[15:23:42] [main/INFO]: Found mod file emberstextapi-forge-1.20.1-3.0.4-all.jar of type MOD with provider {mods folder locator at C:\Users\rodri\AppData\Roaming\ModrinthApp\profiles\D (2)\mods}
+[15:23:42] [main/INFO]: Found mod file entityculling-forge-1.9.3-mc1.20.1.jar of type MOD with provider {mods folder locator at C:\Users\rodri\AppData\Roaming\ModrinthApp\profiles\D (2)\mods}
+[15:23:42] [main/INFO]: Found mod file fabric-api-0.92.6+1.11.15+1.20.1.jar of type MOD with provider {mods folder locator at C:\Users\rodri\AppData\Roaming\ModrinthApp\profiles\D (2)\mods}
+[15:23:42] [main/INFO]: Found mod file Fastload-Reforged-mc1.20.1-3.4.0.jar of type MOD with provider {mods folder locator at C:\Users\rodri\AppData\Roaming\ModrinthApp\profiles\D (2)\mods}
+[15:23:42] [main/INFO]: Found mod file ferritecore-6.0.1-forge.jar of type MOD with provider {mods folder locator at C:\Users\rodri\AppData\Roaming\ModrinthApp\profiles\D (2)\mods}
+[15:23:42] [main/INFO]: Found mod file ImmediatelyFast-Forge-1.5.2+1.20.4.jar of type MOD with provider {mods folder locator at C:\Users\rodri\AppData\Roaming\ModrinthApp\profiles\D (2)\mods}
+[15:23:42] [main/INFO]: Found mod file journeymap-1.20.1-5.10.3-forge.jar of type MOD with provider {mods folder locator at C:\Users\rodri\AppData\Roaming\ModrinthApp\profiles\D (2)\mods}
+[15:23:42] [main/INFO]: Found mod file kubejs-forge-2001.6.5-build.26.jar of type MOD with provider {mods folder locator at C:\Users\rodri\AppData\Roaming\ModrinthApp\profiles\D (2)\mods}
+[15:23:42] [main/INFO]: Found mod file letmedespawn-1.20.x-forge-1.5.0.jar of type MOD with provider {mods folder locator at C:\Users\rodri\AppData\Roaming\ModrinthApp\profiles\D (2)\mods}
+[15:23:42] [main/INFO]: Found mod file lumiera-forge-1.20.1-1.0.0-alpha.1.jar of type MOD with provider {mods folder locator at C:\Users\rodri\AppData\Roaming\ModrinthApp\profiles\D (2)\mods}
+[15:23:42] [main/INFO]: Found mod file memoryleakfix-forge-1.17+-1.1.5.jar of type MOD with provider {mods folder locator at C:\Users\rodri\AppData\Roaming\ModrinthApp\profiles\D (2)\mods}
+[15:23:42] [main/INFO]: Found mod file modelfix-1.15.jar of type MOD with provider {mods folder locator at C:\Users\rodri\AppData\Roaming\ModrinthApp\profiles\D (2)\mods}
+[15:23:42] [main/INFO]: Found mod file noisium-forge-2.3.0+mc1.20-1.20.1.jar of type MOD with provider {mods folder locator at C:\Users\rodri\AppData\Roaming\ModrinthApp\profiles\D (2)\mods}
+[15:23:42] [main/INFO]: Found mod file oculus-mc1.20.1-1.8.0.jar of type MOD with provider {mods folder locator at C:\Users\rodri\AppData\Roaming\ModrinthApp\profiles\D (2)\mods}
+[15:23:42] [main/INFO]: Found mod file packetfixer-3.3.1-1.18-1.20.4-merged.jar of type MOD with provider {mods folder locator at C:\Users\rodri\AppData\Roaming\ModrinthApp\profiles\D (2)\mods}
+[15:23:42] [main/INFO]: Found mod file photon-forge-1.20.1-1.1.17.jar of type MOD with provider {mods folder locator at C:\Users\rodri\AppData\Roaming\ModrinthApp\profiles\D (2)\mods}
+[15:23:42] [main/INFO]: Found mod file rhino-forge-2001.2.3-build.10.jar of type MOD with provider {mods folder locator at C:\Users\rodri\AppData\Roaming\ModrinthApp\profiles\D (2)\mods}
+[15:23:42] [main/INFO]: Found mod file saroshudhidemod-1.1.jar of type MOD with provider {mods folder locator at C:\Users\rodri\AppData\Roaming\ModrinthApp\profiles\D (2)\mods}
+[15:23:42] [main/INFO]: Found mod file screenshakemod-1.1.jar of type MOD with provider {mods folder locator at C:\Users\rodri\AppData\Roaming\ModrinthApp\profiles\D (2)\mods}
+[15:23:42] [main/INFO]: Found mod file screentext-forge-1.20.1-v4.5.jar of type MOD with provider {mods folder locator at C:\Users\rodri\AppData\Roaming\ModrinthApp\profiles\D (2)\mods}
+[15:23:42] [main/INFO]: Found mod file ShaderMod-1.1.2.jar of type MOD with provider {mods folder locator at C:\Users\rodri\AppData\Roaming\ModrinthApp\profiles\D (2)\mods}
+[15:23:42] [main/INFO]: Found mod file ToadLib-1.3.5-1.20.1.jar of type MOD with provider {mods folder locator at C:\Users\rodri\AppData\Roaming\ModrinthApp\profiles\D (2)\mods}
+[15:23:42] [main/INFO]: Found mod file WorldEditCUI-1.20+01.jar of type MOD with provider {mods folder locator at C:\Users\rodri\AppData\Roaming\ModrinthApp\profiles\D (2)\mods}
+[15:23:42] [main/WARN]: Mod file C:\Users\rodri\AppData\Roaming\ModrinthApp\meta\libraries\net\minecraftforge\fmlcore\1.20.1-47.4.12\fmlcore-1.20.1-47.4.12.jar is missing mods.toml file
+[15:23:42] [main/WARN]: Mod file C:\Users\rodri\AppData\Roaming\ModrinthApp\meta\libraries\net\minecraftforge\javafmllanguage\1.20.1-47.4.12\javafmllanguage-1.20.1-47.4.12.jar is missing mods.toml file
+[15:23:42] [main/WARN]: Mod file C:\Users\rodri\AppData\Roaming\ModrinthApp\meta\libraries\net\minecraftforge\lowcodelanguage\1.20.1-47.4.12\lowcodelanguage-1.20.1-47.4.12.jar is missing mods.toml file
+[15:23:43] [main/WARN]: Mod file C:\Users\rodri\AppData\Roaming\ModrinthApp\meta\libraries\net\minecraftforge\mclanguage\1.20.1-47.4.12\mclanguage-1.20.1-47.4.12.jar is missing mods.toml file
+[15:23:43] [main/INFO]: Found mod file fmlcore-1.20.1-47.4.12.jar of type LIBRARY with provider net.minecraftforge.fml.loading.moddiscovery.MinecraftLocator@baf1bb3
+[15:23:43] [main/INFO]: Found mod file javafmllanguage-1.20.1-47.4.12.jar of type LANGPROVIDER with provider net.minecraftforge.fml.loading.moddiscovery.MinecraftLocator@baf1bb3
+[15:23:43] [main/INFO]: Found mod file lowcodelanguage-1.20.1-47.4.12.jar of type LANGPROVIDER with provider net.minecraftforge.fml.loading.moddiscovery.MinecraftLocator@baf1bb3
+[15:23:43] [main/INFO]: Found mod file mclanguage-1.20.1-47.4.12.jar of type LANGPROVIDER with provider net.minecraftforge.fml.loading.moddiscovery.MinecraftLocator@baf1bb3
+[15:23:43] [main/INFO]: Found mod file client-1.20.1-20230612.114412-srg.jar of type MOD with provider net.minecraftforge.fml.loading.moddiscovery.MinecraftLocator@baf1bb3
+[15:23:43] [main/INFO]: Found mod file forge-1.20.1-47.4.12-universal.jar of type MOD with provider net.minecraftforge.fml.loading.moddiscovery.MinecraftLocator@baf1bb3
+[15:23:45] [main/INFO]: Found 52 dependencies adding them to mods collection
+[15:23:45] [main/INFO]: Found mod file fabric-transfer-api-v1-3.3.6+25eff73b77.jar of type MOD with provider net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator@1846579f
+[15:23:45] [main/INFO]: Found mod file fabric-dimensions-v1-2.1.55+8005d10d77.jar of type MOD with provider net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator@1846579f
+[15:23:45] [main/INFO]: Found mod file fabric-renderer-api-v1-3.2.2+cf68abbe77.jar of type MOD with provider net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator@1846579f
+[15:23:45] [main/INFO]: Found mod file MixinExtras-0.5.0.jar of type GAMELIBRARY with provider net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator@1846579f
+[15:23:45] [main/INFO]: Found mod file fabric-item-api-v1-2.1.29+4d0bbcfa77.jar of type MOD with provider net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator@1846579f
+[15:23:45] [main/INFO]: Found mod file fabric-model-loading-api-v1-1.0.4+6274ab9d77.jar of type MOD with provider net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator@1846579f
+[15:23:45] [main/INFO]: Found mod file fabric-rendering-fluids-v1-3.0.29+4ac5e37a77.jar of type MOD with provider net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator@1846579f
+[15:23:45] [main/INFO]: Found mod file fabric-screen-handler-api-v1-1.3.33+561530ec77.jar of type MOD with provider net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator@1846579f
+[15:23:45] [main/INFO]: Found mod file fabric-models-v0-0.4.3+7c3892a477.jar of type MOD with provider net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator@1846579f
+[15:23:45] [main/INFO]: Found mod file fabric-resource-loader-v0-0.11.12+4b4151c077.jar of type MOD with provider net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator@1846579f
+[15:23:45] [main/INFO]: Found mod file TRender-1.0.8-1.20.1-forge-SNAPSHOT.jar of type MOD with provider net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator@1846579f
+[15:23:45] [main/INFO]: Found mod file fabric-rendering-v1-3.0.9+66e9a48f77.jar of type MOD with provider net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator@1846579f
+[15:23:45] [main/INFO]: Found mod file fabric-renderer-indigo-1.5.3+b5b2da4177.jar of type MOD with provider net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator@1846579f
+[15:23:45] [main/INFO]: Found mod file fabric-convention-tags-v1-1.5.6+fa3d1c0177.jar of type MOD with provider net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator@1846579f
+[15:23:45] [main/INFO]: Found mod file fabric-mining-level-api-v1-2.1.52+561530ec77.jar of type MOD with provider net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator@1846579f
+[15:23:45] [main/INFO]: Found mod file fabric-command-api-v1-1.2.35+f71b366f77.jar of type MOD with provider net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator@1846579f
+[15:23:45] [main/INFO]: Found mod file fabric-block-view-api-v2-1.0.3+53347ba977.jar of type MOD with provider net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator@1846579f
+[15:23:45] [main/INFO]: Found mod file fabric-command-api-v2-2.2.14+561530ec77.jar of type MOD with provider net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator@1846579f
+[15:23:45] [main/INFO]: Found mod file fabric-data-attachment-api-v1-1.0.2+30ef839e77.jar of type MOD with provider net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator@1846579f
+[15:23:45] [main/INFO]: Found mod file ldlib-forge-1.20.1-1.0.42.jar of type MOD with provider net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator@1846579f
+[15:23:45] [main/INFO]: Found mod file fabric-screen-api-v1-2.0.9+45a670a577.jar of type MOD with provider net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator@1846579f
+[15:23:45] [main/INFO]: Found mod file fabric-particles-v1-1.1.3+78e1ecb877.jar of type MOD with provider net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator@1846579f
+[15:23:45] [main/INFO]: Found mod file fabric-content-registries-v0-4.0.13+a670df1e77.jar of type MOD with provider net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator@1846579f
+[15:23:45] [main/INFO]: Found mod file Reflect-1.3.4.jar of type GAMELIBRARY with provider net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator@1846579f
+[15:23:45] [main/INFO]: Found mod file fabric-transitive-access-wideners-v1-4.3.2+1880499877.jar of type MOD with provider net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator@1846579f
+[15:23:45] [main/INFO]: Found mod file fabric-game-rule-api-v1-1.0.41+683d4da877.jar of type MOD with provider net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator@1846579f
+[15:23:45] [main/INFO]: Found mod file fabric-api-base-0.4.32+ef105b4977.jar of type MOD with provider net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator@1846579f
+[15:23:45] [main/INFO]: Found mod file runtime-1.0.0+1.20.1.jar of type GAMELIBRARY with provider net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator@1846579f
+[15:23:45] [main/INFO]: Found mod file fabric-api-lookup-api-v1-1.6.37+67f9824077.jar of type MOD with provider net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator@1846579f
+[15:23:45] [main/INFO]: Found mod file fabric-blockrenderlayer-v1-1.1.42+1d0da21e77.jar of type MOD with provider net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator@1846579f
+[15:23:45] [main/INFO]: Found mod file mixinextras-forge-0.5.0.jar of type GAMELIBRARY with provider net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator@1846579f
+[15:23:45] [main/INFO]: Found mod file fabric-block-api-v1-1.0.12+0e6cb7f777.jar of type MOD with provider net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator@1846579f
+[15:23:45] [main/INFO]: Found mod file fabric-resource-conditions-api-v1-2.3.9+996d00b277.jar of type MOD with provider net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator@1846579f
+[15:23:45] [main/INFO]: Found mod file Connector-1.0.0-beta.49+1.20.1-fabricloader.jar of type LIBRARY with provider net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator@1846579f
+[15:23:45] [main/INFO]: Found mod file fabric-item-group-api-v1-4.0.14+c9161c2d77.jar of type MOD with provider net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator@1846579f
+[15:23:45] [main/INFO]: Found mod file jcpp-1.4.14.jar of type GAMELIBRARY with provider net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator@1846579f
+[15:23:45] [main/INFO]: Found mod file fabric-biome-api-v1-13.0.14+dc36698e77.jar of type MOD with provider net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator@1846579f
+[15:23:45] [main/INFO]: Found mod file fabric-entity-events-v1-1.6.1+4ca7515277.jar of type MOD with provider net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator@1846579f
+[15:23:45] [main/INFO]: Found mod file fabric-registry-sync-v0-2.3.6+1c0ea72177.jar of type MOD with provider net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator@1846579f
+[15:23:45] [main/INFO]: Found mod file fabric-recipe-api-v1-1.0.24+514a076577.jar of type MOD with provider net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator@1846579f
+[15:23:45] [main/INFO]: Found mod file fabric-loot-api-v2-1.2.3+eb28f93e77.jar of type MOD with provider net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator@1846579f
+[15:23:45] [main/INFO]: Found mod file fabric-object-builder-api-v1-11.1.5+f8c414ce77.jar of type MOD with provider net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator@1846579f
+[15:23:45] [main/INFO]: Found mod file TRansition-1.0.8-1.20.1-forge-SNAPSHOT.jar of type MOD with provider net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator@1846579f
+[15:23:45] [main/INFO]: Found mod file fabric-rendering-data-attachment-v1-0.3.39+a6081afc77.jar of type MOD with provider net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator@1846579f
+[15:23:45] [main/INFO]: Found mod file fabric-networking-api-v1-1.3.14+fb7c822677.jar of type MOD with provider net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator@1846579f
+[15:23:45] [main/INFO]: Found mod file fabric-sound-api-v1-1.0.14+4f23bd8477.jar of type MOD with provider net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator@1846579f
+[15:23:45] [main/INFO]: Found mod file fabric-message-api-v1-5.1.10+52cc178c77.jar of type MOD with provider net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator@1846579f
+[15:23:45] [main/INFO]: Found mod file fabric-lifecycle-events-v1-2.2.23+afab492177.jar of type MOD with provider net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator@1846579f
+[15:23:45] [main/INFO]: Found mod file fabric-data-generation-api-v1-12.3.7+369cb3a477.jar of type MOD with provider net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator@1846579f
+[15:23:45] [main/INFO]: Found mod file fabric-events-interaction-v0-0.6.5+0f26153f77.jar of type MOD with provider net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator@1846579f
+[15:23:45] [main/INFO]: Found mod file fabric-key-binding-api-v1-1.0.38+561530ec77.jar of type MOD with provider net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator@1846579f
+[15:23:45] [main/INFO]: Found mod file fabric-client-tags-api-v1-1.1.3+5d6761b877.jar of type MOD with provider net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator@1846579f
+[15:23:46] [main/INFO]: Dependency resolution found 2 candidates to load
+[15:23:48] [main/INFO]: Found mod file visible-barriers-2.0.9$mixinextras-fabric-0.2.0-beta.8_mapped_srg_1.20.1.jar of type MOD with provider org.sinytra.connector.locator.ConnectorLocator@7c601d50
+[15:23:48] [main/INFO]: Found mod file visible-barriers-2.0.9_mapped_srg_1.20.1.jar of type MOD with provider org.sinytra.connector.locator.ConnectorLocator@7c601d50
+[15:23:50] [main/INFO]: Successfully made module authlib transformable
+[15:23:55] [main/INFO]: Compatibility level set to JAVA_17
+[15:23:56] [main/INFO]: Launching target 'forgeclient' with arguments [--version, 1.20.1, --gameDir, C:\Users\rodri\AppData\Roaming\ModrinthApp\profiles\D (2), --assetsDir, C:\Users\rodri\AppData\Roaming\ModrinthApp\meta\assets, --uuid, bef90cd7ba6d491b8900ccdbfcc79b3e, --username, LAYONv, --assetIndex, 5, --accessToken, ????????, --clientId, c4502edb-87c6-40cb-b595-64a280cf8906, --xuid, 0, --userType, msa, --versionType, release, --width, 854, --height, 480]
+[15:23:58] [main/INFO]: Loaded configuration file for Embeddium: 127 options available, 3 override(s) found
+[15:23:58] [main/INFO]: Searching for graphics cards...
+[15:23:59] [main/INFO]: Found graphics card: GraphicsAdapterInfo[vendor=INTEL, name=Intel(R) HD Graphics 5500, version=DriverVersion=20.19.15.5144]
+[15:24:00] [main/WARN]: Reference map 'screenshakemod.refmap.json' for screenshakemod.mixins.json could not be read. If this is a development environment you can ignore this message
+[15:24:00] [main/INFO]: Packet Fixer forge 1.19.4-1.20.1 has been applied successfully.
+[15:24:00] [main/INFO]: Config version: 5
+[15:24:00] [main/INFO]: BadOptimizations config dump:
+[15:24:00] [main/INFO]: enable_toast_optimizations: true
+[15:24:00] [main/INFO]: ignore_mod_incompatibilities: false
+[15:24:00] [main/INFO]: lightmap_time_change_needed_for_update: 80
+[15:24:00] [main/INFO]: enable_lightmap_caching: true
+[15:24:00] [main/INFO]: enable_particle_manager_optimization: true
+[15:24:00] [main/INFO]: enable_entity_renderer_caching: true
+[15:24:00] [main/INFO]: log_config: true
+[15:24:00] [main/INFO]: enable_remove_redundant_fov_calculations: true
+[15:24:00] [main/INFO]: config_version: 5
+[15:24:00] [main/INFO]: enable_sky_angle_caching_in_worldrenderer: true
+[15:24:00] [main/INFO]: enable_block_entity_renderer_caching: true
+[15:24:00] [main/INFO]: skycolor_time_change_needed_for_update: 3
+[15:24:00] [main/INFO]: enable_entity_flag_caching: true
+[15:24:00] [main/INFO]: ignore_mod_cache_hooks: false
+[15:24:00] [main/INFO]: enable_debug_renderer_disable_if_not_needed: true
+[15:24:00] [main/INFO]: enable_sky_color_caching: true
+[15:24:00] [main/INFO]: enable_remove_tutorial_if_not_demo: true
+[15:24:00] [main/INFO]: show_f3_text: true
+[15:24:00] [main/WARN]: Reference map '' for adapter.init.mixins.json could not be read. If this is a development environment you can ignore this message
+[15:24:02] [main/WARN]: Error loading class: com/mrcrayfish/catalogue/client/ForgeModData (java.lang.ClassNotFoundException: com.mrcrayfish.catalogue.client.ForgeModData)
+[15:24:02] [main/WARN]: @Mixin target com.mrcrayfish.catalogue.client.ForgeModData was not found toadlib.mixins.json:catalogue.ForgeModDataMixin from mod toadlib
+[15:24:05] [main/WARN]: Error loading class: mekanism/client/render/entity/RenderFlame (java.lang.ClassNotFoundException: mekanism.client.render.entity.RenderFlame)
+[15:24:05] [main/WARN]: Error loading class: mekanism/client/render/armor/MekaSuitArmor (java.lang.ClassNotFoundException: mekanism.client.render.armor.MekaSuitArmor)
+[15:24:09] [main/WARN]: Error loading class: dev/emi/emi/EmiUtil (java.lang.ClassNotFoundException: dev.emi.emi.EmiUtil)
+[15:24:09] [main/WARN]: Error loading class: mezz/modnametooltip/TooltipEventHandler (java.lang.ClassNotFoundException: mezz.modnametooltip.TooltipEventHandler)
+[15:24:09] [main/WARN]: Error loading class: me/shedaniel/rei/impl/client/ClientHelperImpl (java.lang.ClassNotFoundException: me.shedaniel.rei.impl.client.ClientHelperImpl)
+[15:24:09] [main/WARN]: Error loading class: dev/ftb/mods/ftbquests/client/gui/quests/QuestScreen (java.lang.ClassNotFoundException: dev.ftb.mods.ftbquests.client.gui.quests.QuestScreen)
+[15:24:09] [main/WARN]: Error loading class: dev/ftb/mods/ftbquests/client/gui/QuestScreen (java.lang.ClassNotFoundException: dev.ftb.mods.ftbquests.client.gui.QuestScreen)
+[15:24:09] [main/WARN]: Error loading class: dev/ftb/mods/ftbquests/client/gui/MultilineTextEditorScreen (java.lang.ClassNotFoundException: dev.ftb.mods.ftbquests.client.gui.MultilineTextEditorScreen)
+[15:24:09] [main/WARN]: Error loading class: dev/ftb/mods/ftblibrary/ui/MultilineTextBox (java.lang.ClassNotFoundException: dev.ftb.mods.ftblibrary.ui.MultilineTextBox)
+[15:24:09] [main/WARN]: Error loading class: dev/ftb/mods/ftbquests/client/gui/MultilineTextEditorScreen$ToolbarPanel (java.lang.ClassNotFoundException: dev.ftb.mods.ftbquests.client.gui.MultilineTextEditorScreen$ToolbarPanel)
+[15:24:09] [main/WARN]: Error loading class: com/hrznstudio/emojiful/render/EmojiFontHelper$EmojiCharacterRenderer (java.lang.ClassNotFoundException: com.hrznstudio.emojiful.render.EmojiFontHelper$EmojiCharacterRenderer)
+[15:24:09] [main/WARN]: Error loading class: com/hrznstudio/emojiful/render/EmojiFontRenderer$EmojiCharacterRenderer (java.lang.ClassNotFoundException: com.hrznstudio.emojiful.render.EmojiFontRenderer$EmojiCharacterRenderer)
+[15:24:09] [main/WARN]: Error loading class: com/hrznstudio/emojiful/render/EmojiFontHelper$EmojiCharacterRenderer (java.lang.ClassNotFoundException: com.hrznstudio.emojiful.render.EmojiFontHelper$EmojiCharacterRenderer)
+[15:24:09] [main/WARN]: Error loading class: com/hrznstudio/emojiful/render/EmojiFontRenderer$EmojiCharacterRenderer (java.lang.ClassNotFoundException: com.hrznstudio.emojiful.render.EmojiFontRenderer$EmojiCharacterRenderer)
+[15:24:09] [main/WARN]: Error loading class: vazkii/patchouli/client/book/text/BookTextParser (java.lang.ClassNotFoundException: vazkii.patchouli.client.book.text.BookTextParser)
+[15:24:09] [main/WARN]: Error loading class: vazkii/patchouli/client/book/BookTextParser (java.lang.ClassNotFoundException: vazkii.patchouli.client.book.BookTextParser)
+[15:24:10] [main/INFO]: [MemoryLeakFix] Will be applying 3 memory leak fixes!
+[15:24:10] [main/INFO]: [MemoryLeakFix] Currently enabled memory leak fixes: [targetEntityLeak, biomeTemperatureLeak, hugeScreenshotLeak]
+[15:24:10] [main/WARN]: Force-disabling mixin 'features.render.world.sky.WorldRendererMixin' as rule 'mixin.features.render.world.sky' (added by mods [oculus]) disables it and children
+[15:24:10] [main/WARN]: Force-disabling mixin 'features.render.world.sky.ClientWorldMixin' as rule 'mixin.features.render.world.sky' (added by mods [oculus]) disables it and children
+[15:24:10] [main/WARN]: Force-disabling mixin 'features.render.world.sky.BackgroundRendererMixin' as rule 'mixin.features.render.world.sky' (added by mods [oculus]) disables it and children
+[15:24:10] [main/WARN]: Force-disabling mixin 'features.render.gui.font.GlyphRendererMixin' as rule 'mixin.features.render.gui.font' (added by mods [oculus]) disables it and children
+[15:24:10] [main/WARN]: Force-disabling mixin 'features.render.gui.font.FontSetMixin' as rule 'mixin.features.render.gui.font' (added by mods [oculus]) disables it and children
+[15:24:10] [main/WARN]: Force-disabling mixin 'features.render.entity.shadows.EntityRenderDispatcherMixin' as rule 'mixin.features.render.entity' (added by mods [oculus]) disables it and children
+[15:24:10] [main/WARN]: Force-disabling mixin 'features.render.entity.remove_streams.ModelPartMixin' as rule 'mixin.features.render.entity' (added by mods [oculus]) disables it and children
+[15:24:10] [main/WARN]: Force-disabling mixin 'features.render.entity.remove_streams.HierarchicalModelMixin' as rule 'mixin.features.render.entity' (added by mods [oculus]) disables it and children
+[15:24:10] [main/WARN]: Force-disabling mixin 'features.render.entity.fast_render.ModelPartMixin' as rule 'mixin.features.render.entity' (added by mods [oculus]) disables it and children
+[15:24:10] [main/WARN]: Force-disabling mixin 'features.render.entity.fast_render.CuboidMixin' as rule 'mixin.features.render.entity' (added by mods [oculus]) disables it and children
+[15:24:10] [main/WARN]: Force-disabling mixin 'features.render.entity.cull.EntityRendererMixin' as rule 'mixin.features.render.entity' (added by mods [oculus]) disables it and children
+[15:24:11] [main/INFO]: Initializing MixinExtras via com.llamalad7.mixinextras.service.MixinExtrasServiceImpl(version=0.5.0).
+[15:24:17] [main/WARN]: Failed to add PDH Counter: \Paging File(_Total)\% Usage, Error code: 0xC0000BB8
+[15:24:17] [main/WARN]: Failed to add counter for PDH counter: \Paging File(_Total)\% Usage
+[15:24:17] [main/WARN]: Disabling further attempts to query Paging File.
+[15:24:22] [main/WARN]: COM exception: Invalid Query: SELECT PERCENTUSAGE FROM Win32_PerfRawData_PerfOS_PagingFile
+[15:24:46] [Datafixer Bootstrap/INFO]: 188 Datafixer optimizations took 6934 milliseconds
+[15:24:51] [Render thread/WARN]: Assets URL 'union:/C:/Users/rodri/AppData/Roaming/ModrinthApp/meta/libraries/net/minecraft/client/1.20.1-20230612.114412/client-1.20.1-20230612.114412-srg.jar%23228!/assets/.mcassetsroot' uses unexpected schema
+[15:24:51] [Render thread/WARN]: Assets URL 'union:/C:/Users/rodri/AppData/Roaming/ModrinthApp/meta/libraries/net/minecraft/client/1.20.1-20230612.114412/client-1.20.1-20230612.114412-srg.jar%23228!/data/.mcassetsroot' uses unexpected schema
+[15:24:51] [Render thread/INFO]: Environment: authHost='https://authserver.mojang.com', accountsHost='https://api.mojang.com', sessionHost='https://sessionserver.mojang.com', servicesHost='https://api.minecraftservices.com', name='PROD'
+[15:24:53] [Render thread/INFO]: Setting user: LAYONv
+[15:24:54] [Render thread/INFO]: Error loading config data.
+[15:24:54] [Render thread/INFO]: java.nio.file.NoSuchFileException: C:\Users\rodri\AppData\Roaming\ModrinthApp\profiles\D (2)\config\visiblebarriers.json
+[15:24:56] [Render thread/INFO]: Added resource packs: [vanilla, mod_resources, file/§3OVERLAND.zip]
+[15:24:56] [Render thread/INFO]: Backend library: LWJGL version 3.3.1 build 7
+[15:24:56] [Render thread/INFO]: Loaded client.properties
+[15:24:56] [Render thread/ERROR]: Mod mixin into Embeddium internals detected. This instance is now tainted. The Embeddium team does not provide any guarantee of support for issues encountered while such mods are installed.
+[15:24:56] [Render thread/WARN]: Mod(s) [oculus] are modifying Embeddium class me.jellysquid.mods.sodium.client.gui.SodiumGameOptions, which may cause instability.
+[15:24:56] [Render thread/INFO]: OpenGL Vendor: Intel
+[15:24:56] [Render thread/INFO]: OpenGL Renderer: Intel(R) HD Graphics 5500
+[15:24:56] [Render thread/INFO]: OpenGL Version: 4.4.0 - Build 20.19.15.5144
+[15:24:56] [Render thread/INFO]: Initializing ImmediatelyFast 1.5.2+1.20.4 on Intel(R) HD Graphics 5500 (Intel) with OpenGL 4.4.0 - Build 20.19.15.5144
+[15:24:56] [Render thread/INFO]: Found Iris/Oculus 1.8.0. Enabling compatibility.
+[15:24:57] [Render thread/INFO]: Debug functionality is disabled.
+[15:24:57] [Render thread/INFO]: DSA support not detected.
+[15:24:57] [Render thread/INFO]: Shaders are disabled because no valid shaderpack is selected
+[15:24:57] [Render thread/INFO]: Shaders are disabled
+[15:24:58] [modloading-worker-0/INFO]: [Indigo] Registering Indigo renderer!
+[15:24:58] [modloading-worker-0/INFO]: CustomSkyboxes client init (Forge)
+[15:24:58] [modloading-worker-0/INFO]: LowDragLib is initializing on platform: Forge
+[15:25:00] [modloading-worker-0/INFO]: Forge mod loading, version 47.4.12, for MC 1.20.1 with MCP 20230612.114412
+[15:25:00] [modloading-worker-0/INFO]: MinecraftForge v47.4.12 Initialized
+[15:25:00] [modloading-worker-0/WARN]: Mod(s) [oculus] are modifying Embeddium class me.jellysquid.mods.sodium.client.gui.SodiumOptionsGUI, which may cause instability.
+[15:25:01] [modloading-worker-0/INFO]: Loading Noisium.
+[15:25:02] [modloading-worker-0/INFO]: Lumiera init
+[15:25:02] [modloading-worker-0/INFO]: Loaded common.properties
+[15:25:02] [modloading-worker-0/INFO]: Loaded dev.properties
+[15:25:02] [modloading-worker-0/INFO]: Looking for KubeJS plugins...
+[15:25:02] [modloading-worker-0/INFO]: Found plugin source kubejs
+[15:25:02] [modloading-worker-0/WARN]: Plugin dev.latvian.mods.kubejs.integration.forge.gamestages.GameStagesIntegration does not have required mod gamestages loaded, skipping
+[15:25:02] [modloading-worker-0/INFO]: Found plugin source emberstextapi
+[15:25:02] [modloading-worker-0/INFO]: Found plugin source ldlib
+[15:25:02] [modloading-worker-0/INFO]: Done in 117.6 ms
+[15:25:02] [modloading-worker-0/INFO]: Lumiera Forge loaded
+[15:25:02] [modloading-worker-0/INFO]: Photon is initializing on platform: Forge
+[15:25:02] [modloading-worker-0/INFO]: Registering S2C receiver with id architectury:sync_ids
+[15:25:02] [modloading-worker-0/INFO]: Registering C2S receiver with id architectury:sync_ids
+[15:25:03] [modloading-worker-0/INFO]: Loading Rhino Minecraft remapper...
+[15:25:03] [modloading-worker-0/INFO]: Rhino properties loaded.
+[15:25:03] [modloading-worker-0/INFO]: Loading mappings for 1.20.1
+[15:25:04] [modloading-worker-0/INFO]: Done in 0.549 s
+[15:25:10] [modloading-worker-0/INFO]: example.js#5: Hello, World! (Loaded startup scripts)
+[15:25:10] [modloading-worker-0/INFO]: Loaded script startup_scripts:example.js in 0.642 s
+[15:25:10] [modloading-worker-0/INFO]: Loaded 1/1 KubeJS startup scripts in 5.73 s with 0 errors and 0 warnings
+[15:25:10] [modloading-worker-0/INFO]: example.js#5: Hello, World! (Loaded client scripts)
+[15:25:10] [modloading-worker-0/INFO]: Loaded script client_scripts:example.js in 0.001 s
+[15:25:10] [modloading-worker-0/INFO]: Loaded 1/1 KubeJS client scripts in 0.127 s with 0 errors and 0 warnings
+[15:25:10] [modloading-worker-0/INFO]: Registering C2S receiver with id kubejs:send_data_from_client
+[15:25:10] [modloading-worker-0/INFO]: Registering S2C receiver with id kubejs:send_data_from_server
+[15:25:10] [modloading-worker-0/INFO]: Registering S2C receiver with id kubejs:paint
+[15:25:10] [modloading-worker-0/INFO]: Registering S2C receiver with id kubejs:add_stage
+[15:25:10] [modloading-worker-0/INFO]: Registering S2C receiver with id kubejs:remove_stage
+[15:25:10] [modloading-worker-0/INFO]: Registering S2C receiver with id kubejs:sync_stages
+[15:25:10] [modloading-worker-0/INFO]: Registering C2S receiver with id kubejs:first_click
+[15:25:10] [modloading-worker-0/INFO]: Registering S2C receiver with id kubejs:toast
+[15:25:10] [modloading-worker-0/INFO]: Registering S2C receiver with id kubejs:reload_startup_scripts
+[15:25:10] [modloading-worker-0/INFO]: Registering S2C receiver with id kubejs:display_server_errors
+[15:25:10] [modloading-worker-0/INFO]: Registering S2C receiver with id kubejs:display_client_errors
+[15:25:11] [Render thread/INFO]: Capturing existing worldgen registries
+[15:25:11] [Render thread/INFO]: Found 0 injected RegistryDataLoader worldgen registries
+[15:25:14] [Render thread/INFO]: Hardware information:
+[15:25:14] [Render thread/INFO]: CPU: 4x Intel(R) Core(TM) i5-5300U CPU @ 2.30GHz
+[15:25:14] [Render thread/INFO]: GPU: Intel(R) HD Graphics 5500 (Supports OpenGL 4.4.0 - Build 20.19.15.5144)
+[15:25:14] [Render thread/INFO]: OS: Windows 10 (10.0)
+[15:25:14] [Render thread/WARN]: Mod(s) [oculus] are modifying Embeddium class me.jellysquid.mods.sodium.client.render.vertex.VertexFormatDescriptionImpl, which may cause instability.
+[15:25:14] [Render thread/WARN]: Mod(s) [oculus] are modifying Embeddium class me.jellysquid.mods.sodium.client.render.vertex.buffer.SodiumBufferBuilder, which may cause instability.
+[15:25:14] [Render thread/WARN]: Mod(s) [oculus] are modifying Embeddium class me.jellysquid.mods.sodium.client.render.SodiumWorldRenderer, which may cause instability.
+[15:25:15] [Render thread/INFO]: Registering Keybinds
+[15:25:16] [Render thread/INFO]: Reloading ResourceManager: vanilla, mod_resources, KubeJS Resource Pack [assets], file/§3OVERLAND.zip, fabric, ldlib
+[15:25:16] [Render thread/WARN]: Ignored non-lowercase namespace: .DS_Store in C:\Users\rodri\AppData\Roaming\ModrinthApp\profiles\D (2)\resourcepacks\§3OVERLAND.zip
+[15:25:16] [Render thread/WARN]: Ignored non-lowercase namespace: .DS_Store in C:\Users\rodri\AppData\Roaming\ModrinthApp\profiles\D (2)\resourcepacks\§3OVERLAND.zip
+[15:25:17] [Worker-Main-3/INFO]: No plugins for JourneyMap API discovered.
+[15:25:17] [Worker-Main-2/INFO]: SarosHudHideMod initialized
+[15:25:17] [Forge Version Check/INFO]: [fastload] Starting version check at https://github.com/BumbleSoftware/Fastload/raw/Forge-1.20.1/updates.json
+[15:25:18] [Render thread/INFO]: Loaded 8 effect presets
+[15:25:18] [Worker-Main-1/WARN]: File minecraft:sounds/evento/alarma_corrupta.ogg does not exist, cannot add it to event minecraft:overland.alarma_corrupted
+[15:25:18] [Worker-Main-1/WARN]: File minecraft:sounds/evento_music_4/ambient_3.ogg does not exist, cannot add it to event minecraft:overland.evento4_ost_3
+[15:25:18] [Forge Version Check/INFO]: [fastload] Found status: UP_TO_DATE Current: 3.4.0 Target: null
+[15:25:18] [Forge Version Check/INFO]: [journeymap] Starting version check at https://forge.curseupdate.com/32274/journeymap
+[15:25:19] [Forge Version Check/INFO]: [journeymap] Found status: AHEAD Current: 5.10.3 Target: null
+[15:25:19] [Forge Version Check/INFO]: [forge] Starting version check at https://files.minecraftforge.net/net/minecraftforge/forge/promotions_slim.json
+[15:25:19] [Worker-Main-3/INFO]: Found unifont_all_no_pua-15.0.06.hex, loading
+[15:25:19] [Render thread/INFO]: Client resource reload complete!
+[15:25:19] [Forge Version Check/INFO]: [forge] Found status: OUTDATED Current: 47.4.12 Target: 47.4.23
+[15:25:21] [Worker-Main-1/WARN]: Invalid path in datapack: minecraft:textures/block/spruce_sapling.png~, ignoring
+[15:25:25] [Worker-Main-2/WARN]: dke:item/dragon_scepter
+java.io.FileNotFoundException: dke:models/item/dragon_scepter.json
+	at net.minecraft.client.resources.model.ModelBakery.m_119364_(ModelBakery.java:417) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119362_(ModelBakery.java:262) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119341_(ModelBakery.java:243) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119306_(ModelBakery.java:384) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.<init>(ModelBakery.java:150) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.m_246505_(ModelManager.java:83) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.mdb61b32$fabric_model_loading_api_v1$lambda$loadModelPluginData$0$0(ModelManager.java:569) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at java.util.concurrent.CompletableFuture.biApply(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$BiApply.tryFire(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$Completion.exec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinTask.doExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.scan(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.runWorker(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source) ~[?:?]
+[15:25:25] [Worker-Main-2/WARN]: dke:item/dragon_eyes
+java.io.FileNotFoundException: dke:models/item/dragon_eyes.json
+	at net.minecraft.client.resources.model.ModelBakery.m_119364_(ModelBakery.java:417) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119362_(ModelBakery.java:262) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119341_(ModelBakery.java:243) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119306_(ModelBakery.java:384) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.<init>(ModelBakery.java:150) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.m_246505_(ModelManager.java:83) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.mdb61b32$fabric_model_loading_api_v1$lambda$loadModelPluginData$0$0(ModelManager.java:569) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at java.util.concurrent.CompletableFuture.biApply(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$BiApply.tryFire(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$Completion.exec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinTask.doExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.scan(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.runWorker(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source) ~[?:?]
+[15:25:25] [Worker-Main-2/WARN]: minecraft:item/flint_and_steel/2
+java.io.FileNotFoundException: minecraft:models/item/flint_and_steel/2.json
+	at net.minecraft.client.resources.model.ModelBakery.m_119364_(ModelBakery.java:417) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119362_(ModelBakery.java:262) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119341_(ModelBakery.java:243) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119306_(ModelBakery.java:384) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.<init>(ModelBakery.java:150) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.m_246505_(ModelManager.java:83) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.mdb61b32$fabric_model_loading_api_v1$lambda$loadModelPluginData$0$0(ModelManager.java:569) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at java.util.concurrent.CompletableFuture.biApply(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$BiApply.tryFire(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$Completion.exec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinTask.doExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.scan(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.runWorker(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source) ~[?:?]
+[15:25:25] [Worker-Main-2/WARN]: minecraft:item/flint_and_steel/3
+java.io.FileNotFoundException: minecraft:models/item/flint_and_steel/3.json
+	at net.minecraft.client.resources.model.ModelBakery.m_119364_(ModelBakery.java:417) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119362_(ModelBakery.java:262) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119341_(ModelBakery.java:243) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119306_(ModelBakery.java:384) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.<init>(ModelBakery.java:150) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.m_246505_(ModelManager.java:83) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.mdb61b32$fabric_model_loading_api_v1$lambda$loadModelPluginData$0$0(ModelManager.java:569) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at java.util.concurrent.CompletableFuture.biApply(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$BiApply.tryFire(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$Completion.exec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinTask.doExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.scan(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.runWorker(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source) ~[?:?]
+[15:25:25] [Worker-Main-2/WARN]: minecraft:item/apple/16
+java.io.FileNotFoundException: minecraft:models/item/apple/16.json
+	at net.minecraft.client.resources.model.ModelBakery.m_119364_(ModelBakery.java:417) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119362_(ModelBakery.java:262) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119341_(ModelBakery.java:243) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119306_(ModelBakery.java:384) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.<init>(ModelBakery.java:150) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.m_246505_(ModelManager.java:83) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.mdb61b32$fabric_model_loading_api_v1$lambda$loadModelPluginData$0$0(ModelManager.java:569) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at java.util.concurrent.CompletableFuture.biApply(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$BiApply.tryFire(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$Completion.exec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinTask.doExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.scan(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.runWorker(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source) ~[?:?]
+[15:25:25] [Worker-Main-2/WARN]: minecraft:item/apple/15
+java.io.FileNotFoundException: minecraft:models/item/apple/15.json
+	at net.minecraft.client.resources.model.ModelBakery.m_119364_(ModelBakery.java:417) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119362_(ModelBakery.java:262) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119341_(ModelBakery.java:243) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119306_(ModelBakery.java:384) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.<init>(ModelBakery.java:150) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.m_246505_(ModelManager.java:83) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.mdb61b32$fabric_model_loading_api_v1$lambda$loadModelPluginData$0$0(ModelManager.java:569) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at java.util.concurrent.CompletableFuture.biApply(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$BiApply.tryFire(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$Completion.exec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinTask.doExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.scan(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.runWorker(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source) ~[?:?]
+[15:25:25] [Worker-Main-2/WARN]: minecraft:item/apple/18
+java.io.FileNotFoundException: minecraft:models/item/apple/18.json
+	at net.minecraft.client.resources.model.ModelBakery.m_119364_(ModelBakery.java:417) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119362_(ModelBakery.java:262) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119341_(ModelBakery.java:243) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119306_(ModelBakery.java:384) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.<init>(ModelBakery.java:150) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.m_246505_(ModelManager.java:83) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.mdb61b32$fabric_model_loading_api_v1$lambda$loadModelPluginData$0$0(ModelManager.java:569) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at java.util.concurrent.CompletableFuture.biApply(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$BiApply.tryFire(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$Completion.exec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinTask.doExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.scan(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.runWorker(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source) ~[?:?]
+[15:25:25] [Worker-Main-2/WARN]: minecraft:item/apple/17
+java.io.FileNotFoundException: minecraft:models/item/apple/17.json
+	at net.minecraft.client.resources.model.ModelBakery.m_119364_(ModelBakery.java:417) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119362_(ModelBakery.java:262) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119341_(ModelBakery.java:243) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119306_(ModelBakery.java:384) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.<init>(ModelBakery.java:150) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.m_246505_(ModelManager.java:83) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.mdb61b32$fabric_model_loading_api_v1$lambda$loadModelPluginData$0$0(ModelManager.java:569) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at java.util.concurrent.CompletableFuture.biApply(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$BiApply.tryFire(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$Completion.exec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinTask.doExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.scan(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.runWorker(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source) ~[?:?]
+[15:25:25] [Worker-Main-2/WARN]: minecraft:item/apple/19
+java.io.FileNotFoundException: minecraft:models/item/apple/19.json
+	at net.minecraft.client.resources.model.ModelBakery.m_119364_(ModelBakery.java:417) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119362_(ModelBakery.java:262) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119341_(ModelBakery.java:243) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119306_(ModelBakery.java:384) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.<init>(ModelBakery.java:150) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.m_246505_(ModelManager.java:83) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.mdb61b32$fabric_model_loading_api_v1$lambda$loadModelPluginData$0$0(ModelManager.java:569) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at java.util.concurrent.CompletableFuture.biApply(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$BiApply.tryFire(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$Completion.exec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinTask.doExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.scan(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.runWorker(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source) ~[?:?]
+[15:25:25] [Worker-Main-2/WARN]: minecraft:item/apple/12
+java.io.FileNotFoundException: minecraft:models/item/apple/12.json
+	at net.minecraft.client.resources.model.ModelBakery.m_119364_(ModelBakery.java:417) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119362_(ModelBakery.java:262) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119341_(ModelBakery.java:243) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119306_(ModelBakery.java:384) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.<init>(ModelBakery.java:150) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.m_246505_(ModelManager.java:83) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.mdb61b32$fabric_model_loading_api_v1$lambda$loadModelPluginData$0$0(ModelManager.java:569) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at java.util.concurrent.CompletableFuture.biApply(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$BiApply.tryFire(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$Completion.exec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinTask.doExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.scan(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.runWorker(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source) ~[?:?]
+[15:25:25] [Worker-Main-2/WARN]: minecraft:item/apple/11
+java.io.FileNotFoundException: minecraft:models/item/apple/11.json
+	at net.minecraft.client.resources.model.ModelBakery.m_119364_(ModelBakery.java:417) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119362_(ModelBakery.java:262) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119341_(ModelBakery.java:243) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119306_(ModelBakery.java:384) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.<init>(ModelBakery.java:150) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.m_246505_(ModelManager.java:83) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.mdb61b32$fabric_model_loading_api_v1$lambda$loadModelPluginData$0$0(ModelManager.java:569) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at java.util.concurrent.CompletableFuture.biApply(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$BiApply.tryFire(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$Completion.exec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinTask.doExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.scan(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.runWorker(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source) ~[?:?]
+[15:25:25] [Worker-Main-2/WARN]: minecraft:item/apple/14
+java.io.FileNotFoundException: minecraft:models/item/apple/14.json
+	at net.minecraft.client.resources.model.ModelBakery.m_119364_(ModelBakery.java:417) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119362_(ModelBakery.java:262) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119341_(ModelBakery.java:243) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119306_(ModelBakery.java:384) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.<init>(ModelBakery.java:150) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.m_246505_(ModelManager.java:83) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.mdb61b32$fabric_model_loading_api_v1$lambda$loadModelPluginData$0$0(ModelManager.java:569) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at java.util.concurrent.CompletableFuture.biApply(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$BiApply.tryFire(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$Completion.exec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinTask.doExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.scan(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.runWorker(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source) ~[?:?]
+[15:25:25] [Worker-Main-2/WARN]: minecraft:item/apple/13
+java.io.FileNotFoundException: minecraft:models/item/apple/13.json
+	at net.minecraft.client.resources.model.ModelBakery.m_119364_(ModelBakery.java:417) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119362_(ModelBakery.java:262) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119341_(ModelBakery.java:243) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119306_(ModelBakery.java:384) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.<init>(ModelBakery.java:150) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.m_246505_(ModelManager.java:83) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.mdb61b32$fabric_model_loading_api_v1$lambda$loadModelPluginData$0$0(ModelManager.java:569) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at java.util.concurrent.CompletableFuture.biApply(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$BiApply.tryFire(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$Completion.exec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinTask.doExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.scan(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.runWorker(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source) ~[?:?]
+[15:25:25] [Worker-Main-2/WARN]: minecraft:item/apple/49
+java.io.FileNotFoundException: minecraft:models/item/apple/49.json
+	at net.minecraft.client.resources.model.ModelBakery.m_119364_(ModelBakery.java:417) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119362_(ModelBakery.java:262) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119341_(ModelBakery.java:243) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119306_(ModelBakery.java:384) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.<init>(ModelBakery.java:150) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.m_246505_(ModelManager.java:83) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.mdb61b32$fabric_model_loading_api_v1$lambda$loadModelPluginData$0$0(ModelManager.java:569) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at java.util.concurrent.CompletableFuture.biApply(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$BiApply.tryFire(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$Completion.exec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinTask.doExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.scan(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.runWorker(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source) ~[?:?]
+[15:25:25] [Worker-Main-2/WARN]: minecraft:item/apple/48
+java.io.FileNotFoundException: minecraft:models/item/apple/48.json
+	at net.minecraft.client.resources.model.ModelBakery.m_119364_(ModelBakery.java:417) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119362_(ModelBakery.java:262) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119341_(ModelBakery.java:243) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119306_(ModelBakery.java:384) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.<init>(ModelBakery.java:150) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.m_246505_(ModelManager.java:83) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.mdb61b32$fabric_model_loading_api_v1$lambda$loadModelPluginData$0$0(ModelManager.java:569) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at java.util.concurrent.CompletableFuture.biApply(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$BiApply.tryFire(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$Completion.exec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinTask.doExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.scan(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.runWorker(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source) ~[?:?]
+[15:25:25] [Worker-Main-2/WARN]: minecraft:item/apple/41
+java.io.FileNotFoundException: minecraft:models/item/apple/41.json
+	at net.minecraft.client.resources.model.ModelBakery.m_119364_(ModelBakery.java:417) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119362_(ModelBakery.java:262) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119341_(ModelBakery.java:243) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119306_(ModelBakery.java:384) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.<init>(ModelBakery.java:150) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.m_246505_(ModelManager.java:83) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.mdb61b32$fabric_model_loading_api_v1$lambda$loadModelPluginData$0$0(ModelManager.java:569) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at java.util.concurrent.CompletableFuture.biApply(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$BiApply.tryFire(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$Completion.exec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinTask.doExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.scan(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.runWorker(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source) ~[?:?]
+[15:25:25] [Worker-Main-2/WARN]: minecraft:item/apple/40
+java.io.FileNotFoundException: minecraft:models/item/apple/40.json
+	at net.minecraft.client.resources.model.ModelBakery.m_119364_(ModelBakery.java:417) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119362_(ModelBakery.java:262) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119341_(ModelBakery.java:243) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119306_(ModelBakery.java:384) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.<init>(ModelBakery.java:150) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.m_246505_(ModelManager.java:83) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.mdb61b32$fabric_model_loading_api_v1$lambda$loadModelPluginData$0$0(ModelManager.java:569) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at java.util.concurrent.CompletableFuture.biApply(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$BiApply.tryFire(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$Completion.exec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinTask.doExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.scan(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.runWorker(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source) ~[?:?]
+[15:25:25] [Worker-Main-2/WARN]: minecraft:item/apple/43
+java.io.FileNotFoundException: minecraft:models/item/apple/43.json
+	at net.minecraft.client.resources.model.ModelBakery.m_119364_(ModelBakery.java:417) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119362_(ModelBakery.java:262) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119341_(ModelBakery.java:243) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119306_(ModelBakery.java:384) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.<init>(ModelBakery.java:150) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.m_246505_(ModelManager.java:83) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.mdb61b32$fabric_model_loading_api_v1$lambda$loadModelPluginData$0$0(ModelManager.java:569) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at java.util.concurrent.CompletableFuture.biApply(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$BiApply.tryFire(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$Completion.exec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinTask.doExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.scan(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.runWorker(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source) ~[?:?]
+[15:25:25] [Worker-Main-2/WARN]: minecraft:item/apple/42
+java.io.FileNotFoundException: minecraft:models/item/apple/42.json
+	at net.minecraft.client.resources.model.ModelBakery.m_119364_(ModelBakery.java:417) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119362_(ModelBakery.java:262) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119341_(ModelBakery.java:243) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119306_(ModelBakery.java:384) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.<init>(ModelBakery.java:150) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.m_246505_(ModelManager.java:83) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.mdb61b32$fabric_model_loading_api_v1$lambda$loadModelPluginData$0$0(ModelManager.java:569) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at java.util.concurrent.CompletableFuture.biApply(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$BiApply.tryFire(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$Completion.exec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinTask.doExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.scan(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.runWorker(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source) ~[?:?]
+[15:25:25] [Worker-Main-2/WARN]: minecraft:item/apple/45
+java.io.FileNotFoundException: minecraft:models/item/apple/45.json
+	at net.minecraft.client.resources.model.ModelBakery.m_119364_(ModelBakery.java:417) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119362_(ModelBakery.java:262) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119341_(ModelBakery.java:243) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119306_(ModelBakery.java:384) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.<init>(ModelBakery.java:150) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.m_246505_(ModelManager.java:83) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.mdb61b32$fabric_model_loading_api_v1$lambda$loadModelPluginData$0$0(ModelManager.java:569) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at java.util.concurrent.CompletableFuture.biApply(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$BiApply.tryFire(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$Completion.exec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinTask.doExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.scan(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.runWorker(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source) ~[?:?]
+[15:25:25] [Worker-Main-2/WARN]: minecraft:item/apple/44
+java.io.FileNotFoundException: minecraft:models/item/apple/44.json
+	at net.minecraft.client.resources.model.ModelBakery.m_119364_(ModelBakery.java:417) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119362_(ModelBakery.java:262) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119341_(ModelBakery.java:243) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119306_(ModelBakery.java:384) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.<init>(ModelBakery.java:150) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.m_246505_(ModelManager.java:83) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.mdb61b32$fabric_model_loading_api_v1$lambda$loadModelPluginData$0$0(ModelManager.java:569) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at java.util.concurrent.CompletableFuture.biApply(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$BiApply.tryFire(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$Completion.exec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinTask.doExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.scan(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.runWorker(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source) ~[?:?]
+[15:25:25] [Worker-Main-2/WARN]: minecraft:item/apple/47
+java.io.FileNotFoundException: minecraft:models/item/apple/47.json
+	at net.minecraft.client.resources.model.ModelBakery.m_119364_(ModelBakery.java:417) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119362_(ModelBakery.java:262) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119341_(ModelBakery.java:243) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119306_(ModelBakery.java:384) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.<init>(ModelBakery.java:150) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.m_246505_(ModelManager.java:83) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.mdb61b32$fabric_model_loading_api_v1$lambda$loadModelPluginData$0$0(ModelManager.java:569) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at java.util.concurrent.CompletableFuture.biApply(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$BiApply.tryFire(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$Completion.exec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinTask.doExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.scan(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.runWorker(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source) ~[?:?]
+[15:25:25] [Worker-Main-2/WARN]: minecraft:item/apple/46
+java.io.FileNotFoundException: minecraft:models/item/apple/46.json
+	at net.minecraft.client.resources.model.ModelBakery.m_119364_(ModelBakery.java:417) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119362_(ModelBakery.java:262) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119341_(ModelBakery.java:243) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119306_(ModelBakery.java:384) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.<init>(ModelBakery.java:150) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.m_246505_(ModelManager.java:83) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.mdb61b32$fabric_model_loading_api_v1$lambda$loadModelPluginData$0$0(ModelManager.java:569) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at java.util.concurrent.CompletableFuture.biApply(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$BiApply.tryFire(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$Completion.exec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinTask.doExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.scan(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.runWorker(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source) ~[?:?]
+[15:25:25] [Worker-Main-2/WARN]: minecraft:item/apple/50
+java.io.FileNotFoundException: minecraft:models/item/apple/50.json
+	at net.minecraft.client.resources.model.ModelBakery.m_119364_(ModelBakery.java:417) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119362_(ModelBakery.java:262) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119341_(ModelBakery.java:243) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119306_(ModelBakery.java:384) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.<init>(ModelBakery.java:150) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.m_246505_(ModelManager.java:83) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.mdb61b32$fabric_model_loading_api_v1$lambda$loadModelPluginData$0$0(ModelManager.java:569) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at java.util.concurrent.CompletableFuture.biApply(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$BiApply.tryFire(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$Completion.exec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinTask.doExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.scan(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.runWorker(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source) ~[?:?]
+[15:25:25] [Worker-Main-2/WARN]: minecraft:item/apple/38
+java.io.FileNotFoundException: minecraft:models/item/apple/38.json
+	at net.minecraft.client.resources.model.ModelBakery.m_119364_(ModelBakery.java:417) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119362_(ModelBakery.java:262) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119341_(ModelBakery.java:243) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119306_(ModelBakery.java:384) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.<init>(ModelBakery.java:150) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.m_246505_(ModelManager.java:83) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.mdb61b32$fabric_model_loading_api_v1$lambda$loadModelPluginData$0$0(ModelManager.java:569) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at java.util.concurrent.CompletableFuture.biApply(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$BiApply.tryFire(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$Completion.exec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinTask.doExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.scan(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.runWorker(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source) ~[?:?]
+[15:25:25] [Worker-Main-2/WARN]: minecraft:item/apple/37
+java.io.FileNotFoundException: minecraft:models/item/apple/37.json
+	at net.minecraft.client.resources.model.ModelBakery.m_119364_(ModelBakery.java:417) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119362_(ModelBakery.java:262) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119341_(ModelBakery.java:243) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119306_(ModelBakery.java:384) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.<init>(ModelBakery.java:150) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.m_246505_(ModelManager.java:83) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.mdb61b32$fabric_model_loading_api_v1$lambda$loadModelPluginData$0$0(ModelManager.java:569) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at java.util.concurrent.CompletableFuture.biApply(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$BiApply.tryFire(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$Completion.exec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinTask.doExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.scan(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.runWorker(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source) ~[?:?]
+[15:25:25] [Worker-Main-2/WARN]: minecraft:item/apple/39
+java.io.FileNotFoundException: minecraft:models/item/apple/39.json
+	at net.minecraft.client.resources.model.ModelBakery.m_119364_(ModelBakery.java:417) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119362_(ModelBakery.java:262) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119341_(ModelBakery.java:243) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119306_(ModelBakery.java:384) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.<init>(ModelBakery.java:150) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.m_246505_(ModelManager.java:83) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.mdb61b32$fabric_model_loading_api_v1$lambda$loadModelPluginData$0$0(ModelManager.java:569) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at java.util.concurrent.CompletableFuture.biApply(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$BiApply.tryFire(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$Completion.exec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinTask.doExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.scan(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.runWorker(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source) ~[?:?]
+[15:25:25] [Worker-Main-2/WARN]: minecraft:item/apple/30
+java.io.FileNotFoundException: minecraft:models/item/apple/30.json
+	at net.minecraft.client.resources.model.ModelBakery.m_119364_(ModelBakery.java:417) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119362_(ModelBakery.java:262) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119341_(ModelBakery.java:243) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119306_(ModelBakery.java:384) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.<init>(ModelBakery.java:150) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.m_246505_(ModelManager.java:83) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.mdb61b32$fabric_model_loading_api_v1$lambda$loadModelPluginData$0$0(ModelManager.java:569) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at java.util.concurrent.CompletableFuture.biApply(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$BiApply.tryFire(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$Completion.exec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinTask.doExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.scan(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.runWorker(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source) ~[?:?]
+[15:25:25] [Worker-Main-2/WARN]: minecraft:item/apple/32
+java.io.FileNotFoundException: minecraft:models/item/apple/32.json
+	at net.minecraft.client.resources.model.ModelBakery.m_119364_(ModelBakery.java:417) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119362_(ModelBakery.java:262) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119341_(ModelBakery.java:243) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119306_(ModelBakery.java:384) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.<init>(ModelBakery.java:150) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.m_246505_(ModelManager.java:83) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.mdb61b32$fabric_model_loading_api_v1$lambda$loadModelPluginData$0$0(ModelManager.java:569) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at java.util.concurrent.CompletableFuture.biApply(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$BiApply.tryFire(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$Completion.exec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinTask.doExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.scan(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.runWorker(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source) ~[?:?]
+[15:25:25] [Worker-Main-2/WARN]: minecraft:item/apple/31
+java.io.FileNotFoundException: minecraft:models/item/apple/31.json
+	at net.minecraft.client.resources.model.ModelBakery.m_119364_(ModelBakery.java:417) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119362_(ModelBakery.java:262) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119341_(ModelBakery.java:243) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119306_(ModelBakery.java:384) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.<init>(ModelBakery.java:150) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.m_246505_(ModelManager.java:83) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.mdb61b32$fabric_model_loading_api_v1$lambda$loadModelPluginData$0$0(ModelManager.java:569) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at java.util.concurrent.CompletableFuture.biApply(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$BiApply.tryFire(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$Completion.exec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinTask.doExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.scan(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.runWorker(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source) ~[?:?]
+[15:25:25] [Worker-Main-2/WARN]: minecraft:item/apple/34
+java.io.FileNotFoundException: minecraft:models/item/apple/34.json
+	at net.minecraft.client.resources.model.ModelBakery.m_119364_(ModelBakery.java:417) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119362_(ModelBakery.java:262) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119341_(ModelBakery.java:243) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119306_(ModelBakery.java:384) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.<init>(ModelBakery.java:150) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.m_246505_(ModelManager.java:83) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.mdb61b32$fabric_model_loading_api_v1$lambda$loadModelPluginData$0$0(ModelManager.java:569) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at java.util.concurrent.CompletableFuture.biApply(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$BiApply.tryFire(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$Completion.exec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinTask.doExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.scan(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.runWorker(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source) ~[?:?]
+[15:25:25] [Worker-Main-2/WARN]: minecraft:item/apple/33
+java.io.FileNotFoundException: minecraft:models/item/apple/33.json
+	at net.minecraft.client.resources.model.ModelBakery.m_119364_(ModelBakery.java:417) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119362_(ModelBakery.java:262) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119341_(ModelBakery.java:243) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119306_(ModelBakery.java:384) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.<init>(ModelBakery.java:150) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.m_246505_(ModelManager.java:83) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.mdb61b32$fabric_model_loading_api_v1$lambda$loadModelPluginData$0$0(ModelManager.java:569) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at java.util.concurrent.CompletableFuture.biApply(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$BiApply.tryFire(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$Completion.exec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinTask.doExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.scan(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.runWorker(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source) ~[?:?]
+[15:25:25] [Worker-Main-2/WARN]: minecraft:item/apple/36
+java.io.FileNotFoundException: minecraft:models/item/apple/36.json
+	at net.minecraft.client.resources.model.ModelBakery.m_119364_(ModelBakery.java:417) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119362_(ModelBakery.java:262) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119341_(ModelBakery.java:243) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119306_(ModelBakery.java:384) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.<init>(ModelBakery.java:150) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.m_246505_(ModelManager.java:83) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.mdb61b32$fabric_model_loading_api_v1$lambda$loadModelPluginData$0$0(ModelManager.java:569) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at java.util.concurrent.CompletableFuture.biApply(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$BiApply.tryFire(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$Completion.exec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinTask.doExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.scan(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.runWorker(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source) ~[?:?]
+[15:25:25] [Worker-Main-2/WARN]: minecraft:item/apple/35
+java.io.FileNotFoundException: minecraft:models/item/apple/35.json
+	at net.minecraft.client.resources.model.ModelBakery.m_119364_(ModelBakery.java:417) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119362_(ModelBakery.java:262) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119341_(ModelBakery.java:243) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119306_(ModelBakery.java:384) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.<init>(ModelBakery.java:150) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.m_246505_(ModelManager.java:83) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.mdb61b32$fabric_model_loading_api_v1$lambda$loadModelPluginData$0$0(ModelManager.java:569) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at java.util.concurrent.CompletableFuture.biApply(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$BiApply.tryFire(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$Completion.exec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinTask.doExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.scan(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.runWorker(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source) ~[?:?]
+[15:25:25] [Worker-Main-2/WARN]: minecraft:item/apple/27
+java.io.FileNotFoundException: minecraft:models/item/apple/27.json
+	at net.minecraft.client.resources.model.ModelBakery.m_119364_(ModelBakery.java:417) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119362_(ModelBakery.java:262) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119341_(ModelBakery.java:243) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119306_(ModelBakery.java:384) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.<init>(ModelBakery.java:150) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.m_246505_(ModelManager.java:83) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.mdb61b32$fabric_model_loading_api_v1$lambda$loadModelPluginData$0$0(ModelManager.java:569) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at java.util.concurrent.CompletableFuture.biApply(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$BiApply.tryFire(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$Completion.exec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinTask.doExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.scan(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.runWorker(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source) ~[?:?]
+[15:25:25] [Worker-Main-2/WARN]: minecraft:item/apple/26
+java.io.FileNotFoundException: minecraft:models/item/apple/26.json
+	at net.minecraft.client.resources.model.ModelBakery.m_119364_(ModelBakery.java:417) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119362_(ModelBakery.java:262) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119341_(ModelBakery.java:243) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119306_(ModelBakery.java:384) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.<init>(ModelBakery.java:150) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.m_246505_(ModelManager.java:83) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.mdb61b32$fabric_model_loading_api_v1$lambda$loadModelPluginData$0$0(ModelManager.java:569) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at java.util.concurrent.CompletableFuture.biApply(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$BiApply.tryFire(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$Completion.exec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinTask.doExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.scan(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.runWorker(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source) ~[?:?]
+[15:25:25] [Worker-Main-2/WARN]: minecraft:item/apple/29
+java.io.FileNotFoundException: minecraft:models/item/apple/29.json
+	at net.minecraft.client.resources.model.ModelBakery.m_119364_(ModelBakery.java:417) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119362_(ModelBakery.java:262) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119341_(ModelBakery.java:243) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119306_(ModelBakery.java:384) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.<init>(ModelBakery.java:150) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.m_246505_(ModelManager.java:83) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.mdb61b32$fabric_model_loading_api_v1$lambda$loadModelPluginData$0$0(ModelManager.java:569) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at java.util.concurrent.CompletableFuture.biApply(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$BiApply.tryFire(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$Completion.exec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinTask.doExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.scan(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.runWorker(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source) ~[?:?]
+[15:25:25] [Worker-Main-2/WARN]: minecraft:item/apple/28
+java.io.FileNotFoundException: minecraft:models/item/apple/28.json
+	at net.minecraft.client.resources.model.ModelBakery.m_119364_(ModelBakery.java:417) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119362_(ModelBakery.java:262) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119341_(ModelBakery.java:243) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119306_(ModelBakery.java:384) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.<init>(ModelBakery.java:150) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.m_246505_(ModelManager.java:83) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.mdb61b32$fabric_model_loading_api_v1$lambda$loadModelPluginData$0$0(ModelManager.java:569) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at java.util.concurrent.CompletableFuture.biApply(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$BiApply.tryFire(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$Completion.exec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinTask.doExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.scan(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.runWorker(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source) ~[?:?]
+[15:25:25] [Worker-Main-2/WARN]: minecraft:item/apple/21
+java.io.FileNotFoundException: minecraft:models/item/apple/21.json
+	at net.minecraft.client.resources.model.ModelBakery.m_119364_(ModelBakery.java:417) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119362_(ModelBakery.java:262) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119341_(ModelBakery.java:243) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119306_(ModelBakery.java:384) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.<init>(ModelBakery.java:150) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.m_246505_(ModelManager.java:83) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.mdb61b32$fabric_model_loading_api_v1$lambda$loadModelPluginData$0$0(ModelManager.java:569) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at java.util.concurrent.CompletableFuture.biApply(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$BiApply.tryFire(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$Completion.exec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinTask.doExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.scan(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.runWorker(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source) ~[?:?]
+[15:25:25] [Worker-Main-2/WARN]: minecraft:item/apple/20
+java.io.FileNotFoundException: minecraft:models/item/apple/20.json
+	at net.minecraft.client.resources.model.ModelBakery.m_119364_(ModelBakery.java:417) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119362_(ModelBakery.java:262) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119341_(ModelBakery.java:243) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119306_(ModelBakery.java:384) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.<init>(ModelBakery.java:150) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.m_246505_(ModelManager.java:83) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.mdb61b32$fabric_model_loading_api_v1$lambda$loadModelPluginData$0$0(ModelManager.java:569) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at java.util.concurrent.CompletableFuture.biApply(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$BiApply.tryFire(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$Completion.exec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinTask.doExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.scan(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.runWorker(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source) ~[?:?]
+[15:25:25] [Worker-Main-2/WARN]: minecraft:item/apple/23
+java.io.FileNotFoundException: minecraft:models/item/apple/23.json
+	at net.minecraft.client.resources.model.ModelBakery.m_119364_(ModelBakery.java:417) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119362_(ModelBakery.java:262) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119341_(ModelBakery.java:243) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119306_(ModelBakery.java:384) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.<init>(ModelBakery.java:150) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.m_246505_(ModelManager.java:83) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.mdb61b32$fabric_model_loading_api_v1$lambda$loadModelPluginData$0$0(ModelManager.java:569) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at java.util.concurrent.CompletableFuture.biApply(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$BiApply.tryFire(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$Completion.exec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinTask.doExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.scan(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.runWorker(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source) ~[?:?]
+[15:25:25] [Worker-Main-2/WARN]: minecraft:item/apple/22
+java.io.FileNotFoundException: minecraft:models/item/apple/22.json
+	at net.minecraft.client.resources.model.ModelBakery.m_119364_(ModelBakery.java:417) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119362_(ModelBakery.java:262) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119341_(ModelBakery.java:243) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119306_(ModelBakery.java:384) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.<init>(ModelBakery.java:150) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.m_246505_(ModelManager.java:83) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.mdb61b32$fabric_model_loading_api_v1$lambda$loadModelPluginData$0$0(ModelManager.java:569) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at java.util.concurrent.CompletableFuture.biApply(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$BiApply.tryFire(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$Completion.exec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinTask.doExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.scan(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.runWorker(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source) ~[?:?]
+[15:25:25] [Worker-Main-2/WARN]: minecraft:item/apple/25
+java.io.FileNotFoundException: minecraft:models/item/apple/25.json
+	at net.minecraft.client.resources.model.ModelBakery.m_119364_(ModelBakery.java:417) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119362_(ModelBakery.java:262) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119341_(ModelBakery.java:243) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119306_(ModelBakery.java:384) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.<init>(ModelBakery.java:150) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.m_246505_(ModelManager.java:83) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelManager.mdb61b32$fabric_model_loading_api_v1$lambda$loadModelPluginData$0$0(ModelManager.java:569) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at java.util.concurrent.CompletableFuture.biApply(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$BiApply.tryFire(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture$Completion.exec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinTask.doExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.scan(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.runWorker(Unknown Source) ~[?:?]
+	at java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source) ~[?:?]
+[15:25:25] [Worker-Main-2/WARN]: minecraft:item/apple/24
+java.io.FileNotFoundException: minecraft:models/item/apple/24.json
+	at net.minecraft.client.resources.model.ModelBakery.m_119364_(ModelBakery.java:417) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119362_(ModelBakery.java:262) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
+	at net.minecraft.client.resources.model.ModelBakery.m_119341_(ModelBakery.java:243) ~[client-1.20.1-20230612.114412-srg.jar%23228!/:?]
