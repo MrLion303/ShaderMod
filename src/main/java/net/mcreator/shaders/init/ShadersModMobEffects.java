@@ -52,7 +52,7 @@ public final class ShadersModMobEffects {
 
     private static class ShaderEffect extends MobEffect {
         private static final ResourceLocation ICON =
-            new ResourceLocation(ShadersMod.MODID, "textures/mob_effect/shaderlogo.png");
+            new ResourceLocation(ShadersMod.MODID, "textures/mob_effect/logo.png");
 
         protected ShaderEffect() {
             super(MobEffectCategory.NEUTRAL, 0xFFFFFF);
