@@ -114,7 +114,6 @@ public final class ShaderController {
                 try {
                     postPassesField = PostChain.class.getDeclaredField("passes");
                 } catch (NoSuchFieldException ignored) {
-                    // In the reobfuscated 1.20.1 runtime the same field is SRG-named.
                     postPassesField = PostChain.class.getDeclaredField("f_110009_");
                 }
                 postPassesField.setAccessible(true);
@@ -123,9 +122,11 @@ public final class ShaderController {
             @SuppressWarnings("unchecked")
             List<PostPass> passes = (List<PostPass>) postPassesField.get(chain);
             for (PostPass pass : passes) {
-                pass.getEffect().safeGetUniform("Progress").set(progress);
+                if (pass.getEffect().safeGetUniform("Progress") != null) {
+                    pass.getEffect().safeGetUniform("Progress").set(progress);
+                }
             }
-        } catch (ReflectiveOperationException ex) {
+        } catch (ReflectiveOperationException | RuntimeException ex) {
             System.err.println("[ShaderMod] Failed to update absorption progress: " + ex);
         }
     }
