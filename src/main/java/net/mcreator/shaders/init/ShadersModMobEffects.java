@@ -1,7 +1,6 @@
 package net.mcreator.shaders.init;
 
 import net.mcreator.shaders.ShadersMod;
-import net.mcreator.shaders.potion.*;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraftforge.registries.DeferredRegister;
