@@ -27,7 +27,6 @@ public final class ShaderController {
         Map.entry(ShadersModMobEffects.COLOR_CONVOLVE.get(), vanilla("color_convolve")),
         Map.entry(ShadersModMobEffects.DECONVERGE.get(), vanilla("deconverge")),
         Map.entry(ShadersModMobEffects.FLIP.get(), vanilla("flip")),
-        Map.entry(ShadersModMobEffects.PENCIL.get(), vanilla("pencil")),
         Map.entry(ShadersModMobEffects.ENDER_MAN_VISION.get(), vanilla("invert")),
         Map.entry(ShadersModMobEffects.NTSC.get(), vanilla("ntsc")),
         Map.entry(ShadersModMobEffects.OUTLINE.get(), vanilla("outline")),
@@ -42,8 +41,7 @@ public final class ShaderController {
         Map.entry(ShadersModMobEffects.ANTIALIAS.get(), vanilla("antialias")),
         Map.entry(ShadersModMobEffects.CREEPER_VISION.get(), vanilla("creeper")),
         Map.entry(ShadersModMobEffects.SPIDER_VISION.get(), vanilla("spider")),
-        Map.entry(ShadersModMobEffects.SCAN_PINCUSHION.get(), vanilla("scan_pincushion")),
-        Map.entry(ShadersModMobEffects.NOTCH.get(), vanilla("notch"))
+        Map.entry(ShadersModMobEffects.SCAN_PINCUSHION.get(), vanilla("scan_pincushion"))
     );
 
     private ShaderController() {}
