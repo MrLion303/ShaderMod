@@ -1,1 +1,1 @@
-{"targets":["swap"],"passes":[{"name":"wobble","intarget":"minecraft:main","outtarget":"swap","uniforms":[{"name":"Time","values":[0.0]},{"name":"Frequency","values":[40.0,30.0]},{"name":"WobbleAmount","values":[0.008,0.008]}]},{"name":"copy","intarget":"swap","outtarget":"minecraft:main"}]}
+{"targets":["swap"],"passes":[{"name":"negativestudios_effects","intarget":"minecraft:main","outtarget":"swap","uniforms":[{"name":"Mode","values":[4]}]},{"name":"minecraft:blit","intarget":"swap","outtarget":"minecraft:main"}]}
