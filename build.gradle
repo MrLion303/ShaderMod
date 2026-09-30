@@ -47,3 +47,35 @@ publishing {
         maven { url = layout.buildDirectory.dir('repo') }
     }
 }
+
+
+// Copy the shared mod logo and shader effect icon into the resource tree at build time.
+// The source PNGs remain in the repository root so they are easy to replace.
+tasks.named('processResources') {
+    doLast {
+        def mobEffectDir = file("$" + "buildDir/resources/main/assets/shaders/textures/mob_effect")
+        mobEffectDir.mkdirs()
+
+        copy {
+            from file('logo.png')
+            into mobEffectDir
+            rename { 'logo.png' }
+        }
+
+        def effectIconNames = [
+            'fxaa', 'art', 'bumpy', 'blobs2', 'color_convolve', 'deconverge',
+            'ntsc', 'outline', 'phosphor', 'bits', 'green', 'blobs', 'antialias',
+            'flip', 'pencil', 'enderman_vision', 'sobel', 'desaturate', 'blur',
+            'wobble', 'creeper_vision', 'spider_vision', 'scan_pincushion',
+            'notch', 'nada'
+        ]
+
+        effectIconNames.each { iconName ->
+            copy {
+                from file('shaderlogo.png')
+                into mobEffectDir
+                rename { name -> iconName + '.png' }
+            }
+        }
+    }
+}
