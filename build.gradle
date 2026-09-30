@@ -62,6 +62,12 @@ tasks.named('processResources') {
             rename { 'logo.png' }
         }
 
+        copy {
+            from file('shaderlogo.png')
+            into mobEffectDir
+            rename { 'shaderlogo.png' }
+        }
+
         def effectIconNames = [
             'fxaa', 'art', 'bumpy', 'blobs2', 'color_convolve', 'deconverge',
             'ntsc', 'outline', 'phosphor', 'bits', 'green', 'blobs', 'antialias',
