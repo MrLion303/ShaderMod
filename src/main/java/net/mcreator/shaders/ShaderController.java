@@ -47,7 +47,7 @@ public final class ShaderController {
         Map.entry(ShadersModMobEffects.CREEPER_VISION.get(), vanilla("creeper")),
         Map.entry(ShadersModMobEffects.SPIDER_VISION.get(), vanilla("spider")),
         Map.entry(ShadersModMobEffects.SCAN_PINCUSHION.get(), vanilla("scan_pincushion")),
-        Map.entry(ShadersModMobEffects.ABSORCION.get(), new ResourceLocation(ShadersMod.MODID, "absorcion"))
+        Map.entry(ShadersModMobEffects.ABSORCION.get(), new ResourceLocation(ShadersMod.MODID, "shaders/post/absorcion.json"))
     );
 
     private ShaderController() {}
