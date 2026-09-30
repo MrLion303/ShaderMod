@@ -52,7 +52,7 @@ public final class ShadersModMobEffects {
 
     private static class ShaderEffect extends MobEffect {
         private static final ResourceLocation ICON =
-            new ResourceLocation(ShadersMod.MODID, "textures/mob_effect/Shader.png");
+            new ResourceLocation(ShadersMod.MODID, "textures/mob_effect/shaderlogo.png");
 
         protected ShaderEffect() {
             super(MobEffectCategory.NEUTRAL, 0xFFFFFF);
@@ -76,7 +76,7 @@ public final class ShadersModMobEffects {
                                              GuiGraphics guiGraphics,
                                              int x, int y, float z, float alpha) {
                     guiGraphics.setColor(1.0F, 1.0F, 1.0F, alpha);
-                    guiGraphics.blit(ICON, x, y, z, 0, 0, 18, 18, 18, 18);
+                    guiGraphics.blit(ICON, x, y, Math.round(z), 0, 0, 18, 18, 18, 18);
                     guiGraphics.setColor(1.0F, 1.0F, 1.0F, 1.0F);
                     return true;
                 }
