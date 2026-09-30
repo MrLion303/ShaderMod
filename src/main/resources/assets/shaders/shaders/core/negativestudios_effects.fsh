@@ -2,7 +2,6 @@
 uniform sampler2D DiffuseSampler;
 out vec4 fragColor;
 uniform vec2 InSize;
-uniform float Time;
 uniform float Mode;
 uniform float Progress;
 in vec2 texCoord;
@@ -18,7 +17,10 @@ void main(){
     int m = int(Mode + 0.5);
 
     if(m == 10){
+        // Progress is linear so the visual animation keeps the same duration
+        // as the Minecraft Absorción effect.
         float t = clamp(Progress, 0.0, 1.0);
+
         vec2 center = vec2(0.5);
         vec2 p = uv - center;
 
@@ -27,41 +29,53 @@ void main(){
 
         float r = length(p);
         float edge = smoothstep(0.02, 0.95, r);
-        float eased = t * t * (3.0 - 2.0 * t);
 
-        float twist = eased * 7.5 * (1.0 - smoothstep(0.05, 1.15, r));
-        twist += eased * 2.0 * smoothstep(0.35, 1.15, r);
+        // Whirlpool rotation increases continuously with the effect duration.
+        float twist = t * 9.0 * (1.0 - smoothstep(0.03, 1.15, r));
+        twist += t * 2.5 * smoothstep(0.30, 1.15, r);
 
         float cs = cos(twist);
         float sn = sin(twist);
+
         vec2 rotated = vec2(
             p.x * cs - p.y * sn,
             p.x * sn + p.y * cs
         );
 
-        float pull = eased * 0.42 * smoothstep(0.08, 1.0, r);
+        // Pull the image inward more strongly as the vortex develops.
+        float pull = t * 0.48 * smoothstep(0.05, 1.0, r);
         float sourceRadius = r * (1.0 + pull);
-        sourceRadius += eased * 0.12 * sin(r * 13.0 - eased * 10.0) * edge;
+        sourceRadius += t * 0.14 * sin(r * 14.0 - t * 12.0) * edge;
 
         vec2 source = rotated;
         float rotatedRadius = length(source);
         source *= sourceRadius / max(rotatedRadius, 0.0001);
 
         source.x /= aspect;
+
         vec2 sourceUv = center + source;
         vec3 color = sampleColor(sourceUv);
 
-        float coreRadius = mix(0.015, 0.30, eased);
-        float core = smoothstep(coreRadius + 0.08, coreRadius, r);
-        color *= 1.0 - core;
+        // The black center starts at zero size and grows continuously.
+        // This avoids the sudden large black circle from the previous version.
+        float coreRadius = 0.32 * t;
+        float coreSoftness = 0.045 + 0.025 * t;
+        float coreMask = 1.0 - smoothstep(
+            coreRadius,
+            coreRadius + coreSoftness,
+            r
+        );
+        float coreStrength = smoothstep(0.0, 0.18, t);
+        color *= 1.0 - coreMask * coreStrength;
 
-        float vignette = smoothstep(0.35, 1.05, r);
-        float darkness = eased * 0.72 * vignette;
-
-        float fade = smoothstep(0.68, 1.0, t);
-        fade = fade * fade;
-
+        // Progressive global darkening.
+        float vignette = smoothstep(0.28, 1.05, r);
+        float darkness = t * 0.78 * vignette;
         color *= 1.0 - darkness;
+
+        // The last part of the effect completes the transition to pure black.
+        float fade = smoothstep(0.82, 1.0, t);
+        fade = fade * fade;
         color = mix(color, vec3(0.0), fade);
 
         fragColor = vec4(color, 1.0);
