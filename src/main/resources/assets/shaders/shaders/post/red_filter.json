@@ -1,0 +1,1 @@
+{"targets":["swap"],"passes":[{"name":"shaders:negativestudios_effects","intarget":"minecraft:main","outtarget":"swap","uniforms":[{"name":"Mode","values":[13]},{"name":"Progress","values":[1]}]},{"name":"minecraft:blit","intarget":"swap","outtarget":"minecraft:main"}]}
