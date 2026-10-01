@@ -50,7 +50,8 @@ public final class ShaderController {
         Map.entry(ShadersModMobEffects.SCAN_PINCUSHION.get(), vanilla("scan_pincushion")),
         Map.entry(ShadersModMobEffects.ABSORCION.get(), new ResourceLocation(ShadersMod.MODID, "shaders/post/absorcion.json")),
         Map.entry(ShadersModMobEffects.GREEN_GLOW.get(), new ResourceLocation(ShadersMod.MODID, "shaders/post/green_glow.json")),
-        Map.entry(ShadersModMobEffects.RED_GLOW.get(), new ResourceLocation(ShadersMod.MODID, "shaders/post/red_glow.json"))
+        Map.entry(ShadersModMobEffects.RED_GLOW.get(), new ResourceLocation(ShadersMod.MODID, "shaders/post/red_glow.json")),
+        Map.entry(ShadersModMobEffects.RED_FILTER.get(), new ResourceLocation(ShadersMod.MODID, "shaders/post/red_filter.json"))
     );
 
     private ShaderController() {}
@@ -105,6 +106,8 @@ public final class ShaderController {
             updateMode(mc, 11.0F, 1.0F);
         } else if (requested == ShadersModMobEffects.RED_GLOW.get()) {
             updateMode(mc, 12.0F, 1.0F);
+        } else if (requested == ShadersModMobEffects.RED_FILTER.get()) {
+            updateMode(mc, 13.0F, 1.0F);
         }
     }
 
