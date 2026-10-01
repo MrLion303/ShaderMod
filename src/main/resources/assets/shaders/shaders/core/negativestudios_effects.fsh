@@ -71,35 +71,38 @@ void main(){
     }
 
     if(m == 11 || m == 12){
-        // Colored glow follows image contours using a Sobel-like edge detector.
-        vec2 px = oneTexel * 1.5;
+        // Colored screen-edge glow.
+        // The glow originates at the four borders of the screen and
+        // softly fades toward the center. It does NOT detect object contours.
+        float edgeDistance = min(
+            min(uv.x, 1.0 - uv.x),
+            min(uv.y, 1.0 - uv.y)
+        );
 
-        float tl = luminance(sampleColor(uv + vec2(-px.x, -px.y)));
-        float tc = luminance(sampleColor(uv + vec2(0.0, -px.y)));
-        float tr = luminance(sampleColor(uv + vec2(px.x, -px.y)));
-        float ml = luminance(sampleColor(uv + vec2(-px.x, 0.0)));
-        float mr = luminance(sampleColor(uv + vec2(px.x, 0.0)));
-        float bl = luminance(sampleColor(uv + vec2(-px.x, px.y)));
-        float bc = luminance(sampleColor(uv + vec2(0.0, px.y)));
-        float br = luminance(sampleColor(uv + vec2(px.x, px.y)));
+        // Thickness of the colored atmosphere from the screen edge.
+        float edgeWidth = 0.24;
 
-        float gx = -tl - 2.0 * ml - bl + tr + 2.0 * mr + br;
-        float gy = -tl - 2.0 * tc - tr + bl + 2.0 * bc + br;
-        float edge = clamp(length(vec2(gx, gy)) * 2.8, 0.0, 1.0);
+        // Soft, diffuse falloff from the border toward the center.
+        float edgeGlow = 1.0 - smoothstep(0.0, edgeWidth, edgeDistance);
+        edgeGlow = pow(clamp(edgeGlow, 0.0, 1.0), 1.35);
 
-        float glow = pow(edge, 0.55);
-        glow += edge * 0.35;
+        // Make the corners slightly stronger, like a real screen-edge vignette.
+        float cornerX = abs(uv.x - 0.5) * 2.0;
+        float cornerY = abs(uv.y - 0.5) * 2.0;
+        float cornerBoost = mix(1.0, 1.18, pow(cornerX * cornerY, 1.5));
+        edgeGlow *= cornerBoost;
 
         vec3 glowColor = (m == 11)
-            ? vec3(0.05, 1.0, 0.12)
-            : vec3(1.0, 0.04, 0.04);
+            ? vec3(0.03, 1.0, 0.08)
+            : vec3(1.0, 0.025, 0.025);
 
-        float pulse = 0.72 + 0.28 * sin(Progress * 6.2831853);
-        vec3 color = original + glowColor * glow * 0.85 * pulse;
+        // Dense color right at the border, with a broad soft halo inward.
+        float innerHalo = pow(edgeGlow, 1.8);
+        vec3 color = original + glowColor * innerHalo * 0.82;
 
-        // A faint colored halo also reaches slightly beyond detected contours.
-        float halo = smoothstep(0.0, 1.0, glow) * 0.18;
-        color += glowColor * halo;
+        // Slight additional bloom right against the screen boundary.
+        float border = 1.0 - smoothstep(0.0, 0.055, edgeDistance);
+        color += glowColor * border * 0.28;
 
         fragColor = vec4(clamp(color, 0.0, 1.0), 1.0);
         return;
