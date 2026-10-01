@@ -108,5 +108,16 @@ void main(){
         return;
     }
 
+    if(m == 13){
+        // Very subtle full-screen red overlay.
+        // This is intentionally a flat transparent tint, not a glow or vignette.
+        vec3 redTint = vec3(1.0, 0.0, 0.0);
+        float opacity = 0.10;
+        vec3 color = mix(original, redTint, opacity);
+
+        fragColor = vec4(color, 1.0);
+        return;
+    }
+
     fragColor = vec4(original, 1.0);
 }
