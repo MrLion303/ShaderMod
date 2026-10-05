@@ -15,14 +15,9 @@ import java.util.Map;
 public final class ShaderController {
     private static ResourceLocation activeShader;
     private static MobEffect activeEffect;
-    private static final int ABSORPTION_ANIMATION_TICKS = 160; // 8 seconds
+    private static final int ABSORPTION_ANIMATION_TICKS = 160;
     private static int absorptionTotalTicks = 1;
 
-    /*
-     * Minecraft 1.20.1 still ships the original Super Secret Settings
-     * post-processing chains. Use those vanilla chains directly so their
-     * original multi-pass behavior is preserved.
-     */
     private static final List<Map.Entry<MobEffect, ResourceLocation>> SHADERS = List.of(
         Map.entry(ShadersModMobEffects.NOTCH.get(), vanilla("notch")),
         Map.entry(ShadersModMobEffects.FXAA.get(), vanilla("fxaa")),
@@ -51,7 +46,10 @@ public final class ShaderController {
         Map.entry(ShadersModMobEffects.ABSORCION.get(), new ResourceLocation(ShadersMod.MODID, "shaders/post/absorcion.json")),
         Map.entry(ShadersModMobEffects.GREEN_GLOW.get(), new ResourceLocation(ShadersMod.MODID, "shaders/post/green_glow.json")),
         Map.entry(ShadersModMobEffects.RED_GLOW.get(), new ResourceLocation(ShadersMod.MODID, "shaders/post/red_glow.json")),
-        Map.entry(ShadersModMobEffects.RED_FILTER.get(), new ResourceLocation(ShadersMod.MODID, "shaders/post/red_filter.json"))
+        Map.entry(ShadersModMobEffects.RED_FILTER.get(), new ResourceLocation(ShadersMod.MODID, "shaders/post/red_filter.json")),
+        Map.entry(ShadersModMobEffects.RUGIDO.get(), new ResourceLocation(ShadersMod.MODID, "shaders/post/rugido.json")),
+        Map.entry(ShadersModMobEffects.GLITCH.get(), new ResourceLocation(ShadersMod.MODID, "shaders/post/glitch.json")),
+        Map.entry(ShadersModMobEffects.TERREMOTO.get(), new ResourceLocation(ShadersMod.MODID, "shaders/post/terremoto.json"))
     );
 
     private ShaderController() {}
@@ -97,9 +95,10 @@ public final class ShaderController {
             } catch (RuntimeException ex) {
                 activeShader = null;
                 activeEffect = null;
-                System.err.println("[ShaderMod] Failed to load vanilla shader " + shader + ": " + ex);
+                System.err.println("[ShaderMod] Failed to load shader " + shader + ": " + ex);
             }
         }
+
         if (requested == ShadersModMobEffects.ABSORCION.get()) {
             updateAbsorptionProgress(mc);
         } else if (requested == ShadersModMobEffects.GREEN_GLOW.get()) {
@@ -108,9 +107,16 @@ public final class ShaderController {
             updateMode(mc, 12.0F, 1.0F);
         } else if (requested == ShadersModMobEffects.RED_FILTER.get()) {
             updateMode(mc, 13.0F, 1.0F);
+        } else if (requested == ShadersModMobEffects.RUGIDO.get()) {
+            updateMode(mc, 14.0F, 1.0F);
+        } else if (requested == ShadersModMobEffects.GLITCH.get()) {
+            updateMode(mc, 15.0F, 1.0F);
+        } else if (requested == ShadersModMobEffects.TERREMOTO.get()) {
+            MobEffectInstance earthquake = mc.player.getEffect(ShadersModMobEffects.TERREMOTO.get());
+            float strength = earthquake == null ? 1.0F : Math.min(10.0F, earthquake.getAmplifier() + 1.0F);
+            updateMode(mc, 16.0F, strength);
         }
     }
-
 
     private static void updateMode(Minecraft mc, float modeValue, float progressValue) {
         PostChain chain = mc.gameRenderer.currentEffect();
@@ -128,8 +134,6 @@ public final class ShaderController {
         MobEffectInstance instance = mc.player.getEffect(ShadersModMobEffects.ABSORCION.get());
         if (instance == null) return;
 
-        // Capture the effect's duration when it starts. The animation then
-        // runs during the FIRST 8 seconds, regardless of total duration.
         float elapsed = Math.max(0.0F, absorptionTotalTicks - instance.getDuration());
         float progress = elapsed / (float) ABSORPTION_ANIMATION_TICKS;
         progress = Math.max(0.0F, Math.min(1.0F, progress));
@@ -140,13 +144,8 @@ public final class ShaderController {
         for (PostPass pass : chain.passes) {
             Uniform mode = pass.getEffect().getUniform("Mode");
             Uniform progressUniform = pass.getEffect().getUniform("Progress");
-
-            if (mode != null) {
-                mode.set(10.0F);
-            }
-            if (progressUniform != null) {
-                progressUniform.set(progress);
-            }
+            if (mode != null) mode.set(10.0F);
+            if (progressUniform != null) progressUniform.set(progress);
         }
     }
 
