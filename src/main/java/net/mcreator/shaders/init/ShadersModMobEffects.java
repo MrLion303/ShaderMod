@@ -49,6 +49,9 @@ public final class ShadersModMobEffects {
     public static final RegistryObject<MobEffect> GREEN_GLOW = register("green_glow", GreenGlowMobEffect::new);
     public static final RegistryObject<MobEffect> RED_GLOW = register("red_glow", RedGlowMobEffect::new);
     public static final RegistryObject<MobEffect> RED_FILTER = register("red_filter", RedFilterMobEffect::new);
+    public static final RegistryObject<MobEffect> RUGIDO = register("rugido", RugidoMobEffect::new);
+    public static final RegistryObject<MobEffect> GLITCH = register("glitch", GlitchMobEffect::new);
+    public static final RegistryObject<MobEffect> TERREMOTO = register("terremoto", TerremotoMobEffect::new);
 
     private static RegistryObject<MobEffect> register(String name, java.util.function.Supplier<MobEffect> supplier) {
         return REGISTRY.register(name, supplier);
@@ -104,4 +107,7 @@ public final class ShadersModMobEffects {
     public static final class GreenGlowMobEffect extends ShaderEffect {}
     public static final class RedGlowMobEffect extends ShaderEffect {}
     public static final class RedFilterMobEffect extends ShaderEffect {}
+    public static final class RugidoMobEffect extends ShaderEffect {}
+    public static final class GlitchMobEffect extends ShaderEffect {}
+    public static final class TerremotoMobEffect extends ShaderEffect {}
 }
