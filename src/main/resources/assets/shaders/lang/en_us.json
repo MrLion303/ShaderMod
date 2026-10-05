@@ -24,5 +24,11 @@
   "effect.shaders.green": "Green",
   "effect.shaders.blobs": "Blobs",
   "effect.shaders.antialias": "Antialias",
-  "effect.shaders.absorcion": "Absorción"
+  "effect.shaders.absorcion": "Absorción",
+  "effect.shaders.green_glow": "Green Glow",
+  "effect.shaders.red_glow": "Red Glow",
+  "effect.shaders.red_filter": "Red Filter",
+  "effect.shaders.rugido": "Roar",
+  "effect.shaders.glitch": "Glitch",
+  "effect.shaders.terremoto": "Earthquake"
 }
