@@ -49,7 +49,8 @@ public final class ShaderController {
         Map.entry(ShadersModMobEffects.RED_FILTER.get(), new ResourceLocation(ShadersMod.MODID, "shaders/post/red_filter.json")),
         Map.entry(ShadersModMobEffects.RUGIDO.get(), new ResourceLocation(ShadersMod.MODID, "shaders/post/rugido.json")),
         Map.entry(ShadersModMobEffects.GLITCH.get(), new ResourceLocation(ShadersMod.MODID, "shaders/post/glitch.json")),
-        Map.entry(ShadersModMobEffects.TERREMOTO.get(), new ResourceLocation(ShadersMod.MODID, "shaders/post/terremoto.json"))
+        Map.entry(ShadersModMobEffects.TERREMOTO.get(), new ResourceLocation(ShadersMod.MODID, "shaders/post/terremoto.json")),
+        Map.entry(ShadersModMobEffects.VIAJE_REALIDADES.get(), new ResourceLocation(ShadersMod.MODID, "shaders/post/realidades.json"))
     );
 
     private ShaderController() {}
@@ -115,6 +116,8 @@ public final class ShaderController {
             MobEffectInstance earthquake = mc.player.getEffect(ShadersModMobEffects.TERREMOTO.get());
             float strength = earthquake == null ? 1.0F : Math.min(10.0F, earthquake.getAmplifier() + 1.0F);
             updateMode(mc, 16.0F, strength);
+        } else if (requested == ShadersModMobEffects.VIAJE_REALIDADES.get()) {
+            updateMode(mc, 17.0F, 1.0F);
         }
     }
 
