@@ -52,6 +52,7 @@ public final class ShadersModMobEffects {
     public static final RegistryObject<MobEffect> RUGIDO = register("rugido", RugidoMobEffect::new);
     public static final RegistryObject<MobEffect> GLITCH = register("glitch", GlitchMobEffect::new);
     public static final RegistryObject<MobEffect> TERREMOTO = register("terremoto", TerremotoMobEffect::new);
+    public static final RegistryObject<MobEffect> VIAJE_REALIDADES = register("viaje_realidades", ViajeRealidadesMobEffect::new);
 
     private static RegistryObject<MobEffect> register(String name, java.util.function.Supplier<MobEffect> supplier) {
         return REGISTRY.register(name, supplier);
@@ -73,7 +74,7 @@ public final class ShadersModMobEffects {
                                                    EffectRenderingInventoryScreen<?> screen,
                                                    GuiGraphics guiGraphics,
                                                    int x, int y, int blitOffset) {
-                    guiGraphics.blit(ICON, x, y + 3, 25, 25, 0, 0, 1080, 1080, 1080, 1080);
+                    guiGraphics.blit(ICON, x, y, 18, 18, 0, 0, 1080, 1080, 1080, 1080);
                     return true;
                 }
 
@@ -83,7 +84,7 @@ public final class ShadersModMobEffects {
                                              GuiGraphics guiGraphics,
                                              int x, int y, float z, float alpha) {
                     guiGraphics.setColor(1.0F, 1.0F, 1.0F, alpha);
-                    guiGraphics.blit(ICON, x, y, 25, 25, 0, 0, 1080, 1080, 1080, 1080);
+                    guiGraphics.blit(ICON, x, y, 18, 18, 0, 0, 1080, 1080, 1080, 1080);
                     guiGraphics.setColor(1.0F, 1.0F, 1.0F, 1.0F);
                     return true;
                 }
@@ -110,4 +111,5 @@ public final class ShadersModMobEffects {
     public static final class RugidoMobEffect extends ShaderEffect {}
     public static final class GlitchMobEffect extends ShaderEffect {}
     public static final class TerremotoMobEffect extends ShaderEffect {}
+    public static final class ViajeRealidadesMobEffect extends ShaderEffect {}
 }
