@@ -95,36 +95,45 @@ void main(){
     }
 
     if(m == 14){
-        // Rugido: ondas de distorsion que nacen en el centro y se expanden.
+        // Rugido: varias ondas de choque fuertes que salen del centro.
         vec2 center = vec2(0.5);
         vec2 p = uv - center;
         float aspect = max(InSize.x / max(InSize.y, 1.0), 1.0);
         p.x *= aspect;
         float radius = length(p);
+        vec2 direction = p / max(radius, 0.0001);
 
-        float waveTime = fract(Time * 0.55);
-        float waveRadius = waveTime * 1.25;
-        float distanceToWave = abs(radius - waveRadius);
-        float wave = exp(-distanceToWave * 55.0) * (1.0 - waveTime * 0.35);
+        float phase = Time * 0.72;
+        float wave1 = exp(-abs(radius - fract(phase) * 1.45) * 42.0);
+        float wave2 = exp(-abs(radius - fract(phase + 0.28) * 1.45) * 42.0);
+        float wave3 = exp(-abs(radius - fract(phase + 0.56) * 1.45) * 42.0);
+        float waves = wave1 + wave2 * 0.72 + wave3 * 0.48;
 
-        float direction = sin(radius * 30.0 - Time * 10.0);
-        float displacement = direction * wave * 0.045;
+        float pulse = sin(radius * 38.0 - Time * 13.0);
+        float displacement = pulse * waves * 0.105;
+        displacement += sin(radius * 19.0 - Time * 8.0) * waves * 0.045;
 
-        vec2 distorted = p;
-        distorted *= 1.0 + displacement;
+        vec2 distorted = p + direction * displacement;
         distorted.x /= aspect;
 
-        // Una segunda onda mas suave evita que parezca un simple anillo.
-        float wave2Radius = fract(Time * 0.55 + 0.34) * 1.25;
-        float wave2 = exp(-abs(radius - wave2Radius) * 70.0) * 0.018;
-        distorted += normalize(p + vec2(0.0001)) * wave2 * sin(radius * 45.0 - Time * 14.0);
+        vec2 shifted = center + distorted;
+        float chroma = waves * 0.018;
+        vec3 color;
+        color.r = sampleColor(shifted + direction * chroma).r;
+        color.g = sampleColor(shifted).g;
+        color.b = sampleColor(shifted - direction * chroma).b;
 
-        fragColor = vec4(sampleColor(center + distorted), 1.0);
+        float ringLight = clamp(waves, 0.0, 1.0);
+        color += vec3(0.95, 0.92, 0.78) * ringLight * 0.16;
+
+        float centerPulse = exp(-radius * 13.0) * (0.5 + 0.5 * sin(Time * 18.0));
+        color += vec3(1.0, 0.86, 0.62) * centerPulse * 0.20;
+
+        fragColor = vec4(clamp(color, 0.0, 1.0), 1.0);
         return;
     }
 
     if(m == 15){
-        // Glitch: parpadeo, desplazamientos de lineas y separacion de canales.
         float line = floor(uv.y * InSize.y / 3.0);
         float seed = hash21(vec2(line, floor(Time * 18.0)));
         float block = step(0.72, seed);
@@ -154,7 +163,6 @@ void main(){
     }
 
     if(m == 16){
-        // Terremoto: el nivel del efecto controla la intensidad del temblor.
         float strength = clamp(Progress, 1.0, 10.0);
         float normalizedStrength = strength / 10.0;
         float shakeX = (sin(Time * 47.0) * 0.55 + sin(Time * 79.0) * 0.45) * 0.0045 * strength;
@@ -168,6 +176,50 @@ void main(){
         color *= mix(0.94, 1.0, edgeFade);
 
         fragColor = vec4(color, 1.0);
+        return;
+    }
+
+    if(m == 17){
+        // Viaje entre realidades: tunel de energia alrededor del Punto Zero.
+        vec2 center = vec2(0.5);
+        vec2 p = uv - center;
+        float aspect = max(InSize.x / max(InSize.y, 1.0), 1.0);
+        p.x *= aspect;
+
+        float radius = length(p);
+        float angle = atan(p.y, p.x);
+        float travel = Time * 1.65;
+
+        float swirl = sin(angle * 5.0 + radius * 17.0 - travel * 3.0);
+        vec2 warped = p + (p / max(radius, 0.0001)) * swirl * 0.035 * smoothstep(0.05, 0.9, radius);
+        warped *= 1.0 + 0.12 * smoothstep(0.05, 0.8, radius) * sin(travel + radius * 8.0);
+        warped.x /= aspect;
+
+        float chroma = 0.004 + radius * 0.014;
+        vec2 radial = normalize(p + vec2(0.0001));
+        vec3 color;
+        color.r = sampleColor(center + warped + radial * chroma).r;
+        color.g = sampleColor(center + warped).g;
+        color.b = sampleColor(center + warped - radial * chroma).b;
+
+        float rayPattern = sin(angle * 22.0 + radius * 34.0 - travel * 5.0);
+        float rays = pow(max(rayPattern, 0.0), 10.0);
+        float radialFade = smoothstep(0.03, 0.95, radius);
+        color += vec3(0.05, 0.28, 0.95) * rays * radialFade * 0.42;
+        color += vec3(0.34, 0.05, 0.95) * pow(max(-rayPattern, 0.0), 12.0) * radialFade * 0.24;
+
+        float core = exp(-radius * 19.0);
+        float corePulse = 0.78 + 0.22 * sin(travel * 8.0);
+        color += vec3(0.72, 0.90, 1.0) * core * corePulse * 0.95;
+        color += vec3(0.18, 0.40, 1.0) * exp(-radius * 7.0) * 0.35;
+
+        float ring = exp(-abs(radius - (0.18 + 0.035 * sin(travel * 2.0))) * 55.0);
+        color += vec3(0.40, 0.78, 1.0) * ring * 0.45;
+
+        float vignette = smoothstep(0.35, 0.95, radius);
+        color *= 1.0 - vignette * 0.22;
+
+        fragColor = vec4(clamp(color, 0.0, 1.0), 1.0);
         return;
     }
 
