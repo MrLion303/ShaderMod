@@ -217,7 +217,8 @@ void main(){
     }
 
     if(m == 17){
-        // Viaje entre realidades: vortice continuo, celeste/morado y entrada con una gran onda.
+        // Viaje entre realidades: el giro usa varias velocidades independientes.
+        // Asi no hay un ciclo corto visible que reinicie toda la escena de golpe.
         vec2 center = vec2(0.5);
         vec2 p = uv - center;
         float aspect = max(InSize.x / max(InSize.y, 1.0), 1.0);
@@ -225,23 +226,39 @@ void main(){
 
         float radius = length(p);
         float angle = atan(p.y, p.x);
-        float spin = Time * 3.7;
-        float travel = Time * 2.25;
 
-        // Distorsion polar agresiva y siempre rotando.
-        float twist = 0.34 * sin(radius * 15.0 - travel * 1.7)
-                    + 0.16 * sin(angle * 7.0 + spin)
-                    + 0.09 * sin(radius * 38.0 + spin * 1.8);
-        float radialWarp = 1.0 + 0.18 * sin(travel + radius * 13.0) * smoothstep(0.03, 0.95, radius);
+        // Tres capas con velocidades distintas mantienen el movimiento girando de forma continua.
+        float spinA = Time * 0.83;
+        float spinB = Time * 1.37;
+        float spinC = Time * 2.11;
+        float travelA = Time * 1.19;
+        float travelB = Time * 1.73;
+
+        // Distorsion polar agresiva, pero con fases desacopladas para evitar un loop corto.
+        float twist = 0.34 * sin(radius * 15.0 - travelA)
+                    + 0.16 * sin(angle * 7.0 + spinA)
+                    + 0.09 * sin(radius * 38.0 + spinB)
+                    + 0.055 * sin(angle * 13.0 - spinC + radius * 9.0);
+        float radialWarp = 1.0
+            + 0.18 * sin(travelB + radius * 13.0)
+            + 0.045 * sin(travelA * 1.31 + angle * 5.0);
 
         float c = cos(twist);
         float s = sin(twist);
         vec2 rotated = vec2(p.x * c - p.y * s, p.x * s + p.y * c) * radialWarp;
 
+        // La textura interna rota de verdad alrededor del centro en varias capas.
+        float internalAngleA = angle - spinA;
+        float internalAngleB = angle + spinB;
+        float internalAngleC = angle - spinC;
+
         vec2 warped = rotated;
         warped += (rotated / max(length(rotated), 0.0001))
-            * sin(angle * 11.0 - spin * 1.4 + radius * 24.0)
+            * sin(internalAngleA * 11.0 + radius * 24.0 - travelA * 0.72)
             * 0.075 * smoothstep(0.04, 0.92, radius);
+        warped += (rotated / max(length(rotated), 0.0001))
+            * sin(internalAngleB * 7.0 - radius * 31.0 + travelB)
+            * 0.030 * smoothstep(0.06, 0.90, radius);
         warped.x /= aspect;
 
         vec2 radial = p / max(radius, 0.0001);
@@ -252,33 +269,40 @@ void main(){
         color.g = sampleColor(center + warped).g;
         color.b = sampleColor(center + warped - radial * chroma).b;
 
-        // Bañar todo el entorno con celeste y morado.
-        float blueMask = 0.5 + 0.5 * sin(angle * 4.0 + spin + radius * 10.0);
+        // Bañar todo el entorno con celeste y morado, tambien con rotacion desacoplada.
+        float blueMask = 0.5
+            + 0.5 * sin(internalAngleA * 4.0 + radius * 10.0)
+            + 0.15 * sin(internalAngleC * 9.0 - radius * 17.0);
+        blueMask = clamp(blueMask, 0.0, 1.0);
         vec3 realityTint = mix(
             vec3(0.20, 0.82, 1.0),
             vec3(0.58, 0.12, 1.0),
             blueMask
         );
-        float tintStrength = 0.38 + 0.20 * sin(travel * 0.8 + radius * 6.0);
+        float tintStrength = 0.38 + 0.20 * sin(travelB * 0.83 + radius * 6.0);
         color = mix(color, color * 0.48 + realityTint * 0.62, clamp(tintStrength, 0.28, 0.68));
 
-        // Rayos y anillos que giran a diferentes velocidades.
-        float raysA = pow(max(0.0, sin(angle * 18.0 - spin * 1.3 + radius * 29.0)), 7.0);
-        float raysB = pow(max(0.0, sin(angle * 31.0 + spin * 1.9 - radius * 41.0)), 11.0);
-        float rings = pow(max(0.0, sin(radius * 52.0 - travel * 4.0 + angle * 3.0)), 8.0);
+        // Rayos y anillos con velocidades distintas: nunca se sincronizan en un ciclo corto.
+        float raysA = pow(max(0.0, sin(internalAngleA * 18.0 + radius * 29.0)), 7.0);
+        float raysB = pow(max(0.0, sin(internalAngleB * 31.0 - radius * 41.0)), 11.0);
+        float raysC = pow(max(0.0, sin(internalAngleC * 23.0 + radius * 36.0)), 9.0);
+        float rings = pow(max(0.0, sin(radius * 52.0 - travelA * 3.7 + internalAngleB * 3.0)), 8.0);
 
         color += vec3(0.10, 0.72, 1.0) * raysA * 0.55;
         color += vec3(0.62, 0.08, 1.0) * raysB * 0.48;
+        color += vec3(0.25, 0.42, 1.0) * raysC * 0.28;
         color += vec3(0.35, 0.70, 1.0) * rings * 0.30;
 
         float core = exp(-radius * 17.0);
-        float corePulse = 0.78 + 0.22 * sin(travel * 7.0);
+        float corePulse = 0.78 + 0.22 * sin(Time * 2.97);
         color += vec3(0.72, 0.94, 1.0) * core * corePulse * 1.25;
         color += vec3(0.38, 0.10, 1.0) * exp(-radius * 6.0) * 0.45;
 
-        float ringRadius = 0.16 + 0.045 * sin(travel * 1.7);
+        // El anillo principal mantiene su radio estable; lo que gira es su patron de luz.
+        float ringRadius = 0.17;
         float ring = exp(-abs(radius - ringRadius) * 68.0);
-        color += mix(vec3(0.20, 0.92, 1.0), vec3(0.70, 0.12, 1.0), 0.5 + 0.5 * sin(spin)) * ring * 0.75;
+        float ringColorPhase = 0.5 + 0.5 * sin(internalAngleC * 5.0 + radius * 12.0);
+        color += mix(vec3(0.20, 0.92, 1.0), vec3(0.70, 0.12, 1.0), ringColorPhase) * ring * 0.75;
 
         // Onda gigante de entrada desde el centro + fade in.
         float intro = clamp(Progress, 0.0, 1.0);
