@@ -16,7 +16,10 @@ public final class ShaderController {
     private static ResourceLocation activeShader;
     private static MobEffect activeEffect;
     private static final int ABSORPTION_ANIMATION_TICKS = 160;
+    private static final int RUGIDO_FADE_TICKS = 12;
+    private static final int REALIDADES_INTRO_TICKS = 14;
     private static int absorptionTotalTicks = 1;
+    private static int realidadesTotalTicks = 1;
 
     private static final List<Map.Entry<MobEffect, ResourceLocation>> SHADERS = List.of(
         Map.entry(ShadersModMobEffects.NOTCH.get(), vanilla("notch")),
@@ -90,6 +93,11 @@ public final class ShaderController {
                     absorptionTotalTicks = absorption != null ? Math.max(1, absorption.getDuration()) : 1;
                 }
 
+                if (requested == ShadersModMobEffects.VIAJE_REALIDADES.get()) {
+                    MobEffectInstance realidades = mc.player.getEffect(ShadersModMobEffects.VIAJE_REALIDADES.get());
+                    realidadesTotalTicks = realidades != null ? Math.max(1, realidades.getDuration()) : 1;
+                }
+
                 mc.gameRenderer.loadEffect(shader);
                 activeShader = shader;
                 activeEffect = requested;
@@ -109,7 +117,7 @@ public final class ShaderController {
         } else if (requested == ShadersModMobEffects.RED_FILTER.get()) {
             updateMode(mc, 13.0F, 1.0F);
         } else if (requested == ShadersModMobEffects.RUGIDO.get()) {
-            updateMode(mc, 14.0F, 1.0F);
+            updateRugidoProgress(mc);
         } else if (requested == ShadersModMobEffects.GLITCH.get()) {
             updateMode(mc, 15.0F, 1.0F);
         } else if (requested == ShadersModMobEffects.TERREMOTO.get()) {
@@ -117,7 +125,7 @@ public final class ShaderController {
             float strength = earthquake == null ? 1.0F : Math.min(10.0F, earthquake.getAmplifier() + 1.0F);
             updateMode(mc, 16.0F, strength);
         } else if (requested == ShadersModMobEffects.VIAJE_REALIDADES.get()) {
-            updateMode(mc, 17.0F, 1.0F);
+            updateRealidadesProgress(mc);
         }
     }
 
@@ -131,6 +139,24 @@ public final class ShaderController {
             if (mode != null) mode.set(modeValue);
             if (progress != null) progress.set(progressValue);
         }
+    }
+
+    private static void updateRugidoProgress(Minecraft mc) {
+        MobEffectInstance instance = mc.player.getEffect(ShadersModMobEffects.RUGIDO.get());
+        float progress = 1.0F;
+        if (instance != null) {
+            progress = Math.min(1.0F, instance.getDuration() / (float) RUGIDO_FADE_TICKS);
+        }
+        updateMode(mc, 14.0F, progress);
+    }
+
+    private static void updateRealidadesProgress(Minecraft mc) {
+        MobEffectInstance instance = mc.player.getEffect(ShadersModMobEffects.VIAJE_REALIDADES.get());
+        if (instance == null) return;
+
+        float elapsed = Math.max(0.0F, realidadesTotalTicks - instance.getDuration());
+        float progress = Math.max(0.0F, Math.min(1.0F, elapsed / (float) REALIDADES_INTRO_TICKS));
+        updateMode(mc, 17.0F, progress);
     }
 
     private static void updateAbsorptionProgress(Minecraft mc) {
@@ -158,6 +184,7 @@ public final class ShaderController {
             activeShader = null;
             activeEffect = null;
             absorptionTotalTicks = 1;
+            realidadesTotalTicks = 1;
         }
     }
 }
