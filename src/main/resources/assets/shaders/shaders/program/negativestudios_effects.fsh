@@ -282,24 +282,20 @@ void main(){
         float tintStrength = 0.38 + 0.20 * sin(travelB * 0.83 + radius * 6.0);
         color = mix(color, color * 0.48 + realityTint * 0.62, clamp(tintStrength, 0.28, 0.68));
 
-        // Rayas radiales continuas: son lineas que rotan alrededor del centro,
-        // no pulsos que nacen y mueren por el cambio de fase.
-        float rayAngleA = internalAngleA * 18.0 + radius * 29.0;
-        float rayAngleB = internalAngleB * 31.0 - radius * 41.0;
-        float rayAngleC = internalAngleC * 23.0 + radius * 36.0;
+        // Rayas radiales: el angulo avanza de forma acumulativa y las lineas
+        // permanecen siempre presentes. No hay pulsos de intensidad que hagan
+        // parecer que la animacion vuelve a empezar.
+        float raySpin = Time * 0.72;
+        float rayAngleA = angle - raySpin;
+        float rayAngleB = angle + Time * 0.93;
+        float rayAngleC = angle - Time * 1.17;
 
-        float raysA = pow(abs(cos(rayAngleA)), 3.0);
-        float raysB = pow(abs(cos(rayAngleB)), 4.0);
-        float raysC = pow(abs(cos(rayAngleC)), 3.5);
-
-        // La intensidad se desplaza a lo largo de las mismas rayas sin apagarlas.
-        float rayFlowA = 0.70 + 0.30 * sin(radius * 18.0 - travelA * 1.9 + internalAngleB * 2.0);
-        float rayFlowB = 0.72 + 0.28 * sin(radius * 23.0 + travelB * 1.7 - internalAngleC * 3.0);
-        float rayFlowC = 0.76 + 0.24 * sin(radius * 31.0 - Time * 1.43 + internalAngleA * 4.0);
-
-        raysA *= rayFlowA;
-        raysB *= rayFlowB;
-        raysC *= rayFlowC;
+        // Se evita abs(cos()), porque duplicaba visualmente el giro cada 180 grados.
+        // Las distintas cantidades de rayas son coprimas, asi el patron combinado
+        // no vuelve a la misma configuracion durante una vuelta corta.
+        float raysA = pow(max(cos(rayAngleA * 17.0 + radius * 29.0), 0.0), 5.0);
+        float raysB = pow(max(cos(rayAngleB * 29.0 - radius * 41.0), 0.0), 6.0);
+        float raysC = pow(max(cos(rayAngleC * 23.0 + radius * 36.0), 0.0), 5.0);
 
         float rings = pow(0.5 + 0.5 * cos(radius * 52.0 - travelA * 3.7 + internalAngleB * 3.0), 5.0);
 
