@@ -732,7 +732,7 @@ void main(){
             float angle = atan(p.y, p.x);
             vec2 radial = p / max(radius, 0.0001);
             radial.x /= aspect;
-            radial = normalize(radial);
+            radial = normalize(radial + vec2(0.00001, 0.0));
 
             float blurAmount = 0.014 * hyperspace;
             vec3 radialBlur = (
