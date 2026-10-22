@@ -19,6 +19,9 @@ uniform float UseCine;
 uniform float UseVHS;
 uniform float UseSangre;
 uniform float UseDormir;
+uniform float UseComic;
+uniform float UseStarwarsViaje;
+uniform float UseElectrificado;
 uniform float UseNotch;
 uniform float UseFxaa;
 uniform float UseArt;
@@ -52,6 +55,7 @@ uniform float SangreProgress;
 uniform float SangreFade;
 uniform float DormirProgress;
 uniform float DormirOutro;
+uniform float StarwarsProgress;
 in vec2 texCoord;
 in vec2 oneTexel;
 
@@ -74,6 +78,33 @@ float blinkPulse(float t, float startTime) {
     float closeLid = smoothstep(startTime, startTime + 0.045, t);
     float openLid = 1.0 - smoothstep(startTime + 0.105, startTime + 0.19, t);
     return closeLid * openLid;
+}
+
+float segmentDistance(vec2 point, vec2 startPoint, vec2 endPoint) {
+    vec2 segment = endPoint - startPoint;
+    float segmentLength = max(dot(segment, segment), 0.00001);
+    float along = clamp(dot(point - startPoint, segment) / segmentLength, 0.0, 1.0);
+    return length(point - (startPoint + segment * along));
+}
+
+float lightningBolt(vec2 point, vec2 startPoint, vec2 endPoint, float seed, float frame) {
+    vec2 direction = endPoint - startPoint;
+    vec2 normal = normalize(vec2(-direction.y, direction.x));
+    vec2 p1 = mix(startPoint, endPoint, 0.24)
+        + normal * (hash21(vec2(seed, frame + 1.0)) - 0.5) * 0.15;
+    vec2 p2 = mix(startPoint, endPoint, 0.48)
+        + normal * (hash21(vec2(seed, frame + 2.0)) - 0.5) * 0.20;
+    vec2 p3 = mix(startPoint, endPoint, 0.73)
+        + normal * (hash21(vec2(seed, frame + 3.0)) - 0.5) * 0.13;
+
+    float distanceToBolt = min(
+        min(segmentDistance(point, startPoint, p1), segmentDistance(point, p1, p2)),
+        min(segmentDistance(point, p2, p3), segmentDistance(point, p3, endPoint))
+    );
+    float visible = step(0.30, hash21(vec2(seed * 1.7, frame + 13.0)));
+    float core = exp(-distanceToBolt * 720.0);
+    float glow = exp(-distanceToBolt * 150.0);
+    return (core + glow * 0.32) * visible;
 }
 
 void main(){
@@ -639,13 +670,17 @@ void main(){
         }
 
         if(UseAbsorcion > 0.5){
+            float absorptionProgress = clamp(AbsorcionProgress, 0.0, 1.0);
             vec2 p = uv - vec2(0.5);
             p.x *= aspect;
             float radius = length(p);
-            float coreRadius = 0.32 * clamp(AbsorcionProgress, 0.0, 1.0);
-            float coreMask = 1.0 - smoothstep(coreRadius, coreRadius + 0.05, radius);
-            color *= 1.0 - coreMask * smoothstep(0.0, 0.18, AbsorcionProgress);
-            color *= 1.0 - clamp(AbsorcionProgress, 0.0, 1.0) * 0.78 * smoothstep(0.28, 1.05, radius);
+            // Let the dark core grow across the full viewport instead of stopping near the center.
+            float coreRadius = 1.18 * absorptionProgress;
+            float coreMask = 1.0 - smoothstep(coreRadius, coreRadius + 0.055, radius);
+            color *= 1.0 - coreMask * smoothstep(0.0, 0.12, absorptionProgress);
+            color *= 1.0 - absorptionProgress * 0.72 * smoothstep(0.18, 1.05, radius);
+            float finishToBlack = smoothstep(0.92, 1.0, absorptionProgress);
+            color = mix(color, vec3(0.0), finishToBlack);
         }
 
         if(UseRugido > 0.5){
@@ -683,6 +718,100 @@ void main(){
             float tapeLine = step(0.982, hash21(vec2(floor(uv.y * 40.0), floor(t * 4.0))));
             color = mix(color, color * vec3(0.72, 0.90, 1.08), 0.18);
             color += vec3(0.72, 0.86, 1.0) * tapeLine * 0.10;
+        }
+
+        // Star Wars hyperspace: fade into darkness, reveal stars, then stretch them into light trails.
+        if(UseStarwarsViaje > 0.5){
+            float progress = clamp(StarwarsProgress, 0.0, 1.0);
+            float spaceFade = smoothstep(0.0, 0.34, progress);
+            float hyperspace = smoothstep(0.38, 0.70, progress);
+
+            vec2 p = uv - vec2(0.5);
+            p.x *= aspect;
+            float radius = length(p);
+            float angle = atan(p.y, p.x);
+            vec2 radial = p / max(radius, 0.0001);
+            radial.x /= aspect;
+            radial = normalize(radial);
+
+            float blurAmount = 0.014 * hyperspace;
+            vec3 radialBlur = (
+                color * 0.28
+                + sampleColor(sampleUv + radial * blurAmount) * 0.24
+                + sampleColor(sampleUv + radial * blurAmount * 2.2) * 0.20
+                + sampleColor(sampleUv - radial * blurAmount * 0.65) * 0.14
+                + sampleColor(sampleUv + radial * blurAmount * 3.4) * 0.14
+            );
+            radialBlur = mix(radialBlur, vec3(0.002, 0.003, 0.012), spaceFade * 0.96);
+            color = mix(color, radialBlur, hyperspace * 0.78);
+            color = mix(color, vec3(0.002, 0.003, 0.012), spaceFade * (1.0 - hyperspace * 0.40));
+
+            vec2 starGridSize = vec2(48.0 * aspect, 30.0);
+            vec2 starGrid = uv * starGridSize;
+            vec2 starCell = floor(starGrid);
+            vec2 starLocal = fract(starGrid);
+            float starSeed = hash21(starCell + vec2(13.1, 7.7));
+            vec2 starOffset = vec2(
+                hash21(starCell + vec2(2.4, 9.2)),
+                hash21(starCell + vec2(17.8, 3.5))
+            );
+            float starDistance = length(starLocal - starOffset);
+            float star = step(0.925, starSeed)
+                * (1.0 - smoothstep(0.018, 0.095, starDistance));
+            float twinkle = 0.58 + 0.42 * sin(t * 4.0 + starSeed * 30.0);
+            color += vec3(0.72, 0.84, 1.0) * star * spaceFade * twinkle * (1.0 - hyperspace * 0.25);
+
+            float rayPattern = pow(max(cos(
+                angle * 54.0 + sin(angle * 11.0 + t * 0.32) * 0.9
+            ), 0.0), 26.0);
+            float movingBands = 0.38 + 0.62 * fract(radius * 13.0 - t * 4.5);
+            float lightTrails = rayPattern * hyperspace * movingBands
+                * smoothstep(0.035, 0.18, radius);
+            color += vec3(0.52, 0.76, 1.0) * lightTrails * 1.25;
+            color += vec3(0.42, 0.69, 1.0) * exp(-radius * 17.0) * hyperspace * 0.65;
+        }
+
+        // Comic-book rendering: posterized colors, dark ink contours and halftone dots.
+        if(UseComic > 0.5){
+            float leftLum = dot(sampleColor(sampleUv - vec2(texel.x, 0.0)), vec3(0.2126, 0.7152, 0.0722));
+            float rightLum = dot(sampleColor(sampleUv + vec2(texel.x, 0.0)), vec3(0.2126, 0.7152, 0.0722));
+            float upLum = dot(sampleColor(sampleUv - vec2(0.0, texel.y)), vec3(0.2126, 0.7152, 0.0722));
+            float downLum = dot(sampleColor(sampleUv + vec2(0.0, texel.y)), vec3(0.2126, 0.7152, 0.0722));
+            float inkEdge = clamp(abs(rightLum - leftLum) + abs(downLum - upLum), 0.0, 1.0);
+            vec3 posterized = floor(clamp(color * 1.12 - 0.035, 0.0, 1.0) * 5.0 + 0.5) / 5.0;
+            posterized = clamp((posterized - 0.5) * 1.28 + 0.5, 0.0, 1.0);
+
+            float luminance = dot(posterized, vec3(0.2126, 0.7152, 0.0722));
+            float halftoneSize = max(InSize.y / 72.0, 3.0);
+            vec2 halftoneUv = uv * InSize.xy / halftoneSize;
+            float dotPattern = sin(halftoneUv.x * 3.14159265) * sin(halftoneUv.y * 3.14159265);
+            float dotInk = smoothstep(0.45, 0.90, dotPattern + (1.0 - luminance) * 0.30);
+            posterized *= 1.0 - dotInk * (1.0 - luminance) * 0.22;
+
+            float contour = smoothstep(0.075, 0.26, inkEdge);
+            color = mix(posterized, vec3(0.012, 0.010, 0.018), contour * 0.92);
+        }
+
+        // Blue electric bolts flash in from the screen edges toward the center.
+        if(UseElectrificado > 0.5){
+            float electricFrame = floor(t * 8.0);
+            vec2 heart = vec2(
+                0.50 + (hash21(vec2(electricFrame, 7.0)) - 0.5) * 0.16,
+                0.50 + (hash21(vec2(electricFrame, 19.0)) - 0.5) * 0.16
+            );
+            float bolts = 0.0;
+            bolts = max(bolts, lightningBolt(uv, vec2(-0.03, 0.12), heart, 1.0, electricFrame));
+            bolts = max(bolts, lightningBolt(uv, vec2(-0.03, 0.78), heart, 2.0, electricFrame));
+            bolts = max(bolts, lightningBolt(uv, vec2(1.03, 0.24), heart, 3.0, electricFrame));
+            bolts = max(bolts, lightningBolt(uv, vec2(1.03, 0.84), heart, 4.0, electricFrame));
+            bolts = max(bolts, lightningBolt(uv, vec2(0.18, -0.03), heart, 5.0, electricFrame));
+            bolts = max(bolts, lightningBolt(uv, vec2(0.78, -0.03), heart, 6.0, electricFrame));
+            bolts = max(bolts, lightningBolt(uv, vec2(0.30, 1.03), heart, 7.0, electricFrame));
+            bolts = max(bolts, lightningBolt(uv, vec2(0.86, 1.03), heart, 8.0, electricFrame));
+
+            float electricFlash = 0.55 + 0.45 * step(0.42, hash21(vec2(electricFrame, 37.0)));
+            color += vec3(0.035, 0.22, 0.90) * bolts * electricFlash * 0.95;
+            color += vec3(0.40, 0.78, 1.0) * clamp(bolts, 0.0, 1.0) * electricFlash * 0.65;
         }
 
         // Blood stains stay at half opacity while the scene gradually darkens.
