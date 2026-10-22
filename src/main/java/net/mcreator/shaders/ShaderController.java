@@ -31,12 +31,14 @@ public final class ShaderController {
     private static boolean wasAbsorcionActive;
     private static boolean wasViajeActive;
     private static boolean wasSangreActive;
+    private static boolean sangreOutroActive;
     private static boolean wasDormirActive;
     private static boolean dormirOutroActive;
 
     private static long absorptionStartGameTime;
     private static long realidadesStartGameTime;
     private static long sangreStartGameTime;
+    private static long sangreOutroStartGameTime;
     private static long dormirStartGameTime;
     private static long dormirOutroStartGameTime;
     private static int absorptionTotalTicks = 1;
@@ -106,14 +108,15 @@ public final class ShaderController {
         boolean menteActive = mc.player.hasEffect(ShadersModMobEffects.MENTE.get());
         MobEffect compositeEffect = firstActiveCompositeEffect(mc);
         int activeVanillaCount = countActiveVanillaEffects(mc);
-        boolean compositeActive = compositeEffect != null || dormirOutroActive
+        boolean compositeActive = compositeEffect != null || sangreOutroActive || dormirOutroActive
             || activeVanillaCount > 1 || (menteActive && activeVanillaCount > 0);
 
         MobEffect requested = null;
         ResourceLocation shader = null;
 
         if (compositeActive) {
-            requested = compositeEffect != null ? compositeEffect : firstActiveVanillaEffect(mc);
+            requested = compositeEffect != null ? compositeEffect
+                : (sangreOutroActive ? ShadersModMobEffects.SANGRE.get() : firstActiveVanillaEffect(mc));
             if (requested == null) requested = ShadersModMobEffects.DORMIR.get();
             shader = COMPOSITE_SHADER;
         } else if (menteActive) {
@@ -181,6 +184,13 @@ public final class ShaderController {
         if (sangreActive && !wasSangreActive) {
             sangreStartGameTime = gameTime;
             sangreTotalTicks = Math.max(1, sangre.getDuration());
+            sangreOutroActive = false;
+        } else if (!sangreActive && wasSangreActive) {
+            sangreOutroActive = true;
+            sangreOutroStartGameTime = gameTime;
+        }
+        if (sangreOutroActive && gameTime - sangreOutroStartGameTime >= SANGRE_FADE_OUT_TICKS) {
+            sangreOutroActive = false;
         }
         wasSangreActive = sangreActive;
 
@@ -255,13 +265,16 @@ public final class ShaderController {
             : clamp(viaje.getDuration() / (float) REALIDADES_OUTRO_TICKS);
 
         MobEffectInstance sangre = mc.player.getEffect(ShadersModMobEffects.SANGRE.get());
-        float sangreProgress = sangre == null ? 0.0F
-            : clamp((float) ((gameTicks - sangreStartGameTime) / sangreTotalTicks));
-        float sangreElapsed = sangre == null ? 0.0F : (float) (gameTicks - sangreStartGameTime);
+        float sangreElapsed = (float) (gameTicks - sangreStartGameTime);
+        float sangreProgress = sangre != null
+            ? clamp(sangreElapsed / sangreTotalTicks)
+            : (sangreOutroActive ? 1.0F : 0.0F);
         float sangreFadeIn = clamp(sangreElapsed / SANGRE_FADE_IN_TICKS);
-        float sangreFadeOut = sangre == null ? 0.0F
-            : clamp(sangre.getDuration() / (float) SANGRE_FADE_OUT_TICKS);
-        float sangreFade = sangre == null ? 0.0F : Math.min(sangreFadeIn, sangreFadeOut);
+        float sangreFadeOut = sangre != null ? 1.0F
+            : (sangreOutroActive
+                ? 1.0F - clamp((float) (gameTicks - sangreOutroStartGameTime) / SANGRE_FADE_OUT_TICKS)
+                : 0.0F);
+        float sangreFade = sangreFadeIn * sangreFadeOut;
 
         MobEffectInstance dormir = mc.player.getEffect(ShadersModMobEffects.DORMIR.get());
         float dormirProgress = dormir == null ? 8.0F
@@ -283,7 +296,7 @@ public final class ShaderController {
             set(pass, "UseViaje", has(mc, ShadersModMobEffects.VIAJE_REALIDADES.get()));
             set(pass, "UseCine", has(mc, ShadersModMobEffects.CINE.get()));
             set(pass, "UseVHS", has(mc, ShadersModMobEffects.VHS.get()));
-            set(pass, "UseSangre", has(mc, ShadersModMobEffects.SANGRE.get()));
+            set(pass, "UseSangre", sangre != null || sangreOutroActive ? 1.0F : 0.0F);
             set(pass, "UseDormir", dormir != null || dormirOutroActive ? 1.0F : 0.0F);
 
             set(pass, "UseNotch", has(mc, ShadersModMobEffects.NOTCH.get()));
@@ -342,6 +355,7 @@ public final class ShaderController {
         wasAbsorcionActive = false;
         wasViajeActive = false;
         wasSangreActive = false;
+        sangreOutroActive = false;
         wasDormirActive = false;
         dormirOutroActive = false;
         absorptionTotalTicks = 1;
