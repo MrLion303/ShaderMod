@@ -207,7 +207,7 @@ public final class ShaderController {
 
     public static void updateCompositeFrame() {
         Minecraft mc = Minecraft.getInstance();
-        if (mc.level == null || mc.player == null) return;
+        if (mc.level == null || mc.player == null || !COMPOSITE_SHADER.equals(activeShader)) return;
         PostChain chain = mc.gameRenderer.currentEffect();
         if (chain == null) return;
 
