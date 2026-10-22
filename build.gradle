@@ -87,6 +87,11 @@ tasks.named('processResources') {
             iconImage, 'png',
             new File(mobEffectDir, 'logo.png')
         )
+        // Preserve the previous alias so any resource-pack or external reference keeps working.
+        javax.imageio.ImageIO.write(
+            iconImage, 'png',
+            new File(mobEffectDir, 'shaderlogo.png')
+        )
 
         // Keep the named effect textures available for pack/resource compatibility.
         def effectIconNames = [
