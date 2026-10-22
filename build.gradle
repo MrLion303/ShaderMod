@@ -56,7 +56,7 @@ tasks.named('processResources') {
         def mobEffectDir = file("${buildDir}/resources/main/assets/shaders/textures/mob_effect")
         mobEffectDir.mkdirs()
 
-        def logoSource = file('Shadermod/logo.png')
+        def logoSource = file('logo.png')
         if (!logoSource.isFile()) {
             throw new GradleException("No se encontró el icono de ShaderMod: ${logoSource}")
         }

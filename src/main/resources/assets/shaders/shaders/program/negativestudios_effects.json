@@ -13,6 +13,8 @@
     {"name": "InSize", "type": "float", "count": 2, "values": [1,1]},
     {"name": "OutSize", "type": "float", "count": 2, "values": [1,1]},
     {"name": "Time", "type": "float", "count": 1, "values": [0]},
+    {"name": "ShaderTime", "type": "float", "count": 1, "values": [0]},
+    {"name": "Fade", "type": "float", "count": 1, "values": [1]},
     {"name": "Mode", "type": "float", "count": 1, "values": [0]},
     {"name": "Progress", "type": "float", "count": 1, "values": [0]}
   ]
