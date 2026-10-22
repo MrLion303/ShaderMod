@@ -18,8 +18,10 @@ public final class ShaderController {
     private static final int ABSORPTION_ANIMATION_TICKS = 160;
     private static final int RUGIDO_FADE_TICKS = 12;
     private static final int REALIDADES_INTRO_TICKS = 14;
+    private static final int REALIDADES_OUTRO_TICKS = 24;
     private static int absorptionTotalTicks = 1;
     private static int realidadesTotalTicks = 1;
+    private static long realidadesStartGameTime;
 
     private static final List<Map.Entry<MobEffect, ResourceLocation>> SHADERS = List.of(
         Map.entry(ShadersModMobEffects.NOTCH.get(), vanilla("notch")),
@@ -69,21 +71,29 @@ public final class ShaderController {
             return;
         }
 
-        // Mente uses the world render stages instead of a post-processing chain.
-        // Give it priority so other screen-wide shaders do not tint the visible entities.
-        if (mc.player.hasEffect(ShadersModMobEffects.MENTE.get())) {
-            shutdown(mc);
-            return;
-        }
+        // Mente handles the black world through render stages. Viaje entre Realidades
+        // may still run after it as a post-process so the effect overlays visible entities.
+        boolean menteActive = mc.player.hasEffect(ShadersModMobEffects.MENTE.get());
+        boolean viajeActive = mc.player.hasEffect(ShadersModMobEffects.VIAJE_REALIDADES.get());
 
         MobEffect requested = null;
         ResourceLocation shader = null;
 
-        for (Map.Entry<MobEffect, ResourceLocation> entry : SHADERS) {
-            if (mc.player.hasEffect(entry.getKey())) {
-                requested = entry.getKey();
-                shader = entry.getValue();
-                break;
+        if (menteActive && viajeActive) {
+            requested = ShadersModMobEffects.VIAJE_REALIDADES.get();
+            shader = new ResourceLocation(ShadersMod.MODID, "shaders/post/realidades.json");
+        } else if (menteActive) {
+            shutdown(mc);
+            return;
+        }
+
+        if (requested == null) {
+            for (Map.Entry<MobEffect, ResourceLocation> entry : SHADERS) {
+                if (mc.player.hasEffect(entry.getKey())) {
+                    requested = entry.getKey();
+                    shader = entry.getValue();
+                    break;
+                }
             }
         }
 
@@ -103,6 +113,7 @@ public final class ShaderController {
                 if (requested == ShadersModMobEffects.VIAJE_REALIDADES.get()) {
                     MobEffectInstance realidades = mc.player.getEffect(ShadersModMobEffects.VIAJE_REALIDADES.get());
                     realidadesTotalTicks = realidades != null ? Math.max(1, realidades.getDuration()) : 1;
+                    realidadesStartGameTime = mc.level.getGameTime();
                 }
 
                 mc.gameRenderer.loadEffect(shader);
@@ -143,8 +154,22 @@ public final class ShaderController {
         for (PostPass pass : chain.passes) {
             Uniform mode = pass.getEffect().getUniform("Mode");
             Uniform progress = pass.getEffect().getUniform("Progress");
+            Uniform shaderTime = pass.getEffect().getUniform("ShaderTime");
+            Uniform fade = pass.getEffect().getUniform("Fade");
             if (mode != null) mode.set(modeValue);
             if (progress != null) progress.set(progressValue);
+
+            if (shaderTime != null && activeEffect == ShadersModMobEffects.VIAJE_REALIDADES.get()) {
+                double elapsedTicks = Math.max(0.0,
+                        mc.level.getGameTime() - realidadesStartGameTime + mc.getFrameTime());
+                shaderTime.set((float) (elapsedTicks / 20.0));
+            }
+
+            if (fade != null && activeEffect == ShadersModMobEffects.VIAJE_REALIDADES.get()) {
+                MobEffectInstance instance = mc.player.getEffect(ShadersModMobEffects.VIAJE_REALIDADES.get());
+                float remaining = instance == null ? 0.0F : instance.getDuration();
+                fade.set(Math.max(0.0F, Math.min(1.0F, remaining / (float) REALIDADES_OUTRO_TICKS)));
+            }
         }
     }
 
