@@ -58,6 +58,9 @@ public final class ShadersModMobEffects {
     public static final RegistryObject<MobEffect> VHS = register("vhs", VhsMobEffect::new);
     public static final RegistryObject<MobEffect> SANGRE = register("sangre", SangreMobEffect::new);
     public static final RegistryObject<MobEffect> DORMIR = register("dormir", DormirMobEffect::new);
+    public static final RegistryObject<MobEffect> COMIC = register("comic", ComicMobEffect::new);
+    public static final RegistryObject<MobEffect> STARWARS_VIAJE = register("starwars_viaje", StarwarsViajeMobEffect::new);
+    public static final RegistryObject<MobEffect> ELECTRIFICADO = register("electrificado", ElectrificadoMobEffect::new);
 
     private static RegistryObject<MobEffect> register(String name, java.util.function.Supplier<MobEffect> supplier) {
         return REGISTRY.register(name, supplier);
@@ -122,4 +125,7 @@ public final class ShadersModMobEffects {
     public static final class VhsMobEffect extends ShaderEffect {}
     public static final class SangreMobEffect extends ShaderEffect {}
     public static final class DormirMobEffect extends ShaderEffect {}
+    public static final class ComicMobEffect extends ShaderEffect {}
+    public static final class StarwarsViajeMobEffect extends ShaderEffect {}
+    public static final class ElectrificadoMobEffect extends ShaderEffect {}
 }
