@@ -44,7 +44,7 @@ public final class ShadersMod {
                     previousShaderColor = null;
                     menteDarkenRemainder = false;
                 }
-                ShaderController.updateRealidadesFrame();
+                ShaderController.updateCompositeFrame();
                 return;
             }
 
@@ -138,7 +138,11 @@ public final class ShadersMod {
                 || effect == ShadersModMobEffects.GLITCH.get()
                 || effect == ShadersModMobEffects.TERREMOTO.get()
                 || effect == ShadersModMobEffects.VIAJE_REALIDADES.get()
-                || effect == ShadersModMobEffects.MENTE.get();
+                || effect == ShadersModMobEffects.MENTE.get()
+                || effect == ShadersModMobEffects.CINE.get()
+                || effect == ShadersModMobEffects.VHS.get()
+                || effect == ShadersModMobEffects.SANGRE.get()
+                || effect == ShadersModMobEffects.DORMIR.get();
         }
     }
 }
