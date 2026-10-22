@@ -284,7 +284,7 @@ public final class ShaderController {
             set(pass, "UseCine", has(mc, ShadersModMobEffects.CINE.get()));
             set(pass, "UseVHS", has(mc, ShadersModMobEffects.VHS.get()));
             set(pass, "UseSangre", has(mc, ShadersModMobEffects.SANGRE.get()));
-            set(pass, "UseDormir", dormir != null || dormirOutroActive);
+            set(pass, "UseDormir", dormir != null || dormirOutroActive ? 1.0F : 0.0F);
 
             set(pass, "UseNotch", has(mc, ShadersModMobEffects.NOTCH.get()));
             set(pass, "UseFxaa", has(mc, ShadersModMobEffects.FXAA.get()));
