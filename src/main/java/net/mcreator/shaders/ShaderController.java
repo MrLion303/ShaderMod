@@ -13,17 +13,38 @@ import java.util.List;
 import java.util.Map;
 
 public final class ShaderController {
+    private static final ResourceLocation COMPOSITE_SHADER =
+        new ResourceLocation(ShadersMod.MODID, "shaders/post/combinados.json");
+
     private static ResourceLocation activeShader;
     private static MobEffect activeEffect;
+
     private static final int ABSORPTION_ANIMATION_TICKS = 160;
     private static final int RUGIDO_FADE_TICKS = 12;
     private static final int REALIDADES_INTRO_TICKS = 14;
     private static final int REALIDADES_OUTRO_TICKS = 24;
-    private static int absorptionTotalTicks = 1;
-    private static int realidadesTotalTicks = 1;
-    private static long realidadesStartGameTime;
+    private static final int SANGRE_FADE_IN_TICKS = 20;
+    private static final int SANGRE_FADE_OUT_TICKS = 40;
+    private static final int DORMIR_EYE_TICKS = 160;
+    private static final int DORMIR_OUTRO_TICKS = 30;
 
-    private static final List<Map.Entry<MobEffect, ResourceLocation>> SHADERS = List.of(
+    private static boolean wasAbsorcionActive;
+    private static boolean wasViajeActive;
+    private static boolean wasSangreActive;
+    private static boolean wasDormirActive;
+    private static boolean dormirOutroActive;
+
+    private static long absorptionStartGameTime;
+    private static long realidadesStartGameTime;
+    private static long sangreStartGameTime;
+    private static long dormirStartGameTime;
+    private static long dormirOutroStartGameTime;
+    private static int absorptionTotalTicks = 1;
+    private static int sangreTotalTicks = 1;
+
+    // These effects use Minecraft's original Super Secret Settings post-processors.
+    // Effects created for ShaderMod use the compositing chain below so they can stack.
+    private static final List<Map.Entry<MobEffect, ResourceLocation>> VANILLA_SHADERS = List.of(
         Map.entry(ShadersModMobEffects.NOTCH.get(), vanilla("notch")),
         Map.entry(ShadersModMobEffects.FXAA.get(), vanilla("fxaa")),
         Map.entry(ShadersModMobEffects.ART.get(), vanilla("art")),
@@ -47,15 +68,23 @@ public final class ShaderController {
         Map.entry(ShadersModMobEffects.ANTIALIAS.get(), vanilla("antialias")),
         Map.entry(ShadersModMobEffects.CREEPER_VISION.get(), vanilla("creeper")),
         Map.entry(ShadersModMobEffects.SPIDER_VISION.get(), vanilla("spider")),
-        Map.entry(ShadersModMobEffects.SCAN_PINCUSHION.get(), vanilla("scan_pincushion")),
-        Map.entry(ShadersModMobEffects.ABSORCION.get(), new ResourceLocation(ShadersMod.MODID, "shaders/post/absorcion.json")),
-        Map.entry(ShadersModMobEffects.GREEN_GLOW.get(), new ResourceLocation(ShadersMod.MODID, "shaders/post/green_glow.json")),
-        Map.entry(ShadersModMobEffects.RED_GLOW.get(), new ResourceLocation(ShadersMod.MODID, "shaders/post/red_glow.json")),
-        Map.entry(ShadersModMobEffects.RED_FILTER.get(), new ResourceLocation(ShadersMod.MODID, "shaders/post/red_filter.json")),
-        Map.entry(ShadersModMobEffects.RUGIDO.get(), new ResourceLocation(ShadersMod.MODID, "shaders/post/rugido.json")),
-        Map.entry(ShadersModMobEffects.GLITCH.get(), new ResourceLocation(ShadersMod.MODID, "shaders/post/glitch.json")),
-        Map.entry(ShadersModMobEffects.TERREMOTO.get(), new ResourceLocation(ShadersMod.MODID, "shaders/post/terremoto.json")),
-        Map.entry(ShadersModMobEffects.VIAJE_REALIDADES.get(), new ResourceLocation(ShadersMod.MODID, "shaders/post/realidades.json"))
+        Map.entry(ShadersModMobEffects.SCAN_PINCUSHION.get(), vanilla("scan_pincushion"))
+    );
+
+    // The new cinematic filters and the ShaderMod-created effects all share one shader.
+    private static final List<MobEffect> COMPOSITE_EFFECTS = List.of(
+        ShadersModMobEffects.ABSORCION.get(),
+        ShadersModMobEffects.GREEN_GLOW.get(),
+        ShadersModMobEffects.RED_GLOW.get(),
+        ShadersModMobEffects.RED_FILTER.get(),
+        ShadersModMobEffects.RUGIDO.get(),
+        ShadersModMobEffects.GLITCH.get(),
+        ShadersModMobEffects.TERREMOTO.get(),
+        ShadersModMobEffects.VIAJE_REALIDADES.get(),
+        ShadersModMobEffects.CINE.get(),
+        ShadersModMobEffects.VHS.get(),
+        ShadersModMobEffects.SANGRE.get(),
+        ShadersModMobEffects.DORMIR.get()
     );
 
     private ShaderController() {}
@@ -67,28 +96,29 @@ public final class ShaderController {
     public static void tick() {
         Minecraft mc = Minecraft.getInstance();
         if (mc.level == null || mc.player == null) {
+            resetTracking();
             shutdown(mc);
             return;
         }
 
-        // Mente handles the black world through render stages. Viaje entre Realidades
-        // may still run after it as a post-process so the effect overlays visible entities.
+        updateEffectTiming(mc);
+
         boolean menteActive = mc.player.hasEffect(ShadersModMobEffects.MENTE.get());
-        boolean viajeActive = mc.player.hasEffect(ShadersModMobEffects.VIAJE_REALIDADES.get());
+        MobEffect compositeEffect = firstActiveCompositeEffect(mc);
+        boolean compositeActive = compositeEffect != null || dormirOutroActive;
 
         MobEffect requested = null;
         ResourceLocation shader = null;
 
-        if (menteActive && viajeActive) {
-            requested = ShadersModMobEffects.VIAJE_REALIDADES.get();
-            shader = new ResourceLocation(ShadersMod.MODID, "shaders/post/realidades.json");
+        if (compositeActive) {
+            requested = compositeEffect != null ? compositeEffect : ShadersModMobEffects.DORMIR.get();
+            shader = COMPOSITE_SHADER;
         } else if (menteActive) {
+            // Mente itself darkens the level before entities render, so it needs no post-chain.
             shutdown(mc);
             return;
-        }
-
-        if (requested == null) {
-            for (Map.Entry<MobEffect, ResourceLocation> entry : SHADERS) {
+        } else {
+            for (Map.Entry<MobEffect, ResourceLocation> entry : VANILLA_SHADERS) {
                 if (mc.player.hasEffect(entry.getKey())) {
                     requested = entry.getKey();
                     shader = entry.getValue();
@@ -97,25 +127,16 @@ public final class ShaderController {
             }
         }
 
-        if (requested == null) {
+        if (requested == null || shader == null) {
             shutdown(mc);
             return;
         }
 
-        if (!shader.equals(activeShader) || requested != activeEffect) {
+        // Adding or removing a composite effect only changes uniforms. Do not reload the
+        // post-chain while one of its other effects is still active.
+        if (activeShader == null || !shader.equals(activeShader)) {
             shutdown(mc);
             try {
-                if (requested == ShadersModMobEffects.ABSORCION.get()) {
-                    MobEffectInstance absorption = mc.player.getEffect(ShadersModMobEffects.ABSORCION.get());
-                    absorptionTotalTicks = absorption != null ? Math.max(1, absorption.getDuration()) : 1;
-                }
-
-                if (requested == ShadersModMobEffects.VIAJE_REALIDADES.get()) {
-                    MobEffectInstance realidades = mc.player.getEffect(ShadersModMobEffects.VIAJE_REALIDADES.get());
-                    realidadesTotalTicks = realidades != null ? Math.max(1, realidades.getDuration()) : 1;
-                    realidadesStartGameTime = mc.level.getGameTime();
-                }
-
                 mc.gameRenderer.loadEffect(shader);
                 activeShader = shader;
                 activeEffect = requested;
@@ -123,126 +144,161 @@ public final class ShaderController {
                 activeShader = null;
                 activeEffect = null;
                 System.err.println("[ShaderMod] Failed to load shader " + shader + ": " + ex);
+                return;
             }
+        } else {
+            activeEffect = requested;
         }
 
-        if (requested == ShadersModMobEffects.ABSORCION.get()) {
-            updateAbsorptionProgress(mc);
-        } else if (requested == ShadersModMobEffects.GREEN_GLOW.get()) {
-            updateMode(mc, 11.0F, 1.0F);
-        } else if (requested == ShadersModMobEffects.RED_GLOW.get()) {
-            updateMode(mc, 12.0F, 1.0F);
-        } else if (requested == ShadersModMobEffects.RED_FILTER.get()) {
-            updateMode(mc, 13.0F, 1.0F);
-        } else if (requested == ShadersModMobEffects.RUGIDO.get()) {
-            updateRugidoProgress(mc);
-        } else if (requested == ShadersModMobEffects.GLITCH.get()) {
-            updateMode(mc, 15.0F, 1.0F);
-        } else if (requested == ShadersModMobEffects.TERREMOTO.get()) {
-            MobEffectInstance earthquake = mc.player.getEffect(ShadersModMobEffects.TERREMOTO.get());
-            float strength = earthquake == null ? 1.0F : Math.min(10.0F, earthquake.getAmplifier() + 1.0F);
-            updateMode(mc, 16.0F, strength);
-        } else if (requested == ShadersModMobEffects.VIAJE_REALIDADES.get()) {
-            updateRealidadesProgress(mc);
+        if (COMPOSITE_SHADER.equals(activeShader)) {
+            updateCompositeFrame();
         }
     }
 
-    /**
-     * Updates uniforms that must keep advancing between client ticks.
-     * The custom ShaderTime uniform avoids the short wraparound used by Minecraft's built-in Time.
-     */
-    public static void updateRealidadesFrame() {
+    private static void updateEffectTiming(Minecraft mc) {
+        long gameTime = mc.level.getGameTime();
+
+        MobEffectInstance absorption = mc.player.getEffect(ShadersModMobEffects.ABSORCION.get());
+        boolean absorptionActive = absorption != null;
+        if (absorptionActive && !wasAbsorcionActive) {
+            absorptionStartGameTime = gameTime;
+            absorptionTotalTicks = Math.max(1, absorption.getDuration());
+        }
+        wasAbsorcionActive = absorptionActive;
+
+        MobEffectInstance viaje = mc.player.getEffect(ShadersModMobEffects.VIAJE_REALIDADES.get());
+        boolean viajeActive = viaje != null;
+        if (viajeActive && !wasViajeActive) {
+            realidadesStartGameTime = gameTime;
+        }
+        wasViajeActive = viajeActive;
+
+        MobEffectInstance sangre = mc.player.getEffect(ShadersModMobEffects.SANGRE.get());
+        boolean sangreActive = sangre != null;
+        if (sangreActive && !wasSangreActive) {
+            sangreStartGameTime = gameTime;
+            sangreTotalTicks = Math.max(1, sangre.getDuration());
+        }
+        wasSangreActive = sangreActive;
+
+        MobEffectInstance dormir = mc.player.getEffect(ShadersModMobEffects.DORMIR.get());
+        boolean dormirActive = dormir != null;
+        if (dormirActive && !wasDormirActive) {
+            dormirStartGameTime = gameTime;
+            dormirOutroActive = false;
+        } else if (!dormirActive && wasDormirActive) {
+            dormirOutroActive = true;
+            dormirOutroStartGameTime = gameTime;
+        }
+        if (dormirOutroActive && gameTime - dormirOutroStartGameTime >= DORMIR_OUTRO_TICKS) {
+            dormirOutroActive = false;
+        }
+        wasDormirActive = dormirActive;
+    }
+
+    private static MobEffect firstActiveCompositeEffect(Minecraft mc) {
+        for (MobEffect effect : COMPOSITE_EFFECTS) {
+            if (mc.player.hasEffect(effect)) {
+                return effect;
+            }
+        }
+        return null;
+    }
+
+    private static void updateCompositeFrame() {
         Minecraft mc = Minecraft.getInstance();
-        if (mc.level == null || mc.player == null
-                || activeEffect != ShadersModMobEffects.VIAJE_REALIDADES.get()) {
-            return;
-        }
-
-        MobEffectInstance instance = mc.player.getEffect(ShadersModMobEffects.VIAJE_REALIDADES.get());
-        PostChain chain = mc.gameRenderer.currentEffect();
-        if (instance == null || chain == null) {
-            return;
-        }
-
-        double elapsedTicks = Math.max(0.0,
-                mc.level.getGameTime() - realidadesStartGameTime + mc.getFrameTime());
-        float shaderTime = (float) (elapsedTicks / 20.0);
-        float fade = Math.max(0.0F,
-                Math.min(1.0F, instance.getDuration() / (float) REALIDADES_OUTRO_TICKS));
-
-        for (PostPass pass : chain.passes) {
-            Uniform timeUniform = pass.getEffect().getUniform("ShaderTime");
-            Uniform fadeUniform = pass.getEffect().getUniform("Fade");
-            if (timeUniform != null) {
-                timeUniform.set(shaderTime);
-            }
-            if (fadeUniform != null) {
-                fadeUniform.set(fade);
-            }
-        }
-    }
-
-    private static void updateMode(Minecraft mc, float modeValue, float progressValue) {
+        if (mc.level == null || mc.player == null) return;
         PostChain chain = mc.gameRenderer.currentEffect();
         if (chain == null) return;
 
-        for (PostPass pass : chain.passes) {
-            Uniform mode = pass.getEffect().getUniform("Mode");
-            Uniform progress = pass.getEffect().getUniform("Progress");
-            Uniform shaderTime = pass.getEffect().getUniform("ShaderTime");
-            Uniform fade = pass.getEffect().getUniform("Fade");
-            if (mode != null) mode.set(modeValue);
-            if (progress != null) progress.set(progressValue);
+        double gameTicks = mc.level.getGameTime() + mc.getFrameTime();
+        float shaderTime = (float) (gameTicks / 20.0);
 
-            if (shaderTime != null && activeEffect == ShadersModMobEffects.VIAJE_REALIDADES.get()) {
-                double elapsedTicks = Math.max(0.0,
-                        mc.level.getGameTime() - realidadesStartGameTime + mc.getFrameTime());
-                shaderTime.set((float) (elapsedTicks / 20.0));
-            }
+        MobEffectInstance absorption = mc.player.getEffect(ShadersModMobEffects.ABSORCION.get());
+        float absorptionProgress = absorption == null ? 0.0F
+            : clamp((float) ((gameTicks - absorptionStartGameTime) / ABSORPTION_ANIMATION_TICKS));
 
-            if (fade != null && activeEffect == ShadersModMobEffects.VIAJE_REALIDADES.get()) {
-                MobEffectInstance instance = mc.player.getEffect(ShadersModMobEffects.VIAJE_REALIDADES.get());
-                float remaining = instance == null ? 0.0F : instance.getDuration();
-                fade.set(Math.max(0.0F, Math.min(1.0F, remaining / (float) REALIDADES_OUTRO_TICKS)));
-            }
-        }
-    }
+        MobEffectInstance rugido = mc.player.getEffect(ShadersModMobEffects.RUGIDO.get());
+        float rugidoProgress = rugido == null ? 0.0F
+            : clamp(rugido.getDuration() / (float) RUGIDO_FADE_TICKS);
 
-    private static void updateRugidoProgress(Minecraft mc) {
-        MobEffectInstance instance = mc.player.getEffect(ShadersModMobEffects.RUGIDO.get());
-        float progress = 1.0F;
-        if (instance != null) {
-            progress = Math.min(1.0F, instance.getDuration() / (float) RUGIDO_FADE_TICKS);
-        }
-        updateMode(mc, 14.0F, progress);
-    }
+        MobEffectInstance terremoto = mc.player.getEffect(ShadersModMobEffects.TERREMOTO.get());
+        float terremotoStrength = terremoto == null ? 1.0F
+            : Math.max(1.0F, Math.min(10.0F, terremoto.getAmplifier() + 1.0F));
 
-    private static void updateRealidadesProgress(Minecraft mc) {
-        MobEffectInstance instance = mc.player.getEffect(ShadersModMobEffects.VIAJE_REALIDADES.get());
-        if (instance == null) return;
+        MobEffectInstance viaje = mc.player.getEffect(ShadersModMobEffects.VIAJE_REALIDADES.get());
+        float viajeProgress = viaje == null ? 0.0F
+            : clamp((float) ((gameTicks - realidadesStartGameTime) / REALIDADES_INTRO_TICKS));
+        float viajeFade = viaje == null ? 0.0F
+            : clamp(viaje.getDuration() / (float) REALIDADES_OUTRO_TICKS);
 
-        float elapsed = Math.max(0.0F, realidadesTotalTicks - instance.getDuration());
-        float progress = Math.max(0.0F, Math.min(1.0F, elapsed / (float) REALIDADES_INTRO_TICKS));
-        updateMode(mc, 17.0F, progress);
-    }
+        MobEffectInstance sangre = mc.player.getEffect(ShadersModMobEffects.SANGRE.get());
+        float sangreProgress = sangre == null ? 0.0F
+            : clamp((float) ((gameTicks - sangreStartGameTime) / sangreTotalTicks));
+        float sangreElapsed = sangre == null ? 0.0F : (float) (gameTicks - sangreStartGameTime);
+        float sangreFadeIn = clamp(sangreElapsed / SANGRE_FADE_IN_TICKS);
+        float sangreFadeOut = sangre == null ? 0.0F
+            : clamp(sangre.getDuration() / (float) SANGRE_FADE_OUT_TICKS);
+        float sangreFade = sangre == null ? 0.0F : Math.min(sangreFadeIn, sangreFadeOut);
 
-    private static void updateAbsorptionProgress(Minecraft mc) {
-        MobEffectInstance instance = mc.player.getEffect(ShadersModMobEffects.ABSORCION.get());
-        if (instance == null) return;
-
-        float elapsed = Math.max(0.0F, absorptionTotalTicks - instance.getDuration());
-        float progress = elapsed / (float) ABSORPTION_ANIMATION_TICKS;
-        progress = Math.max(0.0F, Math.min(1.0F, progress));
-
-        PostChain chain = mc.gameRenderer.currentEffect();
-        if (chain == null) return;
+        MobEffectInstance dormir = mc.player.getEffect(ShadersModMobEffects.DORMIR.get());
+        float dormirProgress = dormir == null ? 8.0F
+            : Math.min(8.0F, (float) ((gameTicks - dormirStartGameTime) / 20.0));
+        float dormirOutro = dormirOutroActive
+            ? clamp((float) ((gameTicks - dormirOutroStartGameTime) / DORMIR_OUTRO_TICKS))
+            : 0.0F;
 
         for (PostPass pass : chain.passes) {
-            Uniform mode = pass.getEffect().getUniform("Mode");
-            Uniform progressUniform = pass.getEffect().getUniform("Progress");
-            if (mode != null) mode.set(10.0F);
-            if (progressUniform != null) progressUniform.set(progress);
+            set(pass, "Mode", 18.0F);
+            set(pass, "ShaderTime", shaderTime);
+            set(pass, "UseAbsorcion", has(mc, ShadersModMobEffects.ABSORCION.get()));
+            set(pass, "UseGreenGlow", has(mc, ShadersModMobEffects.GREEN_GLOW.get()));
+            set(pass, "UseRedGlow", has(mc, ShadersModMobEffects.RED_GLOW.get()));
+            set(pass, "UseRedFilter", has(mc, ShadersModMobEffects.RED_FILTER.get()));
+            set(pass, "UseRugido", has(mc, ShadersModMobEffects.RUGIDO.get()));
+            set(pass, "UseGlitch", has(mc, ShadersModMobEffects.GLITCH.get()));
+            set(pass, "UseTerremoto", has(mc, ShadersModMobEffects.TERREMOTO.get()));
+            set(pass, "UseViaje", has(mc, ShadersModMobEffects.VIAJE_REALIDADES.get()));
+            set(pass, "UseCine", has(mc, ShadersModMobEffects.CINE.get()));
+            set(pass, "UseVHS", has(mc, ShadersModMobEffects.VHS.get()));
+            set(pass, "UseSangre", has(mc, ShadersModMobEffects.SANGRE.get()));
+            set(pass, "UseDormir", dormir != null || dormirOutroActive);
+
+            set(pass, "AbsorcionProgress", absorptionProgress);
+            set(pass, "RugidoProgress", rugidoProgress);
+            set(pass, "TerremotoStrength", terremotoStrength);
+            set(pass, "ViajeProgress", viajeProgress);
+            set(pass, "ViajeFade", viajeFade);
+            set(pass, "SangreProgress", sangreProgress);
+            set(pass, "SangreFade", sangreFade);
+            set(pass, "DormirProgress", dormirProgress);
+            set(pass, "DormirOutro", dormirOutro);
         }
+    }
+
+    private static float has(Minecraft mc, MobEffect effect) {
+        return mc.player.hasEffect(effect) ? 1.0F : 0.0F;
+    }
+
+    private static float clamp(float value) {
+        return Math.max(0.0F, Math.min(1.0F, value));
+    }
+
+    private static void set(PostPass pass, String name, float value) {
+        Uniform uniform = pass.getEffect().getUniform(name);
+        if (uniform != null) {
+            uniform.set(value);
+        }
+    }
+
+    private static void resetTracking() {
+        wasAbsorcionActive = false;
+        wasViajeActive = false;
+        wasSangreActive = false;
+        wasDormirActive = false;
+        dormirOutroActive = false;
+        absorptionTotalTicks = 1;
+        sangreTotalTicks = 1;
     }
 
     private static void shutdown(Minecraft mc) {
@@ -250,8 +306,6 @@ public final class ShaderController {
             mc.gameRenderer.shutdownEffect();
             activeShader = null;
             activeEffect = null;
-            absorptionTotalTicks = 1;
-            realidadesTotalTicks = 1;
         }
     }
 }
