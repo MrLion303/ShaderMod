@@ -625,10 +625,6 @@ void main(){
                 color += vec3(0.02, 0.06, 0.02) * scan;
             }
         }
-        if(UseGreenGlow > 0.5 && UseRedGlow > 0.5){
-            color += vec3(0.12, 0.30, 0.12) * pow(edgeGlow, 1.8) * 0.34;
-        }
-
         // Legacy custom effects are independent layers, not mutually exclusive modes.
         if(UseRedFilter > 0.5){
             color = mix(color, vec3(1.0, 0.0, 0.0), 0.10);
