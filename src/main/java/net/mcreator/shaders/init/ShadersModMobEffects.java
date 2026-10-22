@@ -53,6 +53,7 @@ public final class ShadersModMobEffects {
     public static final RegistryObject<MobEffect> GLITCH = register("glitch", GlitchMobEffect::new);
     public static final RegistryObject<MobEffect> TERREMOTO = register("terremoto", TerremotoMobEffect::new);
     public static final RegistryObject<MobEffect> VIAJE_REALIDADES = register("viaje_realidades", ViajeRealidadesMobEffect::new);
+    public static final RegistryObject<MobEffect> MENTE = register("mente", MenteMobEffect::new);
 
     private static RegistryObject<MobEffect> register(String name, java.util.function.Supplier<MobEffect> supplier) {
         return REGISTRY.register(name, supplier);
@@ -112,4 +113,5 @@ public final class ShadersModMobEffects {
     public static final class GlitchMobEffect extends ShaderEffect {}
     public static final class TerremotoMobEffect extends ShaderEffect {}
     public static final class ViajeRealidadesMobEffect extends ShaderEffect {}
+    public static final class MenteMobEffect extends ShaderEffect {}
 }

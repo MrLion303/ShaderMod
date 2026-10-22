@@ -69,6 +69,13 @@ public final class ShaderController {
             return;
         }
 
+        // Mente uses the world render stages instead of a post-processing chain.
+        // Give it priority so other screen-wide shaders do not tint the visible entities.
+        if (mc.player.hasEffect(ShadersModMobEffects.MENTE.get())) {
+            shutdown(mc);
+            return;
+        }
+
         MobEffect requested = null;
         ResourceLocation shader = null;
 

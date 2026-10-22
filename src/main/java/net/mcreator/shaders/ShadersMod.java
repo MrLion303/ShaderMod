@@ -3,6 +3,12 @@ package net.mcreator.shaders;
 import net.mcreator.shaders.init.ShadersModMobEffects;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.client.Minecraft;
+import com.mojang.blaze3d.systems.RenderSystem;
+import net.minecraftforge.client.event.RenderLevelStageEvent;
+import org.lwjgl.BufferUtils;
+import org.lwjgl.opengl.GL11;
+import java.nio.FloatBuffer;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.MobEffectEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -21,6 +27,51 @@ public final class ShadersMod {
 
     @Mod.EventBusSubscriber(modid = MODID, value = Dist.CLIENT, bus = Bus.FORGE)
     public static final class ClientEvents {
+        private static boolean menteDarkenRemainder;
+        private static float[] previousShaderColor;
+
+        @SubscribeEvent
+        public static void onMenteRenderStage(RenderLevelStageEvent event) {
+            RenderLevelStageEvent.Stage stage = event.getStage();
+
+            if (stage == RenderLevelStageEvent.Stage.AFTER_LEVEL) {
+                if (menteDarkenRemainder) {
+                    float[] color = previousShaderColor;
+                    if (color != null && color.length >= 4) {
+                        RenderSystem.setShaderColor(color[0], color[1], color[2], color[3]);
+                    }
+                    previousShaderColor = null;
+                    menteDarkenRemainder = false;
+                }
+                return;
+            }
+
+            Minecraft mc = Minecraft.getInstance();
+            if (mc.player == null || !mc.player.hasEffect(ShadersModMobEffects.MENTE.get())) {
+                return;
+            }
+
+            if (stage == RenderLevelStageEvent.Stage.AFTER_CUTOUT_BLOCKS) {
+                // Clear only color: the depth buffer stays intact, so entities remain occluded by walls.
+                FloatBuffer previousClearColor = BufferUtils.createFloatBuffer(4);
+                GL11.glGetFloatv(GL11.GL_COLOR_CLEAR_VALUE, previousClearColor);
+
+                RenderSystem.clearColor(0.0F, 0.0F, 0.0F, 1.0F);
+                RenderSystem.clear(GL11.GL_COLOR_BUFFER_BIT, Minecraft.ON_OSX);
+                RenderSystem.clearColor(
+                    previousClearColor.get(0),
+                    previousClearColor.get(1),
+                    previousClearColor.get(2),
+                    previousClearColor.get(3)
+                );
+            } else if (stage == RenderLevelStageEvent.Stage.AFTER_ENTITIES) {
+                // Later world passes (block entities, translucent blocks and particles) should stay black too.
+                previousShaderColor = RenderSystem.getShaderColor().clone();
+                RenderSystem.setShaderColor(0.0F, 0.0F, 0.0F, 1.0F);
+                menteDarkenRemainder = true;
+            }
+        }
+
         @SubscribeEvent
         public static void onClientTick(TickEvent.ClientTickEvent event) {
             if (event.phase == TickEvent.Phase.END) {
@@ -80,7 +131,8 @@ public final class ShadersMod {
                 || effect == ShadersModMobEffects.RUGIDO.get()
                 || effect == ShadersModMobEffects.GLITCH.get()
                 || effect == ShadersModMobEffects.TERREMOTO.get()
-                || effect == ShadersModMobEffects.VIAJE_REALIDADES.get();
+                || effect == ShadersModMobEffects.VIAJE_REALIDADES.get()
+                || effect == ShadersModMobEffects.MENTE.get();
         }
     }
 }
