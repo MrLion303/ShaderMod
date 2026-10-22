@@ -32,5 +32,9 @@
   "effect.shaders.glitch": "Glitch",
   "effect.shaders.terremoto": "Terremoto",
   "effect.shaders.viaje_realidades": "Viaje entre Realidades",
-  "effect.shaders.mente": "Mente"
+  "effect.shaders.mente": "Mente",
+  "effect.shaders.cine": "Cine",
+  "effect.shaders.vhs": "VHS",
+  "effect.shaders.sangre": "Sangre",
+  "effect.shaders.dormir": "Dormir"
 }
