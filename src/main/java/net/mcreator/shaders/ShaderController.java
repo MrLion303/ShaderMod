@@ -147,6 +147,41 @@ public final class ShaderController {
         }
     }
 
+    /**
+     * Updates uniforms that must keep advancing between client ticks.
+     * The custom ShaderTime uniform avoids the short wraparound used by Minecraft's built-in Time.
+     */
+    public static void updateRealidadesFrame() {
+        Minecraft mc = Minecraft.getInstance();
+        if (mc.level == null || mc.player == null
+                || activeEffect != ShadersModMobEffects.VIAJE_REALIDADES.get()) {
+            return;
+        }
+
+        MobEffectInstance instance = mc.player.getEffect(ShadersModMobEffects.VIAJE_REALIDADES.get());
+        PostChain chain = mc.gameRenderer.currentEffect();
+        if (instance == null || chain == null) {
+            return;
+        }
+
+        double elapsedTicks = Math.max(0.0,
+                mc.level.getGameTime() - realidadesStartGameTime + mc.getFrameTime());
+        float shaderTime = (float) (elapsedTicks / 20.0);
+        float fade = Math.max(0.0F,
+                Math.min(1.0F, instance.getDuration() / (float) REALIDADES_OUTRO_TICKS));
+
+        for (PostPass pass : chain.passes) {
+            Uniform timeUniform = pass.getEffect().getUniform("ShaderTime");
+            Uniform fadeUniform = pass.getEffect().getUniform("Fade");
+            if (timeUniform != null) {
+                timeUniform.set(shaderTime);
+            }
+            if (fadeUniform != null) {
+                fadeUniform.set(fade);
+            }
+        }
+    }
+
     private static void updateMode(Minecraft mc, float modeValue, float progressValue) {
         PostChain chain = mc.gameRenderer.currentEffect();
         if (chain == null) return;
