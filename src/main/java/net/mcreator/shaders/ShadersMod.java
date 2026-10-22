@@ -44,6 +44,7 @@ public final class ShadersMod {
                     previousShaderColor = null;
                     menteDarkenRemainder = false;
                 }
+                ShaderController.updateRealidadesFrame();
                 return;
             }
 
