@@ -70,6 +70,10 @@ public final class ShadersMod {
                 previousShaderColor = RenderSystem.getShaderColor().clone();
                 RenderSystem.setShaderColor(0.0F, 0.0F, 0.0F, 1.0F);
                 menteDarkenRemainder = true;
+            } else if (stage == RenderLevelStageEvent.Stage.AFTER_PARTICLES) {
+                // Clouds render immediately after particles in 1.20.1. Reapply black here in case
+                // particle rendering changed the shader color before the cloud pass.
+                RenderSystem.setShaderColor(0.0F, 0.0F, 0.0F, 1.0F);
             }
         }
 
