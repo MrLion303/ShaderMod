@@ -5,6 +5,8 @@ uniform vec2 InSize;
 uniform float Mode;
 uniform float Progress;
 uniform float Time;
+uniform float ShaderTime;
+uniform float Fade;
 in vec2 texCoord;
 in vec2 oneTexel;
 
@@ -228,11 +230,11 @@ void main(){
         float angle = atan(p.y, p.x);
 
         // Tres capas con velocidades distintas mantienen el movimiento girando de forma continua.
-        float spinA = Time * 0.83;
-        float spinB = Time * 1.37;
-        float spinC = Time * 2.11;
-        float travelA = Time * 1.19;
-        float travelB = Time * 1.73;
+        float spinA = ShaderTime * 0.83;
+        float spinB = ShaderTime * 1.37;
+        float spinC = ShaderTime * 2.11;
+        float travelA = ShaderTime * 1.19;
+        float travelB = ShaderTime * 1.73;
 
         // Distorsion polar agresiva, pero con fases desacopladas para evitar un loop corto.
         float twist = 0.34 * sin(radius * 15.0 - travelA)
@@ -285,10 +287,10 @@ void main(){
         // Rayas radiales: el angulo avanza de forma acumulativa y las lineas
         // permanecen siempre presentes. No hay pulsos de intensidad que hagan
         // parecer que la animacion vuelve a empezar.
-        float raySpin = Time * 0.72;
+        float raySpin = ShaderTime * 0.72;
         float rayAngleA = angle - raySpin;
-        float rayAngleB = angle + Time * 0.93;
-        float rayAngleC = angle - Time * 1.17;
+        float rayAngleB = angle + ShaderTime * 0.93;
+        float rayAngleC = angle - ShaderTime * 1.17;
 
         // Se evita abs(cos()), porque duplicaba visualmente el giro cada 180 grados.
         // Las distintas cantidades de rayas son coprimas, asi el patron combinado
@@ -305,7 +307,7 @@ void main(){
         color += vec3(0.35, 0.70, 1.0) * rings * 0.22;
 
         float core = exp(-radius * 17.0);
-        float corePulse = 0.78 + 0.22 * sin(Time * 2.97);
+        float corePulse = 0.78 + 0.22 * sin(ShaderTime * 2.97);
         color += vec3(0.72, 0.94, 1.0) * core * corePulse * 1.25;
         color += vec3(0.38, 0.10, 1.0) * exp(-radius * 6.0) * 0.45;
 
@@ -327,6 +329,10 @@ void main(){
 
         float vignette = smoothstep(0.30, 1.0, radius);
         color *= 1.0 - vignette * 0.16;
+
+        // Fade in at the beginning and fade back to the unmodified image at the end.
+        float fadeAmount = smoothstep(0.0, 1.0, clamp(Fade, 0.0, 1.0));
+        color = mix(original, color, fadeAmount);
 
         fragColor = vec4(clamp(color, 0.0, 1.0), 1.0);
         return;
