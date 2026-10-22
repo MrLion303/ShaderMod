@@ -560,7 +560,8 @@ void main(){
             float distanceFromCenter = length((uv - vec2(0.5)) * vec2(aspect, 1.0));
             float vignette = smoothstep(0.22, 0.82, distanceFromCenter);
             float fainting = smoothstep(0.05, 0.95, clamp(SangreProgress, 0.0, 1.0));
-            color *= 1.0 - vignette * fainting * 0.78 * fade;
+            color *= 1.0 - fainting * 0.58 * fade;
+            color *= 1.0 - vignette * fainting * 0.62 * fade;
         }
 
         // Cinematic black letterbox bars.
