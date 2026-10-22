@@ -29,6 +29,7 @@ public final class ShadersMod {
     public static final class ClientEvents {
         private static boolean menteDarkenRemainder;
         private static float[] previousShaderColor;
+        private static final FloatBuffer PREVIOUS_CLEAR_COLOR = BufferUtils.createFloatBuffer(4);
 
         @SubscribeEvent
         public static void onMenteRenderStage(RenderLevelStageEvent event) {
@@ -53,16 +54,16 @@ public final class ShadersMod {
 
             if (stage == RenderLevelStageEvent.Stage.AFTER_CUTOUT_BLOCKS) {
                 // Clear only color: the depth buffer stays intact, so entities remain occluded by walls.
-                FloatBuffer previousClearColor = BufferUtils.createFloatBuffer(4);
-                GL11.glGetFloatv(GL11.GL_COLOR_CLEAR_VALUE, previousClearColor);
+                PREVIOUS_CLEAR_COLOR.clear();
+                GL11.glGetFloatv(GL11.GL_COLOR_CLEAR_VALUE, PREVIOUS_CLEAR_COLOR);
 
                 RenderSystem.clearColor(0.0F, 0.0F, 0.0F, 1.0F);
                 RenderSystem.clear(GL11.GL_COLOR_BUFFER_BIT, Minecraft.ON_OSX);
                 RenderSystem.clearColor(
-                    previousClearColor.get(0),
-                    previousClearColor.get(1),
-                    previousClearColor.get(2),
-                    previousClearColor.get(3)
+                    PREVIOUS_CLEAR_COLOR.get(0),
+                    PREVIOUS_CLEAR_COLOR.get(1),
+                    PREVIOUS_CLEAR_COLOR.get(2),
+                    PREVIOUS_CLEAR_COLOR.get(3)
                 );
             } else if (stage == RenderLevelStageEvent.Stage.AFTER_ENTITIES) {
                 // Later world passes (block entities, translucent blocks and particles) should stay black too.
