@@ -19,6 +19,30 @@ uniform float UseCine;
 uniform float UseVHS;
 uniform float UseSangre;
 uniform float UseDormir;
+uniform float UseNotch;
+uniform float UseFxaa;
+uniform float UseArt;
+uniform float UseBumpy;
+uniform float UseBlobs2;
+uniform float UsePencil;
+uniform float UseColorConvolve;
+uniform float UseDeconverge;
+uniform float UseFlip;
+uniform float UseEndermanVision;
+uniform float UseNtsc;
+uniform float UseOutline;
+uniform float UsePhosphor;
+uniform float UseSobel;
+uniform float UseBits;
+uniform float UseDesaturate;
+uniform float UseGreen;
+uniform float UseBlur;
+uniform float UseWobble;
+uniform float UseBlobs;
+uniform float UseAntialias;
+uniform float UseCreeperVision;
+uniform float UseSpiderVision;
+uniform float UseScanPincushion;
 uniform float AbsorcionProgress;
 uniform float RugidoProgress;
 uniform float TerremotoStrength;
@@ -376,6 +400,40 @@ void main(){
         vec2 sampleUv = uv;
         float t = max(ShaderTime, 0.0);
         float aspect = max(InSize.x / max(InSize.y, 1.0), 1.0);
+        vec2 texel = vec2(1.0 / max(InSize.x, 1.0), 1.0 / max(InSize.y, 1.0));
+
+        // A single original Super Secret Settings effect keeps its native post-chain.
+        // When several effects are active, these compatible approximations join the composite.
+        if(UseFlip > 0.5){
+            sampleUv.y = 1.0 - sampleUv.y;
+        }
+        if(UseArt > 0.5){
+            float pixelSize = max(1.0, floor(min(InSize.x, InSize.y) / 180.0));
+            sampleUv = (floor(sampleUv * InSize / pixelSize) + 0.5) * pixelSize / InSize;
+        }
+        if(UseWobble > 0.5){
+            sampleUv.x += sin(sampleUv.y * 12.0 + t * 4.0) * 0.015;
+            sampleUv.y += sin(sampleUv.x * 8.0 + t * 2.0) * 0.008;
+        }
+        if(UseBlobs > 0.5 || UseBlobs2 > 0.5){
+            vec2 p = sampleUv - vec2(0.5);
+            float radius = length(p * vec2(aspect, 1.0));
+            float amount = (UseBlobs * 0.018 + UseBlobs2 * 0.032)
+                         * sin(radius * 28.0 - t * 2.4);
+            sampleUv += p * amount;
+        }
+        if(UseSpiderVision > 0.5){
+            vec2 p = sampleUv - vec2(0.5);
+            float radius = length(p * vec2(aspect, 1.0));
+            sampleUv += p * radius * radius * 0.62;
+        }
+        if(UseScanPincushion > 0.5){
+            vec2 p = sampleUv - vec2(0.5);
+            p.x *= aspect;
+            p *= 1.0 + dot(p, p) * 0.26;
+            p.x /= aspect;
+            sampleUv = vec2(0.5) + p;
+        }
 
         // Earthquake shifts the source coordinates. Color overlays below can then stack on top.
         if(UseTerremoto > 0.5){
@@ -468,12 +526,34 @@ void main(){
             waves = clamp(waves, 0.0, 2.8);
             float displacement = (sin(radius * 52.0 - t * 34.0) * waves * 0.135
                                  + sin(radius * 25.0 - t * 17.0) * waves * 0.055) * rugidoStrength;
-            vec2 rippleUv = center + p + direction * displacement;
-            rippleUv.x /= aspect;
-            sampleUv += rippleUv - sampleUv;
+            vec2 rippleOffset = direction * displacement;
+            rippleOffset.x /= aspect;
+            sampleUv += rippleOffset;
         }
 
         vec3 color = sampleColor(sampleUv);
+
+        if(UseBlur > 0.5){
+            color = (color
+                + sampleColor(sampleUv + vec2(texel.x, 0.0))
+                + sampleColor(sampleUv - vec2(texel.x, 0.0))
+                + sampleColor(sampleUv + vec2(0.0, texel.y))
+                + sampleColor(sampleUv - vec2(0.0, texel.y))) / 5.0;
+        }
+        if(UseFxaa > 0.5 || UseAntialias > 0.5){
+            vec3 average = (
+                sampleColor(sampleUv + texel)
+                + sampleColor(sampleUv - texel)
+                + sampleColor(sampleUv + vec2(texel.x, -texel.y))
+                + sampleColor(sampleUv + vec2(-texel.x, texel.y))
+            ) * 0.25;
+            color = mix(color, average, UseFxaa * 0.34 + UseAntialias * 0.22);
+        }
+        if(UseDeconverge > 0.5){
+            float shift = max(texel.x, texel.y) * 2.0;
+            color.r = sampleColor(sampleUv + vec2(shift, 0.0)).r;
+            color.b = sampleColor(sampleUv - vec2(shift, 0.0)).b;
+        }
         if(UseVHS > 0.5){
             float chroma = 0.0025;
             color.r = sampleColor(sampleUv + vec2(chroma, 0.0)).r;
@@ -483,6 +563,70 @@ void main(){
             float flicker = 0.94 + 0.06 * hash21(vec2(floor(t * 12.0), 37.0));
             color = color * scanline * flicker + (noise - 0.5) * 0.075;
             color = mix(color, vec3(dot(color, vec3(0.299, 0.587, 0.114))), 0.12);
+        }
+
+        // Original effects can join the custom layers when two or more are active.
+        if(UseEndermanVision > 0.5){
+            color = 1.0 - color;
+        }
+        if(UseDesaturate > 0.5){
+            float gray = dot(color, vec3(0.2126, 0.7152, 0.0722));
+            color = mix(color, vec3(gray), 0.92);
+        }
+        if(UseGreen > 0.5){
+            color = mix(color, color * vec3(0.30, 1.0, 0.34), 0.45);
+        }
+        if(UseColorConvolve > 0.5){
+            color = vec3(
+                color.r * 1.20 - color.g * 0.10,
+                color.g * 1.18 - color.b * 0.05,
+                color.b * 1.20 - color.r * 0.10
+            );
+        }
+        if(UseNotch > 0.5){
+            float gray = dot(color, vec3(0.299, 0.587, 0.114));
+            color = mix(color, vec3(gray), 0.16);
+        }
+        if(UseBits > 0.5){
+            color = floor(clamp(color, 0.0, 1.0) * 5.0 + 0.5) / 5.0;
+        }
+        if(UseBumpy > 0.5){
+            float leftLum = dot(sampleColor(sampleUv - vec2(texel.x, 0.0)), vec3(0.2126, 0.7152, 0.0722));
+            float rightLum = dot(sampleColor(sampleUv + vec2(texel.x, 0.0)), vec3(0.2126, 0.7152, 0.0722));
+            float emboss = clamp(0.5 + (rightLum - leftLum) * 2.4, 0.0, 1.0);
+            color = mix(color, color * 0.55 + vec3(emboss) * 0.65, 0.60);
+        }
+        if(UsePencil > 0.5 || UseOutline > 0.5 || UseSobel > 0.5 || UseCreeperVision > 0.5){
+            float leftLum = dot(sampleColor(sampleUv - vec2(texel.x, 0.0)), vec3(0.2126, 0.7152, 0.0722));
+            float rightLum = dot(sampleColor(sampleUv + vec2(texel.x, 0.0)), vec3(0.2126, 0.7152, 0.0722));
+            float upLum = dot(sampleColor(sampleUv - vec2(0.0, texel.y)), vec3(0.2126, 0.7152, 0.0722));
+            float downLum = dot(sampleColor(sampleUv + vec2(0.0, texel.y)), vec3(0.2126, 0.7152, 0.0722));
+            float edge = clamp(abs(rightLum - leftLum) + abs(downLum - upLum), 0.0, 1.0);
+            if(UsePencil > 0.5){
+                float gray = dot(color, vec3(0.2126, 0.7152, 0.0722));
+                color = vec3(clamp(gray * 1.35 - edge * 1.8, 0.0, 1.0));
+            }
+            if(UseOutline > 0.5 || UseSobel > 0.5){
+                color = mix(color, vec3(0.0), edge * (UseOutline * 0.85 + UseSobel * 0.70));
+            }
+            if(UseCreeperVision > 0.5){
+                float gray = dot(color, vec3(0.2126, 0.7152, 0.0722));
+                color = mix(color, vec3(gray * 0.18, gray * 0.88, gray * 0.20), 0.74);
+                color *= 1.0 - edge * 0.25;
+            }
+        }
+        if(UseNtsc > 0.5 || UsePhosphor > 0.5){
+            float scan = 0.84 + 0.16 * sin(uv.y * InSize.y * 3.14159265);
+            color *= scan;
+            if(UseNtsc > 0.5){
+                color = mix(color, vec3(color.r * 1.08, color.g * 0.98, color.b * 1.06), 0.24);
+            }
+            if(UsePhosphor > 0.5){
+                color += vec3(0.02, 0.06, 0.02) * scan;
+            }
+        }
+        if(UseGreenGlow > 0.5 && UseRedGlow > 0.5){
+            color += vec3(0.12, 0.30, 0.12) * pow(edgeGlow, 1.8) * 0.34;
         }
 
         // Legacy custom effects are independent layers, not mutually exclusive modes.
@@ -560,7 +704,8 @@ void main(){
             float distanceFromCenter = length((uv - vec2(0.5)) * vec2(aspect, 1.0));
             float vignette = smoothstep(0.22, 0.82, distanceFromCenter);
             float fainting = smoothstep(0.05, 0.95, clamp(SangreProgress, 0.0, 1.0));
-            color *= 1.0 - vignette * fainting * 0.78 * fade;
+            color *= 1.0 - fainting * 0.58 * fade;
+            color *= 1.0 - vignette * fainting * 0.62 * fade;
         }
 
         // Cinematic black letterbox bars.
