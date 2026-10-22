@@ -25,23 +25,23 @@ public final class ShaderController {
     private static final int REALIDADES_OUTRO_TICKS = 24;
     private static final int SANGRE_FADE_IN_TICKS = 20;
     private static final int SANGRE_FADE_OUT_TICKS = 40;
-    private static final int DORMIR_EYE_TICKS = 160;
-    private static final int DORMIR_OUTRO_TICKS = 30;
+    private static final int DORMIR_OUTRO_TICKS = 40;
 
     private static boolean wasAbsorcionActive;
     private static boolean wasViajeActive;
+    private static boolean wasStarwarsViajeActive;
     private static boolean wasSangreActive;
     private static boolean sangreOutroActive;
     private static boolean wasDormirActive;
-    private static boolean dormirOutroActive;
 
     private static long absorptionStartGameTime;
     private static long realidadesStartGameTime;
+    private static long starwarsViajeStartGameTime;
     private static long sangreStartGameTime;
     private static long sangreOutroStartGameTime;
     private static long dormirStartGameTime;
-    private static long dormirOutroStartGameTime;
     private static int absorptionTotalTicks = 1;
+    private static int starwarsViajeTotalTicks = 1;
     private static int sangreTotalTicks = 1;
 
     // These effects use Minecraft's original Super Secret Settings post-processors.
@@ -86,7 +86,10 @@ public final class ShaderController {
         ShadersModMobEffects.CINE.get(),
         ShadersModMobEffects.VHS.get(),
         ShadersModMobEffects.SANGRE.get(),
-        ShadersModMobEffects.DORMIR.get()
+        ShadersModMobEffects.DORMIR.get(),
+        ShadersModMobEffects.COMIC.get(),
+        ShadersModMobEffects.STARWARS_VIAJE.get(),
+        ShadersModMobEffects.ELECTRIFICADO.get()
     );
 
     private ShaderController() {}
@@ -108,7 +111,7 @@ public final class ShaderController {
         boolean menteActive = mc.player.hasEffect(ShadersModMobEffects.MENTE.get());
         MobEffect compositeEffect = firstActiveCompositeEffect(mc);
         int activeVanillaCount = countActiveVanillaEffects(mc);
-        boolean compositeActive = compositeEffect != null || sangreOutroActive || dormirOutroActive
+        boolean compositeActive = compositeEffect != null || sangreOutroActive
             || activeVanillaCount > 1 || (menteActive && activeVanillaCount > 0);
 
         MobEffect requested = null;
@@ -140,7 +143,10 @@ public final class ShaderController {
 
         // Adding or removing a composite effect only changes uniforms. Do not reload the
         // post-chain while one of its other effects is still active.
-        if (activeShader == null || !shader.equals(activeShader)) {
+        // Minecraft can discard its post-chain when the pause screen closes or the renderer reloads.
+        // Do not trust activeShader alone; verify that the actual chain still exists.
+        boolean shaderMissing = mc.gameRenderer.currentEffect() == null;
+        if (activeShader == null || !shader.equals(activeShader) || shaderMissing) {
             shutdown(mc);
             try {
                 mc.gameRenderer.loadEffect(shader);
@@ -179,6 +185,14 @@ public final class ShaderController {
         }
         wasViajeActive = viajeActive;
 
+        MobEffectInstance starwarsViaje = mc.player.getEffect(ShadersModMobEffects.STARWARS_VIAJE.get());
+        boolean starwarsViajeActive = starwarsViaje != null;
+        if (starwarsViajeActive && !wasStarwarsViajeActive) {
+            starwarsViajeStartGameTime = gameTime;
+            starwarsViajeTotalTicks = Math.max(1, starwarsViaje.getDuration());
+        }
+        wasStarwarsViajeActive = starwarsViajeActive;
+
         MobEffectInstance sangre = mc.player.getEffect(ShadersModMobEffects.SANGRE.get());
         boolean sangreActive = sangre != null;
         if (sangreActive && !wasSangreActive) {
@@ -198,13 +212,6 @@ public final class ShaderController {
         boolean dormirActive = dormir != null;
         if (dormirActive && !wasDormirActive) {
             dormirStartGameTime = gameTime;
-            dormirOutroActive = false;
-        } else if (!dormirActive && wasDormirActive) {
-            dormirOutroActive = true;
-            dormirOutroStartGameTime = gameTime;
-        }
-        if (dormirOutroActive && gameTime - dormirOutroStartGameTime >= DORMIR_OUTRO_TICKS) {
-            dormirOutroActive = false;
         }
         wasDormirActive = dormirActive;
     }
@@ -247,8 +254,9 @@ public final class ShaderController {
         float shaderTime = (float) (gameTicks / 20.0);
 
         MobEffectInstance absorption = mc.player.getEffect(ShadersModMobEffects.ABSORCION.get());
+        int absorptionAnimationTicks = Math.max(1, Math.min(ABSORPTION_ANIMATION_TICKS, absorptionTotalTicks));
         float absorptionProgress = absorption == null ? 0.0F
-            : clamp((float) ((gameTicks - absorptionStartGameTime) / ABSORPTION_ANIMATION_TICKS));
+            : clamp((float) ((gameTicks - absorptionStartGameTime) / absorptionAnimationTicks));
 
         MobEffectInstance rugido = mc.player.getEffect(ShadersModMobEffects.RUGIDO.get());
         float rugidoProgress = rugido == null ? 0.0F
@@ -261,8 +269,14 @@ public final class ShaderController {
         MobEffectInstance viaje = mc.player.getEffect(ShadersModMobEffects.VIAJE_REALIDADES.get());
         float viajeProgress = viaje == null ? 0.0F
             : clamp((float) ((gameTicks - realidadesStartGameTime) / REALIDADES_INTRO_TICKS));
-        float viajeFade = viaje == null ? 0.0F
+        float viajeFadeIn = viaje == null ? 0.0F : viajeProgress;
+        float viajeFadeOut = viaje == null ? 0.0F
             : clamp(viaje.getDuration() / (float) REALIDADES_OUTRO_TICKS);
+        float viajeFade = Math.min(viajeFadeIn, viajeFadeOut);
+
+        MobEffectInstance starwarsViaje = mc.player.getEffect(ShadersModMobEffects.STARWARS_VIAJE.get());
+        float starwarsViajeProgress = starwarsViaje == null ? 0.0F
+            : clamp((float) ((gameTicks - starwarsViajeStartGameTime) / Math.max(1, starwarsViajeTotalTicks)));
 
         MobEffectInstance sangre = mc.player.getEffect(ShadersModMobEffects.SANGRE.get());
         float sangreElapsed = (float) (gameTicks - sangreStartGameTime);
@@ -279,8 +293,9 @@ public final class ShaderController {
         MobEffectInstance dormir = mc.player.getEffect(ShadersModMobEffects.DORMIR.get());
         float dormirProgress = dormir == null ? 8.0F
             : Math.min(8.0F, (float) ((gameTicks - dormirStartGameTime) / 20.0));
-        float dormirOutro = dormirOutroActive
-            ? clamp((float) ((gameTicks - dormirOutroStartGameTime) / DORMIR_OUTRO_TICKS))
+        // Start reopening during the final two seconds, before the status effect expires.
+        float dormirOutro = dormir != null && dormir.getDuration() <= DORMIR_OUTRO_TICKS
+            ? clamp(1.0F - dormir.getDuration() / (float) DORMIR_OUTRO_TICKS)
             : 0.0F;
 
         for (PostPass pass : chain.passes) {
@@ -297,7 +312,10 @@ public final class ShaderController {
             set(pass, "UseCine", has(mc, ShadersModMobEffects.CINE.get()));
             set(pass, "UseVHS", has(mc, ShadersModMobEffects.VHS.get()));
             set(pass, "UseSangre", sangre != null || sangreOutroActive ? 1.0F : 0.0F);
-            set(pass, "UseDormir", dormir != null || dormirOutroActive ? 1.0F : 0.0F);
+            set(pass, "UseDormir", dormir != null ? 1.0F : 0.0F);
+            set(pass, "UseComic", has(mc, ShadersModMobEffects.COMIC.get()));
+            set(pass, "UseStarwarsViaje", has(mc, ShadersModMobEffects.STARWARS_VIAJE.get()));
+            set(pass, "UseElectrificado", has(mc, ShadersModMobEffects.ELECTRIFICADO.get()));
 
             set(pass, "UseNotch", has(mc, ShadersModMobEffects.NOTCH.get()));
             set(pass, "UseFxaa", has(mc, ShadersModMobEffects.FXAA.get()));
@@ -329,6 +347,7 @@ public final class ShaderController {
             set(pass, "TerremotoStrength", terremotoStrength);
             set(pass, "ViajeProgress", viajeProgress);
             set(pass, "ViajeFade", viajeFade);
+            set(pass, "StarwarsProgress", starwarsViajeProgress);
             set(pass, "SangreProgress", sangreProgress);
             set(pass, "SangreFade", sangreFade);
             set(pass, "DormirProgress", dormirProgress);
@@ -354,11 +373,12 @@ public final class ShaderController {
     private static void resetTracking() {
         wasAbsorcionActive = false;
         wasViajeActive = false;
+        wasStarwarsViajeActive = false;
         wasSangreActive = false;
         sangreOutroActive = false;
         wasDormirActive = false;
-        dormirOutroActive = false;
         absorptionTotalTicks = 1;
+        starwarsViajeTotalTicks = 1;
         sangreTotalTicks = 1;
     }
 
