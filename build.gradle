@@ -99,7 +99,7 @@ tasks.named('processResources') {
             'ntsc', 'outline', 'phosphor', 'bits', 'green', 'blobs', 'antialias',
             'flip', 'pencil', 'enderman_vision', 'sobel', 'desaturate', 'blur',
             'wobble', 'creeper_vision', 'spider_vision', 'scan_pincushion',
-            'notch', 'nada'
+            'notch', 'nada', 'comic', 'starwars_viaje', 'electrificado'
         ]
         effectIconNames.each { iconName ->
             javax.imageio.ImageIO.write(
