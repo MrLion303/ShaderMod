@@ -4,6 +4,7 @@ import net.mcreator.shaders.init.ShadersModMobEffects;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.CloudStatus;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraftforge.client.event.RenderLevelStageEvent;
 import org.lwjgl.BufferUtils;
@@ -30,6 +31,8 @@ public final class ShadersMod {
         private static boolean menteDarkenRemainder;
         private static float[] previousShaderColor;
         private static final FloatBuffer PREVIOUS_CLEAR_COLOR = BufferUtils.createFloatBuffer(4);
+        private static boolean menteCloudsDisabled;
+        private static CloudStatus previousCloudStatus;
 
         @SubscribeEvent
         public static void onMenteRenderStage(RenderLevelStageEvent event) {
@@ -71,17 +74,40 @@ public final class ShadersMod {
                 previousShaderColor = RenderSystem.getShaderColor().clone();
                 RenderSystem.setShaderColor(0.0F, 0.0F, 0.0F, 1.0F);
                 menteDarkenRemainder = true;
-            } else if (stage == RenderLevelStageEvent.Stage.AFTER_PARTICLES) {
-                // Clouds render immediately after particles in 1.20.1. Reapply black here in case
-                // particle rendering changed the shader color before the cloud pass.
-                RenderSystem.setShaderColor(0.0F, 0.0F, 0.0F, 1.0F);
             }
         }
 
         @SubscribeEvent
         public static void onClientTick(TickEvent.ClientTickEvent event) {
             if (event.phase == TickEvent.Phase.END) {
+                updateMenteCloudRendering();
                 ShaderController.tick();
+            }
+        }
+
+        /**
+         * Disables cloud rendering while Mente is active and restores the user's
+         * original cloud quality as soon as the effect ends or the world unloads.
+         */
+        private static void updateMenteCloudRendering() {
+            Minecraft mc = Minecraft.getInstance();
+            boolean menteActive = mc.player != null
+                && mc.player.hasEffect(ShadersModMobEffects.MENTE.get());
+
+            if (menteActive) {
+                if (!menteCloudsDisabled) {
+                    previousCloudStatus = mc.options.cloudStatus().get();
+                    menteCloudsDisabled = true;
+                }
+                if (mc.options.cloudStatus().get() != CloudStatus.OFF) {
+                    mc.options.cloudStatus().set(CloudStatus.OFF);
+                }
+            } else if (menteCloudsDisabled) {
+                if (previousCloudStatus != null) {
+                    mc.options.cloudStatus().set(previousCloudStatus);
+                }
+                previousCloudStatus = null;
+                menteCloudsDisabled = false;
             }
         }
 
