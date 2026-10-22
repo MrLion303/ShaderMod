@@ -28,6 +28,7 @@ public final class ShadersMod {
     @Mod.EventBusSubscriber(modid = MODID, value = Dist.CLIENT, bus = Bus.FORGE)
     public static final class ClientEvents {
         private static boolean menteDarkenRemainder;
+        private static float[] previousShaderColor;
 
         @SubscribeEvent
         public static void onMenteRenderStage(RenderLevelStageEvent event) {
@@ -35,7 +36,11 @@ public final class ShadersMod {
 
             if (stage == RenderLevelStageEvent.Stage.AFTER_LEVEL) {
                 if (menteDarkenRemainder) {
-                    RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+                    float[] color = previousShaderColor;
+                    if (color != null && color.length >= 4) {
+                        RenderSystem.setShaderColor(color[0], color[1], color[2], color[3]);
+                    }
+                    previousShaderColor = null;
                     menteDarkenRemainder = false;
                 }
                 return;
@@ -61,6 +66,7 @@ public final class ShadersMod {
                 );
             } else if (stage == RenderLevelStageEvent.Stage.AFTER_ENTITIES) {
                 // Later world passes (block entities, translucent blocks and particles) should stay black too.
+                previousShaderColor = RenderSystem.getShaderColor().clone();
                 RenderSystem.setShaderColor(0.0F, 0.0F, 0.0F, 1.0F);
                 menteDarkenRemainder = true;
             }
