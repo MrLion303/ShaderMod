@@ -36,5 +36,8 @@
   "effect.shaders.cine": "Cine",
   "effect.shaders.vhs": "VHS",
   "effect.shaders.sangre": "Blood",
-  "effect.shaders.dormir": "Sleep"
+  "effect.shaders.dormir": "Sleep",
+  "effect.shaders.comic": "Comic",
+  "effect.shaders.starwars_viaje": "Star Wars Hyperspace",
+  "effect.shaders.electrificado": "Electrified"
 }
