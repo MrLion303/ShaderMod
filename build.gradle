@@ -50,25 +50,45 @@ publishing {
 }
 
 
-// Copy the shared mod logo and shader effect icon into the resource tree at build time.
-// The source PNGs remain in the repository root so they are easy to replace.
+// Generate a native-size effect icon from the artwork kept in the resource-pack folder.
 tasks.named('processResources') {
     doLast {
         def mobEffectDir = file("${buildDir}/resources/main/assets/shaders/textures/mob_effect")
         mobEffectDir.mkdirs()
 
-        copy {
-            from file('logo.png')
-            into mobEffectDir
-            rename { 'logo.png' }
+        def logoSource = file('Shadermod/logo.png')
+        if (!logoSource.isFile()) {
+            throw new GradleException("No se encontró el icono de ShaderMod: ${logoSource}")
         }
 
-        copy {
-            from file('logo.png')
-            into mobEffectDir
-            rename { 'shaderlogo.png' }
+        def sourceImage = javax.imageio.ImageIO.read(logoSource)
+        if (sourceImage == null) {
+            throw new GradleException("El archivo de icono no es una imagen PNG válida: ${logoSource}")
         }
 
+        // A 36 px source texture stays crisp in the 18 x 18 status-effect slot.
+        def iconSize = 36
+        def iconImage = new java.awt.image.BufferedImage(
+            iconSize, iconSize, java.awt.image.BufferedImage.TYPE_INT_ARGB
+        )
+        def graphics = iconImage.createGraphics()
+        graphics.setRenderingHint(
+            java.awt.RenderingHints.KEY_INTERPOLATION,
+            java.awt.RenderingHints.VALUE_INTERPOLATION_BICUBIC
+        )
+        graphics.setRenderingHint(
+            java.awt.RenderingHints.KEY_RENDERING,
+            java.awt.RenderingHints.VALUE_RENDER_QUALITY
+        )
+        graphics.drawImage(sourceImage, 0, 0, iconSize, iconSize, null)
+        graphics.dispose()
+
+        javax.imageio.ImageIO.write(
+            iconImage, 'png',
+            new File(mobEffectDir, 'logo.png')
+        )
+
+        // Keep the named effect textures available for pack/resource compatibility.
         def effectIconNames = [
             'fxaa', 'art', 'bumpy', 'blobs2', 'color_convolve', 'deconverge',
             'ntsc', 'outline', 'phosphor', 'bits', 'green', 'blobs', 'antialias',
@@ -76,13 +96,11 @@ tasks.named('processResources') {
             'wobble', 'creeper_vision', 'spider_vision', 'scan_pincushion',
             'notch', 'nada'
         ]
-
         effectIconNames.each { iconName ->
-            copy {
-                from file('shaderlogo.png')
-                into mobEffectDir
-                rename { name -> iconName + '.png' }
-            }
+            javax.imageio.ImageIO.write(
+                iconImage, 'png',
+                new File(mobEffectDir, iconName + '.png')
+            )
         }
     }
 }
