@@ -105,13 +105,16 @@ public final class ShaderController {
 
         boolean menteActive = mc.player.hasEffect(ShadersModMobEffects.MENTE.get());
         MobEffect compositeEffect = firstActiveCompositeEffect(mc);
-        boolean compositeActive = compositeEffect != null || dormirOutroActive;
+        int activeVanillaCount = countActiveVanillaEffects(mc);
+        boolean compositeActive = compositeEffect != null || dormirOutroActive
+            || activeVanillaCount > 1 || (menteActive && activeVanillaCount > 0);
 
         MobEffect requested = null;
         ResourceLocation shader = null;
 
         if (compositeActive) {
-            requested = compositeEffect != null ? compositeEffect : ShadersModMobEffects.DORMIR.get();
+            requested = compositeEffect != null ? compositeEffect : firstActiveVanillaEffect(mc);
+            if (requested == null) requested = ShadersModMobEffects.DORMIR.get();
             shader = COMPOSITE_SHADER;
         } else if (menteActive) {
             // Mente itself darkens the level before entities render, so it needs no post-chain.
@@ -205,6 +208,25 @@ public final class ShaderController {
         return null;
     }
 
+    private static int countActiveVanillaEffects(Minecraft mc) {
+        int count = 0;
+        for (Map.Entry<MobEffect, ResourceLocation> entry : VANILLA_SHADERS) {
+            if (mc.player.hasEffect(entry.getKey())) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    private static MobEffect firstActiveVanillaEffect(Minecraft mc) {
+        for (Map.Entry<MobEffect, ResourceLocation> entry : VANILLA_SHADERS) {
+            if (mc.player.hasEffect(entry.getKey())) {
+                return entry.getKey();
+            }
+        }
+        return null;
+    }
+
     public static void updateCompositeFrame() {
         Minecraft mc = Minecraft.getInstance();
         if (mc.level == null || mc.player == null || !COMPOSITE_SHADER.equals(activeShader)) return;
@@ -263,6 +285,31 @@ public final class ShaderController {
             set(pass, "UseVHS", has(mc, ShadersModMobEffects.VHS.get()));
             set(pass, "UseSangre", has(mc, ShadersModMobEffects.SANGRE.get()));
             set(pass, "UseDormir", dormir != null || dormirOutroActive);
+
+            set(pass, "UseNotch", has(mc, ShadersModMobEffects.NOTCH.get()));
+            set(pass, "UseFxaa", has(mc, ShadersModMobEffects.FXAA.get()));
+            set(pass, "UseArt", has(mc, ShadersModMobEffects.ART.get()));
+            set(pass, "UseBumpy", has(mc, ShadersModMobEffects.BUMPY.get()));
+            set(pass, "UseBlobs2", has(mc, ShadersModMobEffects.BLOBS2.get()));
+            set(pass, "UsePencil", has(mc, ShadersModMobEffects.PENCIL.get()));
+            set(pass, "UseColorConvolve", has(mc, ShadersModMobEffects.COLOR_CONVOLVE.get()));
+            set(pass, "UseDeconverge", has(mc, ShadersModMobEffects.DECONVERGE.get()));
+            set(pass, "UseFlip", has(mc, ShadersModMobEffects.FLIP.get()));
+            set(pass, "UseEndermanVision", has(mc, ShadersModMobEffects.ENDER_MAN_VISION.get()));
+            set(pass, "UseNtsc", has(mc, ShadersModMobEffects.NTSC.get()));
+            set(pass, "UseOutline", has(mc, ShadersModMobEffects.OUTLINE.get()));
+            set(pass, "UsePhosphor", has(mc, ShadersModMobEffects.PHOSPHOR.get()));
+            set(pass, "UseSobel", has(mc, ShadersModMobEffects.SOBEL.get()));
+            set(pass, "UseBits", has(mc, ShadersModMobEffects.BITS.get()));
+            set(pass, "UseDesaturate", has(mc, ShadersModMobEffects.DESATURATE.get()));
+            set(pass, "UseGreen", has(mc, ShadersModMobEffects.GREEN.get()));
+            set(pass, "UseBlur", has(mc, ShadersModMobEffects.BLUR.get()));
+            set(pass, "UseWobble", has(mc, ShadersModMobEffects.WOBBLE.get()));
+            set(pass, "UseBlobs", has(mc, ShadersModMobEffects.BLOBS.get()));
+            set(pass, "UseAntialias", has(mc, ShadersModMobEffects.ANTIALIAS.get()));
+            set(pass, "UseCreeperVision", has(mc, ShadersModMobEffects.CREEPER_VISION.get()));
+            set(pass, "UseSpiderVision", has(mc, ShadersModMobEffects.SPIDER_VISION.get()));
+            set(pass, "UseScanPincushion", has(mc, ShadersModMobEffects.SCAN_PINCUSHION.get()));
 
             set(pass, "AbsorcionProgress", absorptionProgress);
             set(pass, "RugidoProgress", rugidoProgress);
