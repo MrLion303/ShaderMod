@@ -16,6 +16,11 @@ jobs:
           java-version: '17'
       - name: Dar permisos a Gradle
         run: chmod +x gradlew
+      - name: Validar shader GLSL
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y glslang-tools
+          glslangValidator -S frag src/main/resources/assets/shaders/shaders/program/negativestudios_effects.fsh
       - name: Compilar
         run: ./gradlew build --no-daemon
       - name: Subir jar
