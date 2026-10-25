@@ -487,6 +487,14 @@
       "values": [
         0
       ]
+    },
+    {
+      "name": "StarwarsSpeed",
+      "type": "float",
+      "count": 1,
+      "values": [
+        1
+      ]
     }
   ]
 }
