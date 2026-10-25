@@ -275,8 +275,12 @@ public final class ShaderController {
         float viajeFade = Math.min(viajeFadeIn, viajeFadeOut);
 
         MobEffectInstance starwarsViaje = mc.player.getEffect(ShadersModMobEffects.STARWARS_VIAJE.get());
+        // The first level keeps the normal pace; every higher level speeds up the transition and trails.
+        float starwarsSpeed = starwarsViaje == null ? 1.0F
+            : Math.min(4.0F, 1.0F + starwarsViaje.getAmplifier() * 0.5F);
         float starwarsViajeProgress = starwarsViaje == null ? 0.0F
-            : clamp((float) ((gameTicks - starwarsViajeStartGameTime) / Math.max(1, starwarsViajeTotalTicks)));
+            : clamp((float) ((gameTicks - starwarsViajeStartGameTime) * starwarsSpeed
+                / Math.max(1, starwarsViajeTotalTicks)));
 
         MobEffectInstance sangre = mc.player.getEffect(ShadersModMobEffects.SANGRE.get());
         float sangreElapsed = (float) (gameTicks - sangreStartGameTime);
@@ -348,6 +352,7 @@ public final class ShaderController {
             set(pass, "ViajeProgress", viajeProgress);
             set(pass, "ViajeFade", viajeFade);
             set(pass, "StarwarsProgress", starwarsViajeProgress);
+            set(pass, "StarwarsSpeed", starwarsSpeed);
             set(pass, "SangreProgress", sangreProgress);
             set(pass, "SangreFade", sangreFade);
             set(pass, "DormirProgress", dormirProgress);
