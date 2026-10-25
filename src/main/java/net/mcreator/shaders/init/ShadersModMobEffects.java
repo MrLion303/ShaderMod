@@ -82,7 +82,8 @@ public final class ShadersModMobEffects {
                                                    EffectRenderingInventoryScreen<?> screen,
                                                    GuiGraphics guiGraphics,
                                                    int x, int y, int blitOffset) {
-                    guiGraphics.blit(ICON, x, y, 18, 18, 0, 0, 36, 36, 36, 36);
+                    // Inventory effect rows are taller than the icon, so center it vertically.
+                    guiGraphics.blit(ICON, x, y + 7, 18, 18, 0, 0, 36, 36, 36, 36);
                     return true;
                 }
 
