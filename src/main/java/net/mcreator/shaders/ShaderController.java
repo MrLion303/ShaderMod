@@ -25,6 +25,7 @@ public final class ShaderController {
     private static final int REALIDADES_OUTRO_TICKS = 24;
     private static final int SANGRE_FADE_IN_TICKS = 20;
     private static final int SANGRE_FADE_OUT_TICKS = 40;
+    private static final int STARWARS_FADE_OUT_TICKS = 20;
     private static final int DORMIR_OUTRO_TICKS = 40;
 
     private static boolean wasAbsorcionActive;
@@ -281,6 +282,9 @@ public final class ShaderController {
         float starwarsViajeProgress = starwarsViaje == null ? 0.0F
             : clamp((float) ((gameTicks - starwarsViajeStartGameTime) * starwarsSpeed
                 / Math.max(1, starwarsViajeTotalTicks)));
+        // Fade out during the final second of the potion, based on real remaining duration.
+        float starwarsFade = starwarsViaje == null ? 0.0F
+            : clamp(starwarsViaje.getDuration() / (float) STARWARS_FADE_OUT_TICKS);
 
         MobEffectInstance sangre = mc.player.getEffect(ShadersModMobEffects.SANGRE.get());
         float sangreElapsed = (float) (gameTicks - sangreStartGameTime);
@@ -353,6 +357,7 @@ public final class ShaderController {
             set(pass, "ViajeFade", viajeFade);
             set(pass, "StarwarsProgress", starwarsViajeProgress);
             set(pass, "StarwarsSpeed", starwarsSpeed);
+            set(pass, "StarwarsFade", starwarsFade);
             set(pass, "SangreProgress", sangreProgress);
             set(pass, "SangreFade", sangreFade);
             set(pass, "DormirProgress", dormirProgress);
