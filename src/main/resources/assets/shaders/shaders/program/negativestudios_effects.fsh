@@ -57,6 +57,7 @@ uniform float DormirProgress;
 uniform float DormirOutro;
 uniform float StarwarsProgress;
 uniform float StarwarsSpeed;
+uniform float StarwarsFade;
 in vec2 texCoord;
 in vec2 oneTexel;
 
@@ -723,6 +724,7 @@ void main(){
 
         // Star Wars hyperspace: potion level controls both the transition and animation speed.
         if(UseStarwarsViaje > 0.5){
+            vec3 starwarsBase = color;
             float progress = clamp(StarwarsProgress, 0.0, 1.0);
             float starwarsTime = t * clamp(StarwarsSpeed, 1.0, 4.0);
             float spaceFade = smoothstep(0.0, 0.34, progress);
@@ -771,6 +773,9 @@ void main(){
                 * smoothstep(0.035, 0.18, radius);
             color += vec3(0.52, 0.76, 1.0) * lightTrails * 1.25;
             color += vec3(0.42, 0.69, 1.0) * exp(-radius * 17.0) * hyperspace * 0.65;
+
+            // Restore the image underneath Star Wars smoothly over its final second.
+            color = mix(starwarsBase, color, clamp(StarwarsFade, 0.0, 1.0));
         }
 
         // Comic: preserve the scene's colors, add a modest saturation boost and ink halftone dots.
