@@ -56,6 +56,7 @@ uniform float SangreFade;
 uniform float DormirProgress;
 uniform float DormirOutro;
 uniform float StarwarsProgress;
+uniform float StarwarsSpeed;
 in vec2 texCoord;
 in vec2 oneTexel;
 
@@ -720,9 +721,10 @@ void main(){
             color += vec3(0.72, 0.86, 1.0) * tapeLine * 0.10;
         }
 
-        // Star Wars hyperspace: fade into darkness, reveal stars, then stretch them into light trails.
+        // Star Wars hyperspace: potion level controls both the transition and animation speed.
         if(UseStarwarsViaje > 0.5){
             float progress = clamp(StarwarsProgress, 0.0, 1.0);
+            float starwarsTime = t * clamp(StarwarsSpeed, 1.0, 4.0);
             float spaceFade = smoothstep(0.0, 0.34, progress);
             float hyperspace = smoothstep(0.38, 0.70, progress);
 
@@ -758,56 +760,52 @@ void main(){
             float starDistance = length(starLocal - starOffset);
             float star = step(0.925, starSeed)
                 * (1.0 - smoothstep(0.018, 0.095, starDistance));
-            float twinkle = 0.58 + 0.42 * sin(t * 4.0 + starSeed * 30.0);
+            float twinkle = 0.58 + 0.42 * sin(starwarsTime * 4.0 + starSeed * 30.0);
             color += vec3(0.72, 0.84, 1.0) * star * spaceFade * twinkle * (1.0 - hyperspace * 0.25);
 
             float rayPattern = pow(max(cos(
-                angle * 54.0 + sin(angle * 11.0 + t * 0.32) * 0.9
+                angle * 54.0 + sin(angle * 11.0 + starwarsTime * 0.32) * 0.9
             ), 0.0), 26.0);
-            float movingBands = 0.38 + 0.62 * fract(radius * 13.0 - t * 4.5);
+            float movingBands = 0.38 + 0.62 * fract(radius * 13.0 - starwarsTime * 4.5);
             float lightTrails = rayPattern * hyperspace * movingBands
                 * smoothstep(0.035, 0.18, radius);
             color += vec3(0.52, 0.76, 1.0) * lightTrails * 1.25;
             color += vec3(0.42, 0.69, 1.0) * exp(-radius * 17.0) * hyperspace * 0.65;
         }
 
-        // Comic-book rendering: posterized colors, dark ink contours and halftone dots.
+        // Comic: preserve the scene's colors, add a modest saturation boost and ink halftone dots.
         if(UseComic > 0.5){
-            float leftLum = dot(sampleColor(sampleUv - vec2(texel.x, 0.0)), vec3(0.2126, 0.7152, 0.0722));
-            float rightLum = dot(sampleColor(sampleUv + vec2(texel.x, 0.0)), vec3(0.2126, 0.7152, 0.0722));
-            float upLum = dot(sampleColor(sampleUv - vec2(0.0, texel.y)), vec3(0.2126, 0.7152, 0.0722));
-            float downLum = dot(sampleColor(sampleUv + vec2(0.0, texel.y)), vec3(0.2126, 0.7152, 0.0722));
-            float inkEdge = clamp(abs(rightLum - leftLum) + abs(downLum - upLum), 0.0, 1.0);
-            vec3 posterized = floor(clamp(color * 1.12 - 0.035, 0.0, 1.0) * 5.0 + 0.5) / 5.0;
-            posterized = clamp((posterized - 0.5) * 1.28 + 0.5, 0.0, 1.0);
+            float luminance = dot(color, vec3(0.2126, 0.7152, 0.0722));
+            color = mix(vec3(luminance), color, 1.16);
+            color = clamp(color * 1.035, 0.0, 1.0);
 
-            float luminance = dot(posterized, vec3(0.2126, 0.7152, 0.0722));
             float halftoneSize = max(InSize.y / 72.0, 3.0);
             vec2 halftoneUv = uv * InSize.xy / halftoneSize;
-            float dotPattern = sin(halftoneUv.x * 3.14159265) * sin(halftoneUv.y * 3.14159265);
-            float dotInk = smoothstep(0.45, 0.90, dotPattern + (1.0 - luminance) * 0.30);
-            posterized *= 1.0 - dotInk * (1.0 - luminance) * 0.22;
+            vec2 dotCell = fract(halftoneUv) - 0.5;
+            float dotDistance = length(dotCell);
+            float dotRadius = mix(0.13, 0.40, 1.0 - luminance);
+            float dotInk = 1.0 - smoothstep(dotRadius - 0.035, dotRadius + 0.035, dotDistance);
 
-            float contour = smoothstep(0.075, 0.26, inkEdge);
-            color = mix(posterized, vec3(0.012, 0.010, 0.018), contour * 0.92);
+            // The dots darken the existing color instead of tinting the scene blue or black.
+            color *= 1.0 - dotInk * 0.22;
         }
 
-        // Blue electric bolts flash in from the screen edges toward the center.
+        // Electric bolts branch in from the edges and stop before reaching the screen center.
         if(UseElectrificado > 0.5){
             float electricFrame = floor(t * 8.0);
-            vec2 heart = vec2(
-                0.50 + (hash21(vec2(electricFrame, 7.0)) - 0.5) * 0.16,
-                0.50 + (hash21(vec2(electricFrame, 19.0)) - 0.5) * 0.16
-            );
             float bolts = 0.0;
-            bolts = max(bolts, lightningBolt(uv, vec2(-0.03, 0.12), heart, 1.0, electricFrame));
-            bolts = max(bolts, lightningBolt(uv, vec2(-0.03, 0.78), heart, 2.0, electricFrame));
-            bolts = max(bolts, lightningBolt(uv, vec2(1.03, 0.24), heart, 3.0, electricFrame));
-            bolts = max(bolts, lightningBolt(uv, vec2(1.03, 0.84), heart, 4.0, electricFrame));
-            bolts = max(bolts, lightningBolt(uv, vec2(0.18, -0.03), heart, 5.0, electricFrame));
-            bolts = max(bolts, lightningBolt(uv, vec2(0.78, -0.03), heart, 6.0, electricFrame));
-            bolts = max(bolts, lightningBolt(uv, vec2(0.30, 1.03), heart, 7.0, electricFrame));
-            bolts = max(bolts, lightningBolt(uv, vec2(0.86, 1.03), heart, 8.0, electricFrame));
+
+            // Left and right edges: endpoints stay in the outer thirds of the screen.
+            bolts = max(bolts, lightningBolt(uv, vec2(-0.03, 0.10), vec2(0.31, 0.28), 1.0, electricFrame));
+            bolts = max(bolts, lightningBolt(uv, vec2(-0.03, 0.70), vec2(0.32, 0.46), 2.0, electricFrame));
+            bolts = max(bolts, lightningBolt(uv, vec2(1.03, 0.12), vec2(0.70, 0.29), 3.0, electricFrame));
+            bolts = max(bolts, lightningBolt(uv, vec2(1.03, 0.74), vec2(0.69, 0.61), 4.0, electricFrame));
+
+            // Top and bottom edges also stop early; no bolt converges on a shared point.
+            bolts = max(bolts, lightningBolt(uv, vec2(0.10, -0.03), vec2(0.28, 0.29), 5.0, electricFrame));
+            bolts = max(bolts, lightningBolt(uv, vec2(0.76, -0.03), vec2(0.69, 0.30), 6.0, electricFrame));
+            bolts = max(bolts, lightningBolt(uv, vec2(0.12, 1.03), vec2(0.30, 0.71), 7.0, electricFrame));
+            bolts = max(bolts, lightningBolt(uv, vec2(0.78, 1.03), vec2(0.70, 0.72), 8.0, electricFrame));
 
             float electricFlash = 0.55 + 0.45 * step(0.42, hash21(vec2(electricFrame, 37.0)));
             color += vec3(0.035, 0.22, 0.90) * bolts * electricFlash * 0.95;
