@@ -168,7 +168,8 @@ public final class ShadersMod {
                 || effect == ShadersModMobEffects.CINE.get()
                 || effect == ShadersModMobEffects.VHS.get()
                 || effect == ShadersModMobEffects.SANGRE.get()
-                || effect == ShadersModMobEffects.DORMIR.get();
+                || effect == ShadersModMobEffects.DORMIR.get()
+                || effect == ShadersModMobEffects.MOTION_BLUR.get();
         }
     }
 }
