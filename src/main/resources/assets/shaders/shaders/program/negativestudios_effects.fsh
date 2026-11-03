@@ -22,6 +22,10 @@ uniform float UseDormir;
 uniform float UseComic;
 uniform float UseStarwarsViaje;
 uniform float UseElectrificado;
+uniform float UseMotionBlur;
+uniform float MotionBlurX;
+uniform float MotionBlurY;
+uniform float MotionBlurZoom;
 uniform float UseNotch;
 uniform float UseFxaa;
 uniform float UseArt;
@@ -63,6 +67,14 @@ in vec2 oneTexel;
 
 vec3 sampleColor(vec2 uv){
     return texture(DiffuseSampler, clamp(uv, 0.0, 1.0)).rgb;
+}
+
+vec3 sampleMotionColor(vec2 uv, vec2 direction, float chromaShift){
+    vec3 color;
+    color.r = sampleColor(uv + direction * chromaShift).r;
+    color.g = sampleColor(uv).g;
+    color.b = sampleColor(uv - direction * chromaShift).b;
+    return color;
 }
 
 float hash21(vec2 p){
@@ -565,6 +577,33 @@ void main(){
         }
 
         vec3 color = sampleColor(sampleUv);
+
+        // Motion blur follows camera rotation and translation. RGB channels are
+        // sampled on opposite sides of the trail to create subtle chromatic aberration.
+        if(UseMotionBlur > 0.5){
+            vec2 blurVector = vec2(MotionBlurX, MotionBlurY);
+            vec2 radial = (sampleUv - vec2(0.5)) * vec2(aspect, 1.0);
+            float radialLength = length(radial);
+            if(radialLength > 0.0001){
+                radial /= radialLength;
+                radial.x /= aspect;
+                blurVector += radial * MotionBlurZoom;
+            }
+
+            float blurLength = length(blurVector);
+            if(blurLength > 0.00015){
+                vec2 direction = blurVector / blurLength;
+                float chromaShift = min(blurLength * 0.26, 0.0065);
+                vec3 motionColor = vec3(0.0);
+
+                motionColor += sampleMotionColor(sampleUv - blurVector * 0.50, direction, chromaShift) * 0.12;
+                motionColor += sampleMotionColor(sampleUv - blurVector * 0.25, direction, chromaShift) * 0.22;
+                motionColor += sampleMotionColor(sampleUv, direction, chromaShift) * 0.32;
+                motionColor += sampleMotionColor(sampleUv + blurVector * 0.25, direction, chromaShift) * 0.22;
+                motionColor += sampleMotionColor(sampleUv + blurVector * 0.50, direction, chromaShift) * 0.12;
+                color = motionColor;
+            }
+        }
 
         if(UseBlur > 0.5){
             color = (color
