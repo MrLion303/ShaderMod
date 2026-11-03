@@ -39,5 +39,6 @@
   "effect.shaders.dormir": "Dormir",
   "effect.shaders.comic": "Cómic",
   "effect.shaders.starwars_viaje": "Starwars Viaje",
-  "effect.shaders.electrificado": "Electrificado"
+  "effect.shaders.electrificado": "Electrificado",
+  "effect.shaders.motion_blur": "Desenfoque de Movimiento"
 }
