@@ -2,6 +2,9 @@ package net.mcreator.shaders;
 
 import net.mcreator.shaders.init.ShadersModMobEffects;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.Camera;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.util.Mth;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -44,6 +47,14 @@ public final class ShaderController {
     private static int absorptionTotalTicks = 1;
     private static int starwarsViajeTotalTicks = 1;
     private static int sangreTotalTicks = 1;
+
+    private static boolean hasPreviousCamera;
+    private static float previousCameraYaw;
+    private static float previousCameraPitch;
+    private static Vec3 previousCameraPosition;
+    private static float motionBlurX;
+    private static float motionBlurY;
+    private static float motionBlurZoom;
 
     // These effects use Minecraft's original Super Secret Settings post-processors.
     // Effects created for ShaderMod use the compositing chain below so they can stack.
@@ -90,7 +101,8 @@ public final class ShaderController {
         ShadersModMobEffects.DORMIR.get(),
         ShadersModMobEffects.COMIC.get(),
         ShadersModMobEffects.STARWARS_VIAJE.get(),
-        ShadersModMobEffects.ELECTRIFICADO.get()
+        ShadersModMobEffects.ELECTRIFICADO.get(),
+        ShadersModMobEffects.MOTION_BLUR.get()
     );
 
     private ShaderController() {}
@@ -164,7 +176,7 @@ public final class ShaderController {
         }
 
         if (COMPOSITE_SHADER.equals(activeShader)) {
-            updateCompositeFrame();
+            updateCompositeFrame(false);
         }
     }
 
@@ -246,6 +258,10 @@ public final class ShaderController {
     }
 
     public static void updateCompositeFrame() {
+        updateCompositeFrame(true);
+    }
+
+    private static void updateCompositeFrame(boolean updateCameraMotion) {
         Minecraft mc = Minecraft.getInstance();
         if (mc.level == null || mc.player == null || !COMPOSITE_SHADER.equals(activeShader)) return;
         PostChain chain = mc.gameRenderer.currentEffect();
@@ -253,6 +269,8 @@ public final class ShaderController {
 
         double gameTicks = mc.level.getGameTime() + mc.getFrameTime();
         float shaderTime = (float) (gameTicks / 20.0);
+
+        updateMotionBlur(mc, mc.player.hasEffect(ShadersModMobEffects.MOTION_BLUR.get()), updateCameraMotion);
 
         MobEffectInstance absorption = mc.player.getEffect(ShadersModMobEffects.ABSORCION.get());
         int absorptionAnimationTicks = Math.max(1, Math.min(ABSORPTION_ANIMATION_TICKS, absorptionTotalTicks));
@@ -324,6 +342,10 @@ public final class ShaderController {
             set(pass, "UseComic", has(mc, ShadersModMobEffects.COMIC.get()));
             set(pass, "UseStarwarsViaje", has(mc, ShadersModMobEffects.STARWARS_VIAJE.get()));
             set(pass, "UseElectrificado", has(mc, ShadersModMobEffects.ELECTRIFICADO.get()));
+            set(pass, "UseMotionBlur", has(mc, ShadersModMobEffects.MOTION_BLUR.get()));
+            set(pass, "MotionBlurX", motionBlurX);
+            set(pass, "MotionBlurY", motionBlurY);
+            set(pass, "MotionBlurZoom", motionBlurZoom);
 
             set(pass, "UseNotch", has(mc, ShadersModMobEffects.NOTCH.get()));
             set(pass, "UseFxaa", has(mc, ShadersModMobEffects.FXAA.get()));
@@ -365,6 +387,66 @@ public final class ShaderController {
         }
     }
 
+    private static void updateMotionBlur(Minecraft mc, boolean effectActive, boolean updateCamera) {
+        if (!updateCamera) return;
+
+        Camera camera = mc.gameRenderer.getMainCamera();
+        Vec3 currentPosition = camera.getPosition();
+        float currentYaw = camera.getYRot();
+        float currentPitch = camera.getXRot();
+
+        if (hasPreviousCamera) {
+            if (effectActive && previousCameraPosition != null) {
+                float yawDelta = Mth.wrapDegrees(currentYaw - previousCameraYaw);
+                float pitchDelta = currentPitch - previousCameraPitch;
+                Vec3 movement = currentPosition.subtract(previousCameraPosition);
+                float yawRadians = (float) Math.toRadians(currentYaw);
+
+                // Project camera translation onto screen-right and screen-forward.
+                float sideMovement = (float) (
+                    movement.x * Math.cos(yawRadians) + movement.z * Math.sin(yawRadians)
+                );
+                float forwardMovement = (float) (
+                    -movement.x * Math.sin(yawRadians) + movement.z * Math.cos(yawRadians)
+                );
+
+                float targetX = -yawDelta * 0.0018F - sideMovement * 0.018F;
+                float targetY = -pitchDelta * 0.0018F + (float) movement.y * 0.018F;
+                float targetZoom = -forwardMovement * 0.014F;
+
+                // Smooth the camera velocity so the blur trails briefly after movement stops.
+                motionBlurX = clampSigned(motionBlurX * 0.72F + targetX * 0.28F, 0.035F);
+                motionBlurY = clampSigned(motionBlurY * 0.72F + targetY * 0.28F, 0.035F);
+                motionBlurZoom = clampSigned(motionBlurZoom * 0.72F + targetZoom * 0.28F, 0.035F);
+            } else {
+                motionBlurX *= 0.72F;
+                motionBlurY *= 0.72F;
+                motionBlurZoom *= 0.72F;
+            }
+        } else {
+            hasPreviousCamera = true;
+            motionBlurX = 0.0F;
+            motionBlurY = 0.0F;
+            motionBlurZoom = 0.0F;
+        }
+
+        previousCameraYaw = currentYaw;
+        previousCameraPitch = currentPitch;
+        previousCameraPosition = currentPosition;
+    }
+
+    private static float clampSigned(float value, float limit) {
+        return Math.max(-limit, Math.min(limit, value));
+    }
+
+    private static void resetMotionBlurTracking() {
+        hasPreviousCamera = false;
+        previousCameraPosition = null;
+        motionBlurX = 0.0F;
+        motionBlurY = 0.0F;
+        motionBlurZoom = 0.0F;
+    }
+
     private static float has(Minecraft mc, MobEffect effect) {
         return mc.player.hasEffect(effect) ? 1.0F : 0.0F;
     }
@@ -390,9 +472,11 @@ public final class ShaderController {
         absorptionTotalTicks = 1;
         starwarsViajeTotalTicks = 1;
         sangreTotalTicks = 1;
+        resetMotionBlurTracking();
     }
 
     private static void shutdown(Minecraft mc) {
+        resetMotionBlurTracking();
         if (activeShader != null || activeEffect != null) {
             mc.gameRenderer.shutdownEffect();
             activeShader = null;
