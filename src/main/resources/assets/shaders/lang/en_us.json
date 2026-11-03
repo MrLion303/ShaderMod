@@ -39,5 +39,6 @@
   "effect.shaders.dormir": "Sleep",
   "effect.shaders.comic": "Comic",
   "effect.shaders.starwars_viaje": "Star Wars Hyperspace",
-  "effect.shaders.electrificado": "Electrified"
+  "effect.shaders.electrificado": "Electrified",
+  "effect.shaders.motion_blur": "Motion Blur"
 }
