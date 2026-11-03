@@ -61,6 +61,7 @@ public final class ShadersModMobEffects {
     public static final RegistryObject<MobEffect> COMIC = register("comic", ComicMobEffect::new);
     public static final RegistryObject<MobEffect> STARWARS_VIAJE = register("starwars_viaje", StarwarsViajeMobEffect::new);
     public static final RegistryObject<MobEffect> ELECTRIFICADO = register("electrificado", ElectrificadoMobEffect::new);
+    public static final RegistryObject<MobEffect> MOTION_BLUR = register("motion_blur", ShaderEffect::new);
 
     private static RegistryObject<MobEffect> register(String name, java.util.function.Supplier<MobEffect> supplier) {
         return REGISTRY.register(name, supplier);
